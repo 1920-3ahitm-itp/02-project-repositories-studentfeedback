@@ -1,0 +1,21 @@
+= Anwendungsfalldiagramm
+
+[plantuml]
+----
+left to right direction
+actor Lehrer
+actor :Schüler:
+
+rectangle {
+
+
+    (Befragung erstellen) as (Use2)
+
+    Schüler -- (Fragebogen ausfüllen)
+    Lehrer -- (Befragung auswerten)
+    Lehrer -- (Use2)
+
+    (Tans generieren ) .> (Use2) : extends
+}
+
+----

@@ -1,4 +1,4 @@
-package at.htl.demo;
+package at.htl.demo.model;
 
 public class Questionnaire {
 

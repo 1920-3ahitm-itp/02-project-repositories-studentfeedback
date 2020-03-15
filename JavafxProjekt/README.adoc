@@ -14,6 +14,13 @@ class Options
 class Student
 class Survey
 
+
+Options "*" -right-> "1" Question
+Question "*" -up-> "1" Questionnaire
+answer "1" -left-> "1,*" Question
+
+
+
 @enduml
 ----
 

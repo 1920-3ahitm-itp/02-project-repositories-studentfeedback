@@ -112,3 +112,54 @@ Derzeit befinden sich an unsere Schule rund xyz Klassen um das Fragebogensystem 
 
 
 
+= Projektauftrag: Rosalie Mandel
+
+=== Projektbezeichnung
+Digitalisierte Feedbackbögen
+
+=== Projektauftraggeber
+ • Herr Prof. Stütz
+ • Herr Prof. Reder
+
+=== Projekthintergrund
+Mit dem Ausfüllen und Auswerten von Feedbackbögen verbindet man oft lange Ausfüllzeiten und viel Arbeit bei der Auswertung.
+Um das Problem zu lösen, entwickeln wir ein Programm, indem die Feedbackbögen nicht mehr händisch ausgefüllt werden müssen sondern am Rechner.
+Damit wird dem Lehrer/in einiges an Arbeit erspart, weil die eigegeben Information nicht händisch ausgewertet werden müssen, sondern im Programm verarbeitet werden und die Daten in Form eines Diagramms ausgegeben werden.
+
+=== Projektergebnis
+Die Fragebögen werden am Rechner beantwortet und die anonym eingegeben Information werden verarbeitet und den Lehrer gesendet.
+
+=== Projektziel
+Das Programm soll die Rückmeldung der Schüler an Lehrer leichter gestalten und Zeit und Aufwand sparen.
+
+=== Projektbeschreibung
+Dem Schüler werden Fragen gestellt und es werden Textfelder angegeben, in denen man seine eigene Meinung zum Unterricht des Lehrers und zum Lehrer selbst hineinschreiben soll. Nachdem Ausfüllen der Fragen, werden diese von dem Programm automatisch ausgewertet und dann werden die Daten in Form eines Diagramms ausgegeben.
+
+=== Projektstart
+21.Oktober 2019
+
+=== Projektende
+voraussichtlich Mai 2020
+
+=== Projektressourcen
+IntelliJ IDEA Ultimate
+Vorlagen verschiedener Fragebögen
+
+=== Projektrisiko
+Ein Projektrisiko könnte sein, dass das Projekt aufgrund zeitlicher und inhaltlicher Probleme nicht vollständig abgeschlossen werden kann.
+
+=== Meilensteine
+• Das Wissen für das Umsetzen der Projektidee erlangen
+• Fragebögen ausfüllen können
+• Daten der Fragebögen verarbeiten und auswerten können
+• Geeignete Benutzeroberfläche designen
+
+=== Projektorganisation
+• Mandel Rosalie
+• Tran Kelly
+• Tang Sandy
+
+Es gibt keine spezifische Arbeitsaufteilung unter den 2 Beteiligten. Die Arbeit wird gemeinsam durchgeführt.
+Die Aufgabe als Ansprechpartnerin für unser Projekt übernimmt Mandel Rosalie
+
+

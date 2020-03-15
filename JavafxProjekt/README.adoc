@@ -15,9 +15,17 @@ class Student
 class Survey
 
 
+
 Options "*" -right-> "1" Question
 Question "*" -up-> "1" Questionnaire
-answer "1" -left-> "1,*" Question
+Answer "1" -left-> "*" Question
+Questionnaire "1" -right-> " *" Survey
+Teacher "1" -down-> " *" Survey
+AnswerOptions -up- Answer
+Student "*" -left-> "1" Survey
+Student "1" -right-> "*" Answer
+Answer "*" -up-> "1" Survey
+
 
 
 

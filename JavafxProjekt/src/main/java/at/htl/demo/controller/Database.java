@@ -25,14 +25,6 @@ public class Database {
 
     public void createTableTest(){
         try (Connection conn = getDataSource().getConnection()) {
-            String sql = "create table word (" +
-                    "id int primary key," +
-                    "german_word varchar(100)," +
-                    "english_word varchar(100)" +
-                    ")";
-
-            PreparedStatement ps = conn.prepareStatement(sql);
-            ps.execute();
 
         } catch (SQLException e) {
             e.printStackTrace();

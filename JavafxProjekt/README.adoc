@@ -42,6 +42,7 @@ Answer "*" -up-> "1" Survey
 [Code prototype] lasts 5 days
 [Code prototype] starts at [Prototype design]'s end
 [JavaFx Project] lasts 3 days
+
 [JavaFx Project] starts at [Prototype design]'s end
 
 

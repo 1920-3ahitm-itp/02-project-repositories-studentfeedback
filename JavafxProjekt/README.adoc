@@ -1,4 +1,5 @@
 
+
 == Datenmodell
 
 [plantuml,erd,png]
@@ -27,10 +28,26 @@ Student "1" -right-> "*" Answer
 Answer "*" -up-> "1" Survey
 
 
-
-
 @enduml
 ----
+
+
+
+== Gant
+
+@startgantt
+[Projektantrag] lasts 1 hour
+@endgantt
+
+@startuml
+[Test prototype] lasts 10 days
+[Prototype completed] happens at [Test prototype]'s end
+[Setup assembly line] lasts 12 days
+[Setup assembly line] starts at [Test prototype]'s end
+[Test prototype 2] lasts 3 days
+[Test prototype 2] starts at [Prototype completed]'s end
+@enduml
+
 
 
 == Pflichtenheft Digitalisierten Feedbackbögen
@@ -162,4 +179,35 @@ Ein Projektrisiko könnte sein, dass das Projekt aufgrund zeitlicher und inhaltl
 Es gibt keine spezifische Arbeitsaufteilung unter den 2 Beteiligten. Die Arbeit wird gemeinsam durchgeführt.
 Die Aufgabe als Ansprechpartnerin für unser Projekt übernimmt Mandel Rosalie
 
+
+
+
+
+
+
+
+
+
+
+= Projektantrag: Rosalie Mandel
+
+
+    ITP 2019/20, Version 1.0
+    Projekt-Auftraggeber: Herr Prof. Stütz
+    Projekt-Bezeichnung: Face-Recognition
+
+
+=== Zielgruppe:
+Besucher am Tag der Offenen Tür
+
+=== Sinn/Zeck:
+Das Projekt dient dazu, den Besucherinnen und Besuchern am Tag der offenen Tür zu zeigen, welche Räume sie noch nicht besucht haben und kann so die Orientierung in unserer Schule erleichtern und den Aufenthalt angenehmer gestalten.
+
+=== Projekthintergrund:
+Am Eingang sollen Fotos von allen Besuchern gemacht werden und ihre Gesichtsmerkmale sollen einer ID-Nummer zugefügt und gespeichert werden.
+Nun werden in jedem Raum Fotos von jedem Besucher gemacht und diese werden dann mit den gespeicherten Fotos verglichen. Wenn es eine Übereinstimmung mit einem gespeicherten Gesicht gibt, wird die Information über den Aufenthalt in diesem Raum gespeichert.
+In jedem Stockwerk soll ein Tablet zur Verfügung stehen, auf dem man abrufen kann in welchen Räumen man schon war und wo nicht, indem wieder ein Foto gemacht wird und die gespeicherten Informationen zu diesem Gesicht ausgegeben werden.
+
+=== Endergebnis:
+Das Projekt soll am Tag der offenen Tür verwendbar sein und soll den Besucher die Orientierung in unserer Schule erleichtern.
 

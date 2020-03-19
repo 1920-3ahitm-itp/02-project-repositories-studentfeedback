@@ -35,19 +35,19 @@ Answer "*" -up-> "1" Survey
 
 == Gant
 
-[plantuml, gantt, png]
-----
 @startgantt
-[Prototype design] lasts 9 days
-[Code prototype] lasts 5 days
-[Code prototype] starts at [Prototype design]'s end
-[JavaFx Project] lasts 3 days
-
-[JavaFx Project] starts at [Prototype design]'s end
-
-
+[Projektantrag] lasts 1 hour
 @endgantt
-----
+
+@startuml
+[Test prototype] lasts 10 days
+[Prototype completed] happens at [Test prototype]'s end
+[Setup assembly line] lasts 12 days
+[Setup assembly line] starts at [Test prototype]'s end
+[Test prototype 2] lasts 3 days
+[Test prototype 2] starts at [Prototype completed]'s end
+@enduml
+
 
 
 == Pflichtenheft Digitalisierten Feedbackbögen

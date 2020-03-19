@@ -38,9 +38,9 @@ Answer "*" -up-> "1" Survey
  Version: 1.0
  Version Date: 15.01.2020
  Autoren:
- -	Rosalie Mandel: rosalie.mandel17@gmail.com
- -	Kelly Tran: kellytran300@gmail.com
- -	Sandy Tang: sandytang2406@gmail.com
+ -	Rosalie Mandel:
+ -	Kelly Tran:
+ -	Sandy Tang:
 
 
 === 1.	Beschreibung der Ausgangssituation

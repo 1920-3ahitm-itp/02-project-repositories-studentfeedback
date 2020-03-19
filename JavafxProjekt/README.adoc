@@ -198,8 +198,16 @@ Die Aufgabe als Ansprechpartnerin für unser Projekt übernimmt Mandel Rosalie
 
 
 === Zielgruppe:
-    Besucher am Tag der Offenen Tür
+Besucher am Tag der Offenen Tür
 
 === Sinn/Zeck:
-    Das Projekt dient dazu, den Besucherinnen und Besuchern am Tag der offenen Tür zu zeigen, welche Räume sie noch nicht besucht haben und kann so die Orientierung in unserer Schule erleichtern und den Aufenthalt angenehmer gestalten.
+Das Projekt dient dazu, den Besucherinnen und Besuchern am Tag der offenen Tür zu zeigen, welche Räume sie noch nicht besucht haben und kann so die Orientierung in unserer Schule erleichtern und den Aufenthalt angenehmer gestalten.
+
+=== Projekthintergrund:
+Am Eingang sollen Fotos von allen Besuchern gemacht werden und ihre Gesichtsmerkmale sollen einer ID-Nummer zugefügt und gespeichert werden.
+Nun werden in jedem Raum Fotos von jedem Besucher gemacht und diese werden dann mit den gespeicherten Fotos verglichen. Wenn es eine Übereinstimmung mit einem gespeicherten Gesicht gibt, wird die Information über den Aufenthalt in diesem Raum gespeichert.
+In jedem Stockwerk soll ein Tablet zur Verfügung stehen, auf dem man abrufen kann in welchen Räumen man schon war und wo nicht, indem wieder ein Foto gemacht wird und die gespeicherten Informationen zu diesem Gesicht ausgegeben werden.
+
+=== Endergebnis:
+Das Projekt soll am Tag der offenen Tür verwendbar sein und soll den Besucher die Orientierung in unserer Schule erleichtern.
 

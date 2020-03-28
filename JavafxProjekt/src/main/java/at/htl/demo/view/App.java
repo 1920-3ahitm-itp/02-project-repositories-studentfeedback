@@ -14,12 +14,20 @@ import java.io.IOException;
 public class App extends Application {
 
     private static Scene scene;
+    private static Persistent controller;
 
     @Override
     public void start(Stage stage) throws IOException {
-        scene = new Scene(loadFXML("primary"));
+        scene = new Scene(loadFXML("categories"));
         stage.setScene(scene);
+        stage.setTitle("Product Manager");
         stage.show();
+    }
+
+    @Override
+    public void stop() throws Exception {
+        super.stop();
+        controller.saveData();
     }
 
     static void setRoot(String fxml) throws IOException {
@@ -28,11 +36,16 @@ public class App extends Application {
 
     private static Parent loadFXML(String fxml) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource(fxml + ".fxml"));
-        return fxmlLoader.load();
+        Parent parent = fxmlLoader.load();
+        if (controller != null) {
+            controller.saveData();
+        }
+        controller = fxmlLoader.getController();
+        controller.loadData();
+        return parent;
     }
 
     public static void main(String[] args) {
         launch();
     }
-
 }

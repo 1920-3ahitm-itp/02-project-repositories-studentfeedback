@@ -6,6 +6,8 @@ CREATE  TABLE teacher {
         teacher_subject VARCHAR(50)
 );
 
+
+
 CREATE  TABLE survey {
         survey_id INT CONSTRAINT GENERATED ALWAYS AS IDENTITY
         CONSTRAINT survey_pk PRIMARY KEY,

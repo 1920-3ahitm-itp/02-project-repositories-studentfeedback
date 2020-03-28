@@ -1,7 +1,8 @@
 CREATE  TABLE teacher {
         teacher_id INT NOT NULL GENERATED ALWAYS AS IDENTITY
         CONSTRAINT teacher_pk PRIMARY KEY,
-        teacher_name VARCHAR(50),
+        teacher_vname VARCHAR(50),
+        teacher_nname VARCHAR(50),
         teacher_subject VARCHAR(50)
 );
 

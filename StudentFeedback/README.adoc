@@ -1,4 +1,5 @@
 
+= Studentfeedback
 
 == Datenmodell
 
@@ -33,16 +34,18 @@ Answer "*" -up-> "1" Survey
 
 
 
-== Gant
+== Gantt
 
 [plantuml,gantt,png]
 ----
 @startgantt
-[Prototype design] lasts 9 days
-[Code prototype] lasts 5 days
-[Code prototype] starts at [Prototype design]'s end
-[JavaFx Project] lasts 3 days
-[JavaFx Project] starts at [Prototype design]'s end
+[Fragebogen ausfüllen] lasts 14 days
+[Befragung auswerten] lasts 10 days
+[Befragung auswerten] starts at [Fragebogen ausfüllen]'s end
+[Befragung erstellen] lasts 7 days
+[Befragung erstellen] starts at [Befragung auswerten]'s end
+[Tans generieren] lasts 10 days
+[Tans generieren] starts at [Befragung erstellen]'s end
 @endgantt
 ----
 
@@ -126,7 +129,7 @@ Derzeit befinden sich an unsere Schule rund xyz Klassen um das Fragebogensystem 
 
 
 
-= Projektauftrag: Rosalie Mandel
+== Projektauftrag: Rosalie Mandel
 
 === Projektbezeichnung
 Digitalisierte Feedbackbögen
@@ -186,7 +189,7 @@ Die Aufgabe als Ansprechpartnerin für unser Projekt übernimmt Mandel Rosalie
 
 
 
-= Projektantrag: Rosalie Mandel
+== Projektantrag: Rosalie Mandel
 
 
     ITP 2019/20, Version 1.0

@@ -1,4 +1,5 @@
 DROP TABLE answer;
+DROP TABLE transaktion;
 DROP TABLE survey;
 DROP TABLE answer_option;
 DROP TABLE question;
@@ -40,13 +41,23 @@ CREATE TABLE survey (
                     s_date DATE DEFAULT CURRENT_DATE
 );
 
+CREATE TABLE transaktion (
+                             t_id INT NOT NULL
+                                 CONSTRAINT USER_PK PRIMARY KEY
+                                 GENERATED ALWAYS AS IDENTITY,
+                             t_transaktionscode VARCHAR(200),
+                             t_password VARCHAR(50),
+                             t_is_used BOOLEAN DEFAULT false,
+                             t_s_id INT CONSTRAINT t_s_fk REFERENCES survey(s_id)
+);
+
 CREATE TABLE answer (
-                    a_id INT NOT NULL
-                        CONSTRAINT ANSWER_PK PRIMARY KEY
-                        GENERATED ALWAYS AS IDENTITY,
-                    a_tan VARCHAR(50),
-                    a_q_id INT CONSTRAINT A_Q_FK REFERENCES question(q_id),
-                    a_s_id INT CONSTRAINT A_S_ID REFERENCES survey(s_id),
-                    answer_text VARCHAR(200)
+                        a_id INT NOT NULL
+                            CONSTRAINT ANSWER_PK PRIMARY KEY
+                            GENERATED ALWAYS AS IDENTITY,
+                        a_t_id INT CONSTRAINT A_T_FK REFERENCES transaktion(t_id),
+                        a_q_id INT CONSTRAINT A_Q_FK REFERENCES question(q_id),
+                        a_s_id INT CONSTRAINT A_S_ID REFERENCES survey(s_id),
+                        a_answer_text VARCHAR(200)
 );
 

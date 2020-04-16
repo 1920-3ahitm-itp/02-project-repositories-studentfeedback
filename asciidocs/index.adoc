@@ -4,10 +4,10 @@
 [plantuml,erd,png]
 ----
 @startuml
+
 class Questionnaire
 class Student
 class Question
-class Teacher
 class Answer
 class AnswerOptions
 class Options
@@ -20,7 +20,6 @@ Options "*" -right-> "1" Question
 Question "*" -up-> "1" Questionnaire
 Answer "1" -left-> "*" Question
 Questionnaire "1" -right-> " *" Survey
-Teacher "1" -down-> " *" Survey
 AnswerOptions -up- Answer
 Student "*" -left-> "1" Survey
 Student "1" -right-> "*" Answer
@@ -44,7 +43,7 @@ Answer "*" -up-> "1" Survey
 @endgantt
 ----
 
-== Pflichtenheft Digitalisierten Feedbackbögen
+== Pflichtenheft Digitalisierte Feedbackbögen
 
  Version: 1.0
  Version Date: 15.01.2020

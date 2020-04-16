@@ -1,27 +1,55 @@
-INSERT INTO questionnaire (qn_description)
-   VALUES ('Schüler-Feedback männl.');
-INSERT INTO questionnaire (qn_description)
-   VALUES ('Schüler-Feedback weibl.');
+--=============
+--QUESTIONNAIRE
+--=============
 
--- q_type:
+INSERT INTO questionnaire (qn_description)   -- id = 1
+   VALUES ('Schüler-Feedback männl.');
+INSERT INTO questionnaire (qn_description)   -- id = 2
+   VALUES ('Schüler-Feedback weibl.');
+INSERT INTO questionnaire (qn_description)   -- id = 3
+   VALUES ('Rezepte-Quiz');
+
+-- q_type (wird nur in Java als enum implementiert):
 -- TEXT - MULTIPLE - SINGLE - NUMBER - YESNO
 
---MULTIPLE
-INSERT INTO question (q_text, q_type, q_qn_id)
-   VALUES ('Der Lehrer ist fair - gerecht', 'MULTIPLE', 1);
-INSERT INTO question (q_text, q_type, q_qn_id)
-   VALUES ('Der Lehrer ist humorvoll - fröhlich', 'MULTIPLE', 2);
-INSERT INTO question (q_text, q_type, q_qn_id)
-   VALUES ('Der Lehrer ist hilfsbereit - unterstützend', 'MULTIPLE', 3);
-INSERT INTO question (q_text, q_type, q_qn_id)
-    VALUES ('Der Lehrer ist freundlich', 'MULTIPLE', 4);
-INSERT INTO question (q_text, q_type, q_qn_id)
-    VALUES ('Der Lehrer ist engagiert - aktiv', 'MULTIPLE', 5);
-INSERT INTO question (q_text, q_type, q_qn_id)
-    VALUES ('Der Lehrer ist verständnisvoll - rücksichtsvoll', 'MULTIPLE', 6);
+--=============
+--QUESTION
+--=============
+--SINGLE
+INSERT INTO question (q_text, q_type, q_qn_id)              -- id = 1
+   VALUES ('Der Lehrer ist fair - gerecht', 'SINGLE', 1);
+INSERT INTO question (q_text, q_type, q_qn_id)              -- id = 2
+   VALUES ('Der Lehrer ist humorvoll - fröhlich', 'SINGLE', 1);
+INSERT INTO question (q_text, q_type, q_qn_id)              -- id = 3
+   VALUES ('Der Lehrer ist hilfsbereit - unterstützend', 'SINGLE', 1);
+INSERT INTO question (q_text, q_type, q_qn_id)              -- id = 4
+    VALUES ('Der Lehrer ist freundlich', 'SINGLE', 1);
+INSERT INTO question (q_text, q_type, q_qn_id)              -- id = 5
+    VALUES ('Der Lehrer ist engagiert - aktiv', 'SINGLE', 1);
+INSERT INTO question (q_text, q_type, q_qn_id)              -- id = 6
+    VALUES ('Der Lehrer ist verständnisvoll - rücksichtsvoll', 'SINGLE', 1);
 
+INSERT INTO question (q_text, q_type, q_qn_id)              -- id = 7
+   VALUES ('Die Lehrerin ist fair - gerecht', 'SINGLE', 2);
+INSERT INTO question (q_text, q_type, q_qn_id)              -- id = 8
+   VALUES ('Die Lehrerin ist humorvoll - fröhlich', 'SINGLE', 2);
+INSERT INTO question (q_text, q_type, q_qn_id)              -- id = 9
+   VALUES ('Die Lehrerin ist hilfsbereit - unterstützend', 'SINGLE', 2);
+INSERT INTO question (q_text, q_type, q_qn_id)              -- id = 10
+    VALUES ('Die Lehrerin ist freundlich', 'SINGLE', 2);
+INSERT INTO question (q_text, q_type, q_qn_id)              -- id = 11
+    VALUES ('Die Lehrerin ist engagiert - aktiv', 'SINGLE', 2);
+INSERT INTO question (q_text, q_type, q_qn_id)              -- id = 12
+    VALUES ('Die Lehrerin ist verständnisvoll - rücksichtsvoll', 'SINGLE', 2);
 
+-- FREITEXT
 
+INSERT INTO question (q_text, q_type, q_qn_id)              -- id = 13
+VALUES ('Wie macht man WanTan-Suppe?', 'TEXT', 3);
+
+--=============
+--ANSWER_OPTION
+--=============
 INSERT INTO answer_option (ao_text, ao_value, ao_q_id)
    VALUES ('völlig zu',4,1);
 INSERT INTO answer_option (ao_text, ao_value, ao_q_id)
@@ -83,27 +111,27 @@ INSERT INTO answer_option (ao_text, ao_value, ao_q_id)
 */
 
 
---MULTIPLE WITH SMILEYS
-INSERT INTO question (q_text, q_type, q_qn_id)
-    VALUES ('Wie zufrieden bist du mit deinem LEHRER insgesamt', 'MULTIPLE', 7);
+--SINGLE WITH SMILEYS
+INSERT INTO question (q_text, q_type, q_qn_id)              -- id = 14
+    VALUES ('Wie zufrieden bist du mit deinem LEHRER insgesamt?', 'SINGLE', 1);
 
 INSERT INTO answer_option (ao_text, ao_value, ao_q_id)
-    VALUES ('sehr zufrieden',5,7);
+    VALUES ('sehr zufrieden',5,14);
 INSERT INTO answer_option (ao_text, ao_value, ao_q_id)
-    VALUES ('zufrieden',4,7);
+    VALUES ('zufrieden',4,14);
 INSERT INTO answer_option (ao_text, ao_value, ao_q_id)
-    VALUES ('mittelmäßig',3,7);
+    VALUES ('mittelmäßig',3,14);
 INSERT INTO answer_option (ao_text, ao_value, ao_q_id)
-    VALUES ('unzufrieden',2,7);
+    VALUES ('unzufrieden',2,14);
 INSERT INTO answer_option (ao_text, ao_value, ao_q_id)
-    VALUES ('sehr unzufrieden',1,7);
+    VALUES ('sehr unzufrieden',1,14);
 
 
 --TEXT QUESTIONS
 /*welcher text muss übergeben werden ao_text?
   und welcher Wert hat dieser übergebene Text  ao_value?
 */
-
+/*
 INSERT INTO question (q_text, q_type, q_qn_id)
     VALUES ('An diesem Lehrer gefällt mir', 'TEXT', 8);
 INSERT INTO question (q_text, q_type, q_qn_id)
@@ -113,3 +141,4 @@ INSERT INTO answer_option (ao_text, ao_value, ao_q_id)
     VALUES ('', 0, 8);
 INSERT INTO answer_option (ao_text, ao_value, ao_q_id)
     VALUES ('', 0, 9);
+*/

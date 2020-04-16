@@ -28,7 +28,7 @@ public class App extends Application {
     @Override
     public void stop() throws Exception {
         super.stop();
-        controller.saveData();
+        controller.save("");
     }
 
     static void setRoot(String fxml) throws IOException {

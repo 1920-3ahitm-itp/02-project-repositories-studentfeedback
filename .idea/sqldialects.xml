@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="SqlDialectMappings">
+    <file url="file://$PROJECT_DIR$/StudentFeedback/sql/cr_survey.sql" dialect="GenericSQL" />
+    <file url="file://$PROJECT_DIR$/StudentFeedback/sql/ins_survey.sql" dialect="GenericSQL" />
+    <file url="file://$PROJECT_DIR$/sql/feedb_insert.sql" dialect="GenericSQL" />
+  </component>
+</project>

@@ -80,3 +80,19 @@ INSERT INTO answer_option (ao_text, ao_value, ao_q_id)
 INSERT INTO answer_option (ao_text, ao_value, ao_q_id)
    VALUES ('',,);
 */
+
+
+--MULTIPLE WITH SMILEYS
+INSERT INTO question (q_text, q_type, q_qn_id)
+    VALUES ('Wie zufrieden bist du mit deinem LEHRER insgesamt', 'MULTIPLE', 2);
+
+INSERT INTO answer_option (ao_text, ao_value, ao_q_id)
+    VALUES ('sehr zufrieden',1,7);
+INSERT INTO answer_option (ao_text, ao_value, ao_q_id)
+    VALUES ('zufrieden',2,7);
+INSERT INTO answer_option (ao_text, ao_value, ao_q_id)
+    VALUES ('mittelmäßig',3,7);
+INSERT INTO answer_option (ao_text, ao_value, ao_q_id)
+    VALUES ('unzufrieden',4,7);
+INSERT INTO answer_option (ao_text, ao_value, ao_q_id)
+    VALUES ('sehr unzufrieden',5,7);

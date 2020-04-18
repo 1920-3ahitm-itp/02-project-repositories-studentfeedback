@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <dataSource name="db@localhost">
-  <database-model serializer="dbm" dbms="DERBY" family-id="DERBY" format-version="4.17">
+  <database-model serializer="dbm" dbms="DERBY" family-id="DERBY" format-version="4.18">
     <root id="1">
       <ServerVersion>10.14.2.0</ServerVersion>
     </root>
@@ -22,192 +22,246 @@
     <table id="15" parent="2" name="QUESTION"/>
     <table id="16" parent="2" name="QUESTIONNAIRE"/>
     <table id="17" parent="2" name="SURVEY"/>
-    <column id="18" parent="13" name="A_ID">
+    <table id="18" parent="2" name="TRANSAKTION"/>
+    <column id="19" parent="13" name="A_ID">
       <Position>1</Position>
       <DataType>INTEGER|4s</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>1</SequenceIdentity>
       <DefaultExpression>AUTOINCREMENT: start 1 increment 1</DefaultExpression>
     </column>
-    <column id="19" parent="13" name="A_TAN">
+    <column id="20" parent="13" name="A_T_ID">
       <Position>2</Position>
-      <DataType>VARCHAR(50)|12s</DataType>
+      <DataType>INTEGER|4s</DataType>
     </column>
-    <column id="20" parent="13" name="A_Q_ID">
+    <column id="21" parent="13" name="A_Q_ID">
       <Position>3</Position>
       <DataType>INTEGER|4s</DataType>
     </column>
-    <column id="21" parent="13" name="A_S_ID">
+    <column id="22" parent="13" name="A_S_ID">
       <Position>4</Position>
       <DataType>INTEGER|4s</DataType>
     </column>
-    <column id="22" parent="13" name="ANSWER_TEXT">
+    <column id="23" parent="13" name="A_ANSWER_TEXT">
       <Position>5</Position>
       <DataType>VARCHAR(200)|12s</DataType>
     </column>
-    <index id="23" parent="13" name="SQL200409184602680">
+    <index id="24" parent="13" name="SQL200418211307710">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>A_ID</ColNames>
       <Unique>1</Unique>
     </index>
-    <index id="24" parent="13" name="SQL200409184602681">
+    <index id="25" parent="13" name="SQL200418211307711">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>A_T_ID</ColNames>
+    </index>
+    <index id="26" parent="13" name="SQL200418211307712">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>A_Q_ID</ColNames>
     </index>
-    <index id="25" parent="13" name="SQL200409184602682">
+    <index id="27" parent="13" name="SQL200418211307713">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>A_S_ID</ColNames>
     </index>
-    <key id="26" parent="13" name="ANSWER_PK">
+    <key id="28" parent="13" name="ANSWER_PK">
       <ColNames>A_ID</ColNames>
       <Primary>1</Primary>
     </key>
-    <foreign-key id="27" parent="13" name="A_Q_FK">
+    <foreign-key id="29" parent="13" name="A_T_FK">
+      <ColNames>A_T_ID</ColNames>
+      <RefTableName>TRANSAKTION</RefTableName>
+      <RefKeyName>USER_PK</RefKeyName>
+      <RefColNames>T_ID</RefColNames>
+    </foreign-key>
+    <foreign-key id="30" parent="13" name="A_Q_FK">
       <ColNames>A_Q_ID</ColNames>
       <RefTableName>QUESTION</RefTableName>
       <RefKeyName>QUESTION_PK</RefKeyName>
       <RefColNames>Q_ID</RefColNames>
     </foreign-key>
-    <foreign-key id="28" parent="13" name="A_S_ID">
+    <foreign-key id="31" parent="13" name="A_S_ID">
       <ColNames>A_S_ID</ColNames>
       <RefTableName>SURVEY</RefTableName>
       <RefKeyName>SURVEY_PK</RefKeyName>
       <RefColNames>S_ID</RefColNames>
     </foreign-key>
-    <column id="29" parent="14" name="AO_ID">
+    <column id="32" parent="14" name="AO_ID">
       <Position>1</Position>
       <DataType>INTEGER|4s</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>1</SequenceIdentity>
       <DefaultExpression>AUTOINCREMENT: start 1 increment 1</DefaultExpression>
     </column>
-    <column id="30" parent="14" name="AO_TEXT">
+    <column id="33" parent="14" name="AO_TEXT">
       <Position>2</Position>
       <DataType>VARCHAR(200)|12s</DataType>
     </column>
-    <column id="31" parent="14" name="AO_VALUE">
+    <column id="34" parent="14" name="AO_VALUE">
       <Position>3</Position>
       <DataType>INTEGER|4s</DataType>
     </column>
-    <column id="32" parent="14" name="AO_Q_ID">
+    <column id="35" parent="14" name="AO_Q_ID">
       <Position>4</Position>
       <DataType>INTEGER|4s</DataType>
     </column>
-    <index id="33" parent="14" name="SQL200409184602610">
+    <index id="36" parent="14" name="SQL200418211307670">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>AO_ID</ColNames>
       <Unique>1</Unique>
     </index>
-    <index id="34" parent="14" name="SQL200409184602611">
+    <index id="37" parent="14" name="SQL200418211307671">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>AO_Q_ID</ColNames>
     </index>
-    <key id="35" parent="14" name="ANSWER_OPTION_PK">
+    <key id="38" parent="14" name="ANSWER_OPTION_PK">
       <ColNames>AO_ID</ColNames>
       <Primary>1</Primary>
     </key>
-    <foreign-key id="36" parent="14" name="AO_Q_FK">
+    <foreign-key id="39" parent="14" name="AO_Q_FK">
       <ColNames>AO_Q_ID</ColNames>
       <RefTableName>QUESTION</RefTableName>
       <RefKeyName>QUESTION_PK</RefKeyName>
       <RefColNames>Q_ID</RefColNames>
     </foreign-key>
-    <column id="37" parent="15" name="Q_ID">
+    <column id="40" parent="15" name="Q_ID">
       <Position>1</Position>
       <DataType>INTEGER|4s</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>1</SequenceIdentity>
       <DefaultExpression>AUTOINCREMENT: start 1 increment 1</DefaultExpression>
     </column>
-    <column id="38" parent="15" name="Q_TEXT">
+    <column id="41" parent="15" name="Q_TEXT">
       <Position>2</Position>
       <DataType>VARCHAR(200)|12s</DataType>
     </column>
-    <column id="39" parent="15" name="Q_TYPE">
+    <column id="42" parent="15" name="Q_TYPE">
       <Position>3</Position>
       <DataType>VARCHAR(20)|12s</DataType>
     </column>
-    <column id="40" parent="15" name="Q_QN_ID">
+    <column id="43" parent="15" name="Q_QN_ID">
       <Position>4</Position>
       <DataType>INTEGER|4s</DataType>
     </column>
-    <index id="41" parent="15" name="SQL200409184602540">
+    <index id="44" parent="15" name="SQL200418211307660">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>Q_ID</ColNames>
       <Unique>1</Unique>
     </index>
-    <index id="42" parent="15" name="SQL200409184602541">
+    <index id="45" parent="15" name="SQL200418211307661">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>Q_QN_ID</ColNames>
     </index>
-    <key id="43" parent="15" name="QUESTION_PK">
+    <key id="46" parent="15" name="QUESTION_PK">
       <ColNames>Q_ID</ColNames>
       <Primary>1</Primary>
     </key>
-    <foreign-key id="44" parent="15" name="Q_QN_FK">
+    <foreign-key id="47" parent="15" name="Q_QN_FK">
       <ColNames>Q_QN_ID</ColNames>
       <RefTableName>QUESTIONNAIRE</RefTableName>
       <RefKeyName>QUESTIONNAIRE_PK</RefKeyName>
       <RefColNames>QN_ID</RefColNames>
     </foreign-key>
-    <column id="45" parent="16" name="QN_ID">
+    <column id="48" parent="16" name="QN_ID">
       <Position>1</Position>
       <DataType>INTEGER|4s</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>1</SequenceIdentity>
       <DefaultExpression>AUTOINCREMENT: start 1 increment 1</DefaultExpression>
     </column>
-    <column id="46" parent="16" name="QN_DESCRIPTION">
+    <column id="49" parent="16" name="QN_DESCRIPTION">
       <Position>2</Position>
       <DataType>VARCHAR(200)|12s</DataType>
     </column>
-    <index id="47" parent="16" name="SQL200409184602430">
+    <index id="50" parent="16" name="SQL200418211307650">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>QN_ID</ColNames>
       <Unique>1</Unique>
     </index>
-    <key id="48" parent="16" name="QUESTIONNAIRE_PK">
+    <key id="51" parent="16" name="QUESTIONNAIRE_PK">
       <ColNames>QN_ID</ColNames>
       <Primary>1</Primary>
     </key>
-    <column id="49" parent="17" name="S_ID">
+    <column id="52" parent="17" name="S_ID">
       <Position>1</Position>
       <DataType>INTEGER|4s</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>1</SequenceIdentity>
       <DefaultExpression>AUTOINCREMENT: start 1 increment 1</DefaultExpression>
     </column>
-    <column id="50" parent="17" name="S_CREATOR">
+    <column id="53" parent="17" name="S_CREATOR">
       <Position>2</Position>
       <DataType>VARCHAR(100)|12s</DataType>
     </column>
-    <column id="51" parent="17" name="S_QN_ID">
+    <column id="54" parent="17" name="S_QN_ID">
       <Position>3</Position>
       <DataType>INTEGER|4s</DataType>
     </column>
-    <column id="52" parent="17" name="S_DATE">
+    <column id="55" parent="17" name="S_DATE">
       <Position>4</Position>
       <DataType>DATE|91s</DataType>
       <DefaultExpression>CURRENT_DATE</DefaultExpression>
     </column>
-    <index id="53" parent="17" name="SQL200409184602660">
+    <index id="56" parent="17" name="SQL200418211307690">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>S_ID</ColNames>
       <Unique>1</Unique>
     </index>
-    <index id="54" parent="17" name="SQL200409184602661">
+    <index id="57" parent="17" name="SQL200418211307691">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>S_QN_ID</ColNames>
     </index>
-    <key id="55" parent="17" name="SURVEY_PK">
+    <key id="58" parent="17" name="SURVEY_PK">
       <ColNames>S_ID</ColNames>
       <Primary>1</Primary>
     </key>
-    <foreign-key id="56" parent="17" name="S_QN_FK">
+    <foreign-key id="59" parent="17" name="S_QN_FK">
       <ColNames>S_QN_ID</ColNames>
       <RefTableName>QUESTIONNAIRE</RefTableName>
       <RefKeyName>QUESTIONNAIRE_PK</RefKeyName>
       <RefColNames>QN_ID</RefColNames>
+    </foreign-key>
+    <column id="60" parent="18" name="T_ID">
+      <Position>1</Position>
+      <DataType>INTEGER|4s</DataType>
+      <NotNull>1</NotNull>
+      <SequenceIdentity>1</SequenceIdentity>
+      <DefaultExpression>AUTOINCREMENT: start 1 increment 1</DefaultExpression>
+    </column>
+    <column id="61" parent="18" name="T_TRANSAKTIONSCODE">
+      <Position>2</Position>
+      <DataType>VARCHAR(200)|12s</DataType>
+    </column>
+    <column id="62" parent="18" name="T_PASSWORD">
+      <Position>3</Position>
+      <DataType>VARCHAR(50)|12s</DataType>
+    </column>
+    <column id="63" parent="18" name="T_IS_USED">
+      <Position>4</Position>
+      <DataType>BOOLEAN|16s</DataType>
+      <DefaultExpression>false</DefaultExpression>
+    </column>
+    <column id="64" parent="18" name="T_S_ID">
+      <Position>5</Position>
+      <DataType>INTEGER|4s</DataType>
+    </column>
+    <index id="65" parent="18" name="SQL200418211307700">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>T_ID</ColNames>
+      <Unique>1</Unique>
+    </index>
+    <index id="66" parent="18" name="SQL200418211307701">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>T_S_ID</ColNames>
+    </index>
+    <key id="67" parent="18" name="USER_PK">
+      <ColNames>T_ID</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <foreign-key id="68" parent="18" name="T_S_FK">
+      <ColNames>T_S_ID</ColNames>
+      <RefTableName>SURVEY</RefTableName>
+      <RefKeyName>SURVEY_PK</RefKeyName>
+      <RefColNames>S_ID</RefColNames>
     </foreign-key>
   </database-model>
 </dataSource>

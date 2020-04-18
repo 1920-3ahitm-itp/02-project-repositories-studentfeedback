@@ -1,4 +1,27 @@
 package at.htl.survey.controller;
 
-public class QuestionRepository {
+import java.util.List;
+
+public class QuestionRepository implements Persistent {
+
+    @Override
+    public void save(Object entity) {
+
+    }
+
+    @Override
+    public void delete(long id) {
+
+    }
+
+    @Override
+    public List findAll() {
+        return null;
+    }
+
+    @Override
+    public Object findById(long id) {
+        return null;
+    }
+
 }

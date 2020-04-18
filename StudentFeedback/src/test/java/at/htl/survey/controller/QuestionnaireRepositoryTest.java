@@ -1,6 +1,7 @@
 package at.htl.survey.controller;
 
 import at.htl.survey.model.Questionnaire;
+import org.assertj.db.api.Assertions;
 import org.assertj.db.type.Table;
 import org.junit.jupiter.api.Test;
 
@@ -11,20 +12,17 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class QuestionnaireRepositoryTest {
 
-  static QuestionnaireRepository repo;
-
   @Test
   void save() {
-    Questionnaire questionnaire = new Questionnaire(1, "Männlich");
+    QuestionnaireRepository questionnaireRepository = new QuestionnaireRepository();
+    
+    Questionnaire questionnaire = new Questionnaire(1, "Questionnaire");
 
-    questionnaire.setQn_id(12);
-
-    repo.save(questionnaire);
+    questionnaireRepository.save(questionnaire);
     Table table = new Table(Database.getDataSource(), "Questionnaire");
 
-    assertThat(table).row(table.getRowsList().size() - 1)
-            .value("Männlich").isEqualTo("watering pots, cookware, ...");
-
+    Assertions.assertThat(table).row(table.getRowsList().size() - 1)
+            .value("qn_description").isEqualTo("Questionnaire");
   }
 
   @Test

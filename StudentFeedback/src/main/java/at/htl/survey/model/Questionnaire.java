@@ -2,39 +2,27 @@ package at.htl.survey.model;
 
 public class Questionnaire {
 
-    private Question question;
-    private String answer;
-    private Teacher teacher;
-    private String subject;
+    private int qn_id;
+    private String qn_description;
 
-    public Questionnaire(Question  question, String answer, Teacher teacher, String  subject) {
-        this.question = question;
-        this.answer = answer;
-        this.teacher = teacher;
-        this.subject = subject;
+    public Questionnaire(int qn_id, String qn_description) {
+        this.qn_id = qn_id;
+        this.qn_description = qn_description;
     }
 
-    public Question getQuestion() {
-        return question;
+    public int getQn_id() {
+        return qn_id;
     }
 
-    public void setQuestion(Question question) {
-        this.question = question;
+    public void setQn_id(int qn_id) {
+        this.qn_id = qn_id;
     }
 
-    public String getAnswer() {
-        return answer;
+    public String getQn_description() {
+        return qn_description;
     }
 
-    public void setAnswer(String answer) {
-        this.answer = answer;
-    }
-
-    public Teacher getTeacher() {
-        return teacher;
-    }
-
-    public void setTeacher(Teacher teacher) {
-        this.teacher = teacher;
+    public void setQn_description(String qn_description) {
+        this.qn_description = qn_description;
     }
 }

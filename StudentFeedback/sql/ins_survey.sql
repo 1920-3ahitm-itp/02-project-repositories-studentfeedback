@@ -9,12 +9,17 @@ INSERT INTO questionnaire (qn_description)   -- id = 2
 INSERT INTO questionnaire (qn_description)   -- id = 3
    VALUES ('Rezepte-Quiz');
 
+
+
 -- q_type (wird nur in Java als enum implementiert):
 -- TEXT - MULTIPLE - SINGLE - NUMBER - YESNO
+
+
 
 --=============
 --QUESTION
 --=============
+
 --SINGLE
 INSERT INTO question (q_text, q_type, q_qn_id)              -- id = 1
    VALUES ('Der Lehrer ist fair - gerecht', 'SINGLE', 1);
@@ -42,14 +47,23 @@ INSERT INTO question (q_text, q_type, q_qn_id)              -- id = 11
 INSERT INTO question (q_text, q_type, q_qn_id)              -- id = 12
     VALUES ('Die Lehrerin ist verständnisvoll - rücksichtsvoll', 'SINGLE', 2);
 
--- FREITEXT
 
+-- FREITEXT
 INSERT INTO question (q_text, q_type, q_qn_id)              -- id = 13
-VALUES ('Wie macht man WanTan-Suppe?', 'TEXT', 3);
+    VALUES ('Wie macht man WanTan-Suppe?', 'TEXT', 3);
+INSERT INTO question (q_text, q_type, q_qn_id)              -- id = 14
+    VALUES ('Wie macht man Kartofellbrei?', 'TEXT', 3);
+INSERT INTO question (q_text, q_type, q_qn_id)              -- id = 15
+    VALUES ('An diesem Lehrer gefällt mir...', 'TEXT', 2);
+INSERT INTO question (q_text, q_type, q_qn_id)              -- id = 16
+    VALUES ('An diesem Lehrer stört mir ...', 'TEXT', 2);
+
+
 
 --=============
 --ANSWER_OPTION
 --=============
+
 INSERT INTO answer_option (ao_text, ao_value, ao_q_id)
    VALUES ('völlig zu',4,1);
 INSERT INTO answer_option (ao_text, ao_value, ao_q_id)
@@ -105,10 +119,12 @@ INSERT INTO answer_option (ao_text, ao_value, ao_q_id)
     VALUES ('überhaupt nicht zu',1,6);
 
 
+
 /*
 INSERT INTO answer_option (ao_text, ao_value, ao_q_id)
    VALUES ('',,);
 */
+
 
 
 --SINGLE WITH SMILEYS
@@ -127,21 +143,6 @@ INSERT INTO answer_option (ao_text, ao_value, ao_q_id)
     VALUES ('sehr unzufrieden',1,14);
 
 
---TEXT QUESTIONS
-/*welcher text muss übergeben werden ao_text?
-  und welcher Wert hat dieser übergebene Text  ao_value?
-*/
-/*
-INSERT INTO question (q_text, q_type, q_qn_id)
-    VALUES ('An diesem Lehrer gefällt mir', 'TEXT', 8);
-INSERT INTO question (q_text, q_type, q_qn_id)
-    VALUES ('An diesem Lehrer stört mich', 'TEXT', 9);
-
-INSERT INTO answer_option (ao_text, ao_value, ao_q_id)
-    VALUES ('', 0, 8);
-INSERT INTO answer_option (ao_text, ao_value, ao_q_id)
-    VALUES ('', 0, 9);
-*/
 
 
 
@@ -159,19 +160,28 @@ INSERT INTO survey (s_creator,s_qn_id,s_date)     -- id = 3
     VALUES ('Robert Reder',3,'2020-04-18');
 
 
+
 --=============
---transaction
+--TRANSACTION
 --=============
 
 INSERT INTO s_transaction(t_transactionscode,t_password,t_is_used,t_s_id)    -- id = 1
     VALUES('1234567ABC','iAn57Hde',false,1);
 
 INSERT INTO s_transaction(t_transactionscode,t_password,t_is_used,t_s_id)    -- id = 2
-    VALUES('145678Ch','abcgh6',true,1);
-
+    VALUES('D242SW','Ofn3wFW',false,1);
 
 INSERT INTO s_transaction(t_transactionscode,t_password,t_is_used,t_s_id)    -- id = 3
-    VALUES('GH456','jsfh76',false,2);
+    VALUES('145678Ch','abcgh6',true,2);
+
+INSERT INTO s_transaction(t_transactionscode,t_password,t_is_used,t_s_id)    -- id = 4
+    VALUES('W24456','U2efi3',false,3);
+
+INSERT INTO s_transaction(t_transactionscode,t_password,t_is_used,t_s_id)    -- id = 5
+    VALUES('PWGH456','29jefjW',true,4);
+
+
+
 
 --=============
 --ANSWER
@@ -184,3 +194,12 @@ INSERT INTO answer (a_t_id,a_q_id,a_s_id,a_answer_text)    -- id = 2
 
 INSERT INTO answer (a_t_id,a_q_id,a_s_id,a_answer_text)    -- id = 3
     VALUES (1,4,1,'Bin gar nicht zufrieden');
+
+INSERT INTO answer (a_t_id,a_q_id,a_s_id,a_answer_text)    -- id = 4
+    VALUES (2,4,2,'Bin sehr zufrieden');
+
+INSERT INTO answer (a_t_id,a_q_id,a_s_id,a_answer_text)    -- id = 5
+    VALUES (2,3,2,'Bin mittelmäßig zufrieden');
+
+INSERT INTO answer (a_t_id,a_q_id,a_s_id,a_answer_text)    -- id = 6
+    VALUES (2,1,2,'Bin gar nicht zufrieden');

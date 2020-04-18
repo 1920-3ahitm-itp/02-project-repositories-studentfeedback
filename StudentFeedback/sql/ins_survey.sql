@@ -142,3 +142,18 @@ INSERT INTO answer_option (ao_text, ao_value, ao_q_id)
 INSERT INTO answer_option (ao_text, ao_value, ao_q_id)
     VALUES ('', 0, 9);
 */
+
+
+
+--=============
+--SURVEY
+--=============
+
+INSERT INTO survey (s_creator,s_qn_id,s_date)
+    VALUES ('Thomas Stütz',1,'2020-04-18');
+
+INSERT INTO survey (s_creator,s_qn_id,s_date)
+VALUES ('Michael Holzmann',2,'2020-04-18');
+
+INSERT INTO survey (s_creator,s_qn_id,s_date)
+VALUES ('Robert Reder',3,'2020-04-18');

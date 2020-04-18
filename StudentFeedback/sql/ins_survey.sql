@@ -169,16 +169,19 @@ INSERT INTO s_transaction(t_transactionscode,t_password,t_is_used,t_s_id)    -- 
     VALUES('1234567ABC','iAn57Hde',false,1);
 
 INSERT INTO s_transaction(t_transactionscode,t_password,t_is_used,t_s_id)    -- id = 2
-    VALUES('D242SW','Ofn3wFW',false,1);
+    VALUES('145678Ch','abcgh6',true,1);
 
 INSERT INTO s_transaction(t_transactionscode,t_password,t_is_used,t_s_id)    -- id = 3
-    VALUES('145678Ch','abcgh6',true,2);
+    VALUES('GH456','jsfh76',false,2);
 
 INSERT INTO s_transaction(t_transactionscode,t_password,t_is_used,t_s_id)    -- id = 4
-    VALUES('W24456','U2efi3',false,3);
+    VALUES('dWr3s6','jlknfh',true,2);
 
-INSERT INTO s_transaction(t_transactionscode,t_password,t_is_used,t_s_id)    -- id = 5
-    VALUES('PWGH456','29jefjW',true,4);
+INSERT INTO s_transaction(t_transactionscode,t_password,t_is_used,t_s_id)    -- id = 3
+    VALUES('OJEW23','uihwfa23',false,3);
+
+INSERT INTO s_transaction(t_transactionscode,t_password,t_is_used,t_s_id)    -- id = 4
+    VALUES('OOIJ33','9jufew',false,3);
 
 
 
@@ -196,10 +199,11 @@ INSERT INTO answer (a_t_id,a_q_id,a_s_id,a_answer_text)    -- id = 3
     VALUES (1,4,1,'Bin gar nicht zufrieden');
 
 INSERT INTO answer (a_t_id,a_q_id,a_s_id,a_answer_text)    -- id = 4
-    VALUES (2,4,2,'Bin sehr zufrieden');
+    VALUES (2,1,2,'Bin sehr zufrieden');
 
 INSERT INTO answer (a_t_id,a_q_id,a_s_id,a_answer_text)    -- id = 5
-    VALUES (2,3,2,'Bin mittelmäßig zufrieden');
+    VALUES (2,2,2,'Bin mittelmäßig zufrieden');
 
 INSERT INTO answer (a_t_id,a_q_id,a_s_id,a_answer_text)    -- id = 6
-    VALUES (2,1,2,'Bin gar nicht zufrieden');
+    VALUES (2,3,2,'Bin gar nicht zufrieden');
+

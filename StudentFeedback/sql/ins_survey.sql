@@ -160,27 +160,27 @@ INSERT INTO survey (s_creator,s_qn_id,s_date)     -- id = 3
 
 
 --=============
---TRANSAKTION
+--transaction
 --=============
 
-INSERT INTO transaktion(t_transaktionscode,t_password,t_is_used,t_s_id)    -- id = 1
+INSERT INTO s_transaction(t_transactionscode,t_password,t_is_used,t_s_id)    -- id = 1
     VALUES('1234567ABC','iAn57Hde',false,1);
 
-INSERT INTO transaktion(t_transaktionscode,t_password,t_is_used,t_s_id)    -- id = 2
+INSERT INTO s_transaction(t_transactionscode,t_password,t_is_used,t_s_id)    -- id = 2
     VALUES('145678Ch','abcgh6',true,1);
 
 
-INSERT INTO transaktion(t_transaktionscode,t_password,t_is_used,t_s_id)    -- id = 3
+INSERT INTO s_transaction(t_transactionscode,t_password,t_is_used,t_s_id)    -- id = 3
     VALUES('GH456','jsfh76',false,2);
 
 --=============
 --ANSWER
 --=============
 INSERT INTO answer (a_t_id,a_q_id,a_s_id,a_answer_text)    -- id = 1
-    VALUES (1,2,3,'Bin sehr zufrieden');
+    VALUES (1,2,1,'Bin sehr zufrieden');
 
 INSERT INTO answer (a_t_id,a_q_id,a_s_id,a_answer_text)    -- id = 2
-    VALUES (2,3,4,'Bin mittelmäßig zufrieden');
+    VALUES (1,3,1,'Bin mittelmäßig zufrieden');
 
 INSERT INTO answer (a_t_id,a_q_id,a_s_id,a_answer_text)    -- id = 3
-    VALUES (3,4,5,'Bin gar nicht zufrieden');
+    VALUES (1,4,1,'Bin gar nicht zufrieden');

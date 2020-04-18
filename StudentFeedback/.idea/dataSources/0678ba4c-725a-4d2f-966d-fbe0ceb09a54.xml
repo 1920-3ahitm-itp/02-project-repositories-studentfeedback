@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <dataSource name="db@localhost">
-  <database-model serializer="dbm" dbms="DERBY" family-id="DERBY" format-version="4.17">
+  <database-model serializer="dbm" dbms="DERBY" family-id="DERBY" format-version="4.18">
     <root id="1">
       <ServerVersion>10.14.2.0</ServerVersion>
     </root>
@@ -22,7 +22,7 @@
     <table id="15" parent="2" name="QUESTION"/>
     <table id="16" parent="2" name="QUESTIONNAIRE"/>
     <table id="17" parent="2" name="SURVEY"/>
-    <table id="18" parent="2" name="TRANSAKTION"/>
+    <table id="18" parent="2" name="S_TRANSACTION"/>
     <column id="19" parent="13" name="A_ID">
       <Position>1</Position>
       <DataType>INTEGER|4s</DataType>
@@ -46,20 +46,20 @@
       <Position>5</Position>
       <DataType>VARCHAR(200)|12s</DataType>
     </column>
-    <index id="24" parent="13" name="SQL200418214015980">
+    <index id="24" parent="13" name="SQL200418220828650">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>A_ID</ColNames>
       <Unique>1</Unique>
     </index>
-    <index id="25" parent="13" name="SQL200418214015981">
+    <index id="25" parent="13" name="SQL200418220828651">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>A_T_ID</ColNames>
     </index>
-    <index id="26" parent="13" name="SQL200418214015982">
+    <index id="26" parent="13" name="SQL200418220828652">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>A_Q_ID</ColNames>
     </index>
-    <index id="27" parent="13" name="SQL200418214015983">
+    <index id="27" parent="13" name="SQL200418220828653">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>A_S_ID</ColNames>
     </index>
@@ -69,7 +69,7 @@
     </key>
     <foreign-key id="29" parent="13" name="A_T_FK">
       <ColNames>A_T_ID</ColNames>
-      <RefTableName>TRANSAKTION</RefTableName>
+      <RefTableName>S_TRANSACTION</RefTableName>
       <RefKeyName>USER_PK</RefKeyName>
       <RefColNames>T_ID</RefColNames>
     </foreign-key>
@@ -104,12 +104,12 @@
       <Position>4</Position>
       <DataType>INTEGER|4s</DataType>
     </column>
-    <index id="36" parent="14" name="SQL200418214015830">
+    <index id="36" parent="14" name="SQL200418220828620">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>AO_ID</ColNames>
       <Unique>1</Unique>
     </index>
-    <index id="37" parent="14" name="SQL200418214015831">
+    <index id="37" parent="14" name="SQL200418220828621">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>AO_Q_ID</ColNames>
     </index>
@@ -142,12 +142,12 @@
       <Position>4</Position>
       <DataType>INTEGER|4s</DataType>
     </column>
-    <index id="44" parent="15" name="SQL200418214015800">
+    <index id="44" parent="15" name="SQL200418220828610">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>Q_ID</ColNames>
       <Unique>1</Unique>
     </index>
-    <index id="45" parent="15" name="SQL200418214015801">
+    <index id="45" parent="15" name="SQL200418220828611">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>Q_QN_ID</ColNames>
     </index>
@@ -172,7 +172,7 @@
       <Position>2</Position>
       <DataType>VARCHAR(200)|12s</DataType>
     </column>
-    <index id="50" parent="16" name="SQL200418214015690">
+    <index id="50" parent="16" name="SQL200418220828600">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>QN_ID</ColNames>
       <Unique>1</Unique>
@@ -201,12 +201,12 @@
       <DataType>DATE|91s</DataType>
       <DefaultExpression>CURRENT_DATE</DefaultExpression>
     </column>
-    <index id="56" parent="17" name="SQL200418214015890">
+    <index id="56" parent="17" name="SQL200418220828630">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>S_ID</ColNames>
       <Unique>1</Unique>
     </index>
-    <index id="57" parent="17" name="SQL200418214015891">
+    <index id="57" parent="17" name="SQL200418220828631">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>S_QN_ID</ColNames>
     </index>
@@ -227,7 +227,7 @@
       <SequenceIdentity>1</SequenceIdentity>
       <DefaultExpression>AUTOINCREMENT: start 1 increment 1</DefaultExpression>
     </column>
-    <column id="61" parent="18" name="T_TRANSAKTIONSCODE">
+    <column id="61" parent="18" name="T_TRANSACTIONSCODE">
       <Position>2</Position>
       <DataType>VARCHAR(200)|12s</DataType>
     </column>
@@ -244,12 +244,12 @@
       <Position>5</Position>
       <DataType>INTEGER|4s</DataType>
     </column>
-    <index id="65" parent="18" name="SQL200418214015940">
+    <index id="65" parent="18" name="SQL200418220828640">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>T_ID</ColNames>
       <Unique>1</Unique>
     </index>
-    <index id="66" parent="18" name="SQL200418214015941">
+    <index id="66" parent="18" name="SQL200418220828641">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>T_S_ID</ColNames>
     </index>

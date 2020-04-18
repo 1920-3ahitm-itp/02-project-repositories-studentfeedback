@@ -149,11 +149,27 @@ INSERT INTO answer_option (ao_text, ao_value, ao_q_id)
 --SURVEY
 --=============
 
-INSERT INTO survey (s_creator,s_qn_id,s_date)
+INSERT INTO survey (s_creator,s_qn_id,s_date)    -- id = 1
     VALUES ('Thomas Stütz',1,'2020-04-18');
 
-INSERT INTO survey (s_creator,s_qn_id,s_date)
+INSERT INTO survey (s_creator,s_qn_id,s_date)    -- id = 2
 VALUES ('Michael Holzmann',2,'2020-04-18');
 
-INSERT INTO survey (s_creator,s_qn_id,s_date)
+INSERT INTO survey (s_creator,s_qn_id,s_date)     -- id = 3
 VALUES ('Robert Reder',3,'2020-04-18');
+
+
+--=============
+--Transaktion
+--=============
+
+INSERT INTO transaktion(t_transaktionscode,t_password,t_is_used,t_s_id)    -- id = 1
+    VALUES('1234567ABC','iAn57Hde',false,1);
+
+INSERT INTO transaktion(t_transaktionscode,t_password,t_is_used,t_s_id)    -- id = 1
+    VALUES('145678Ch','abcgh6',true,1);
+
+
+INSERT INTO transaktion(t_transaktionscode,t_password,t_is_used,t_s_id)    -- id = 1
+    VALUES('GH456','jsfh76',false,2)
+

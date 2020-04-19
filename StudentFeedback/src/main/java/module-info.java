@@ -1,4 +1,4 @@
-module at.htl.project {
+module at.htl.survey {
     requires javafx.controls;
     requires javafx.fxml;
     requires java.sql;

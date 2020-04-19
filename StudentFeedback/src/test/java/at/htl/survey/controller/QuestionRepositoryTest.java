@@ -31,6 +31,23 @@ class QuestionRepositoryTest {
     }
 
     @Test
+    void insert() {
+        QuestionRepository questionRepository = new QuestionRepository();
+
+        Question question = new Question(9, "Blablabla", "Type", 2);
+
+        Table table = new Table(Database.getDataSource(), "Question");
+
+        int rowsBefore = table.getRowsList().size();
+        questionRepository.insert(question);
+        int rowsAfter = table.getRowsList().size();
+
+
+        org.assertj.core.api.Assertions.assertThat(rowsBefore).isEqualTo(rowsAfter);
+    }
+
+
+    @Test
     void delete() {
         QuestionRepository questionRepository = new QuestionRepository();
 

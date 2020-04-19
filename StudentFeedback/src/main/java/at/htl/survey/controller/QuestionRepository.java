@@ -72,6 +72,18 @@ public class QuestionRepository implements Persistent<Question>  {
     @Override
     public void delete(int id) {
 
+        try (Connection connection = dataSource.getConnection()) {
+            String sql = "DELETE FROM question WHERE qn_id=?";
+
+            PreparedStatement statement = connection.prepareStatement(sql);
+            statement.setInt(1, id);
+
+            if (statement.executeUpdate() == 0) {
+                throw new SQLException("Delete from QUESTION failed, no rows affected");
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
 
     }
 

@@ -66,6 +66,7 @@ class QuestionRepositoryTest {
 
         org.assertj.core.api.Assertions.assertThat(rowsBefore).isEqualTo(rowsAfter);
 
+
     }
 
     @Test

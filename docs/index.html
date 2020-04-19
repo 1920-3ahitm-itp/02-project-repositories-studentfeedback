@@ -6,7 +6,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="generator" content="Asciidoctor 2.0.10">
 <link rel="icon" type="image/png" href="themes/favicon.png">
-<title>Datenmodell</title>
+<title>Pflichtenheft Digitalisierte Feedbackbögen</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,300italic,400,400italic,600,600italic%7CNoto+Serif:400,400italic,700,700italic%7CDroid+Sans+Mono:400,700">
 <style>
 /* Asciidoctor default stylesheet | MIT License | https://asciidoctor.org */
@@ -448,45 +448,27 @@ pre.rouge .hll * {
 </head>
 <body class="article toc2 toc-left">
 <div id="header">
+<h1>Pflichtenheft Digitalisierte Feedbackbögen</h1>
 <div id="toc" class="toc2">
 <div id="toctitle">Table of Contents</div>
 <ul class="sectlevel1">
-<li><a href="#_datenmodell">1. Datenmodell</a></li>
-<li><a href="#_gantt">2. Gantt</a></li>
-<li><a href="#_pflichtenheft_digitalisierten_feedbackbögen">3. Pflichtenheft Digitalisierten Feedbackbögen</a>
+<li><a href="#_1_beschreibung_der_ausgangssituation">1. 1.	Beschreibung der Ausgangssituation</a></li>
+<li><a href="#_2_istzustand">2. 2.	Istzustand</a></li>
+<li><a href="#_3_datenmodell">3. 3. Datenmodell</a></li>
+<li><a href="#_4_problemstellung">4. 4. Problemstellung</a></li>
+<li><a href="#_5_aufgabenstellung">5. 5.	Aufgabenstellung</a>
 <ul class="sectlevel2">
-<li><a href="#_1_beschreibung_der_ausgangssituation">3.1. 1.	Beschreibung der Ausgangssituation</a></li>
-<li><a href="#_2_istzustand">3.2. 2.	Istzustand</a></li>
-<li><a href="#_3_problemstellung">3.3. 3. Problemstellung</a></li>
-<li><a href="#_4_aufgabenstellung">3.4. 4.	Aufgabenstellung</a></li>
+<li><a href="#_5_1_funktionale_anforderungen">5.1. 5.1.	Funktionale Anforderungen</a></li>
 </ul>
 </li>
+<li><a href="#_6_zielsetzung">6. 6.	Zielsetzung</a></li>
+<li><a href="#_7_mengengerüst">7. 7.	Mengengerüst</a></li>
+<li><a href="#_8_gantt">8. 8.Gantt</a></li>
 </ul>
 </div>
 </div>
 <div id="content">
-<div class="sect1">
-<h2 id="_datenmodell"><a class="anchor" href="#_datenmodell"></a>1. Datenmodell</h2>
-<div class="sectionbody">
-<div class="imageblock">
-<div class="content">
-<img src="images/erd.png" alt="erd" width="454" height="390">
-</div>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_gantt"><a class="anchor" href="#_gantt"></a>2. Gantt</h2>
-<div class="sectionbody">
-<div class="imageblock">
-<div class="content">
-<img src="images/gantt.png" alt="gantt" width="246" height="65">
-</div>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_pflichtenheft_digitalisierten_feedbackbögen"><a class="anchor" href="#_pflichtenheft_digitalisierten_feedbackbögen"></a>3. Pflichtenheft Digitalisierten Feedbackbögen</h2>
+<div id="preamble">
 <div class="sectionbody">
 <div class="literalblock">
 <div class="content">
@@ -498,63 +480,95 @@ Autoren:
 -	Sandy Tang:</pre>
 </div>
 </div>
-<div class="sect2">
-<h3 id="_1_beschreibung_der_ausgangssituation"><a class="anchor" href="#_1_beschreibung_der_ausgangssituation"></a>3.1. 1.	Beschreibung der Ausgangssituation</h3>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_1_beschreibung_der_ausgangssituation"><a class="anchor" href="#_1_beschreibung_der_ausgangssituation"></a>1. 1.	Beschreibung der Ausgangssituation</h2>
+<div class="sectionbody">
 <div class="paragraph">
 <p>Augenblicklich benutzen wir in der Schule Feedbackbögen um Professoren unsere Ansicht vom Unterricht näher die zubringen. Dadurch werden die Einblicke der Schüler weitergeleitet, also zum Beispiel welche Aspekte des Unterrichts den Schülern gefallen und welche eventuell verbessert werden können.
 Mit dem Ausfüllen und Auswerten von Feedbackbögen verbindet man oft lange Ausfüllzeiten und viel Arbeit bei der Auswertung vor allem da die meisten Feedbackbögen bisher schriftlich behandelt wurden, durch die Digitalisierung soll dieses jedoch behoben werden.
 Demnach ist die Definition des Ausgangszustand die schriftliche Durchführung der Fragebögen.</p>
 </div>
 </div>
-<div class="sect2">
-<h3 id="_2_istzustand"><a class="anchor" href="#_2_istzustand"></a>3.2. 2.	Istzustand</h3>
+</div>
+<div class="sect1">
+<h2 id="_2_istzustand"><a class="anchor" href="#_2_istzustand"></a>2. 2.	Istzustand</h2>
+<div class="sectionbody">
 <div class="paragraph">
 <p>Derzeit stehen zwar mehrere mögliche Arten für das Arbeiten mit Feedbackbögen zu Verfügung dennoch sind aufgrund spezifischer Ansichten die Auswahl dieser nicht passend, wenn die Anforderungen beachtete werden.
 Weshalb dies einer der Gründe ist für die Entwicklung einer eigenen Lösung.</p>
 </div>
 </div>
-<div class="sect2">
-<h3 id="_3_problemstellung"><a class="anchor" href="#_3_problemstellung"></a>3.3. 3. Problemstellung</h3>
+</div>
+<div class="sect1">
+<h2 id="_3_datenmodell"><a class="anchor" href="#_3_datenmodell"></a>3. 3. Datenmodell</h2>
+<div class="sectionbody">
+<div class="imageblock">
+<div class="content">
+<img src="images/erd.png" alt="erd" width="618" height="302">
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_4_problemstellung"><a class="anchor" href="#_4_problemstellung"></a>4. 4. Problemstellung</h2>
+<div class="sectionbody">
 <div class="paragraph">
 <p>Falls ein Professor mehrere Klassen besitzt in den Feedbackbögen durchgeführt werden sollen kann das Auswerten und Erstellen sehr aufwendig werden, außerdem besteht bei der Auswertung der Umfragen durch den Professor dann keine hundertprozentige Chance auf Anonymität.</p>
 </div>
 </div>
-<div class="sect2">
-<h3 id="_4_aufgabenstellung"><a class="anchor" href="#_4_aufgabenstellung"></a>3.4. 4.	Aufgabenstellung</h3>
+</div>
+<div class="sect1">
+<h2 id="_5_aufgabenstellung"><a class="anchor" href="#_5_aufgabenstellung"></a>5. 5.	Aufgabenstellung</h2>
+<div class="sectionbody">
 <div class="paragraph">
 <p>Unsere Aufgabe liegt darin, ein Programm zu entwickeln, indem die Feedbackbögen nicht mehr händisch ausgefüllt werden sollen sondern am Rechner durchgeführt werden.</p>
 </div>
-<div class="sect3">
-<h4 id="_4_1_funktionale_anforderungen"><a class="anchor" href="#_4_1_funktionale_anforderungen"></a>3.4.1. 4.1.	Funktionale Anforderungen</h4>
+<div class="sect2">
+<h3 id="_5_1_funktionale_anforderungen"><a class="anchor" href="#_5_1_funktionale_anforderungen"></a>5.1. 5.1.	Funktionale Anforderungen</h3>
 <div class="paragraph">
 <p>Das fertige Programm sollte die von den Schülern eingegebenen Daten auswerten können und dazu noch passende Daigramme erstellen.</p>
 </div>
-<div class="sect4">
-<h5 id="_4_1_1_anwendungsfalldiagramm_use_case_diagram"><a class="anchor" href="#_4_1_1_anwendungsfalldiagramm_use_case_diagram"></a>4.1.1. Anwendungsfalldiagramm (Use-Case-Diagram)</h5>
+<div class="sect3">
+<h4 id="_5_1_1_anwendungsfalldiagramm_use_case_diagram"><a class="anchor" href="#_5_1_1_anwendungsfalldiagramm_use_case_diagram"></a>5.1.1. 5.1.1. Anwendungsfalldiagramm (Use-Case-Diagram)</h4>
 <div class="paragraph">
 <p>Um einen besseren Überblick über die Produktfunktionen zu bekommen wird in unserem Falle ein Use-Case-Diagram benutzt.</p>
 </div>
 </div>
-<div class="sect4">
-<h5 id="_4_1_2_use_case"><a class="anchor" href="#_4_1_2_use_case"></a>4.1.2. Use-Case</h5>
+<div class="sect3">
+<h4 id="_5_1_2_use_case"><a class="anchor" href="#_5_1_2_use_case"></a>5.1.2. 5.1.2. Use-Case</h4>
 <div class="imageblock">
 <div class="content">
-<img src="images/diag-8ddc5430861eb3740407bfcc1f386029.png" alt="diag 8ddc5430861eb3740407bfcc1f386029" width="324" height="344">
+<img src="images/diag-f3bc2d794b6f1503074b248085782e75.png" alt="diag f3bc2d794b6f1503074b248085782e75" width="324" height="344">
 </div>
 </div>
 </div>
 </div>
-<div class="sect3">
-<h4 id="_5_zielsetzung"><a class="anchor" href="#_5_zielsetzung"></a>3.4.2. 5.	Zielsetzung</h4>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_6_zielsetzung"><a class="anchor" href="#_6_zielsetzung"></a>6. 6.	Zielsetzung</h2>
+<div class="sectionbody">
 <div class="paragraph">
 <p>Unser Ziel ist es das Auswerten von Feedbackbögen für die Benutzer so einfach wie möglich zu gestalten.</p>
 </div>
 </div>
-<div class="sect3">
-<h4 id="_6_mengengerüst"><a class="anchor" href="#_6_mengengerüst"></a>3.4.3. 6.	Mengengerüst</h4>
+</div>
+<div class="sect1">
+<h2 id="_7_mengengerüst"><a class="anchor" href="#_7_mengengerüst"></a>7. 7.	Mengengerüst</h2>
+<div class="sectionbody">
 <div class="paragraph">
 <p>Derzeit befinden sich an unsere Schule rund xyz Klassen um das Fragebogensystem in diesen anwenden zu können muss unser Projekt in der Lage die Anzahl an Professoren, Schülern, sowie auch Fragen verwalten zu können.</p>
 </div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_8_gantt"><a class="anchor" href="#_8_gantt"></a>8. 8.Gantt</h2>
+<div class="sectionbody">
+<div class="imageblock">
+<div class="content">
+<img src="images/gantt.png" alt="gantt" width="657" height="81">
 </div>
 </div>
 </div>
@@ -562,7 +576,7 @@ Weshalb dies einer der Gründe ist für die Entwicklung einer eigenen Lösung.</
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2020-03-23 15:23:41 UTC
+Last updated 2020-04-19 18:32:07 UTC
 </div>
 </div>
 </body>

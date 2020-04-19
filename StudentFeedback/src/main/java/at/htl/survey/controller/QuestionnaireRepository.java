@@ -1,63 +1,87 @@
 package at.htl.survey.controller;
 
+import at.htl.survey.model.Question;
 import at.htl.survey.model.Questionnaire;
 
 import javax.sql.DataSource;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.List;
 
 import static at.htl.survey.controller.Database.*;
 
-public class QuestionnaireRepository implements Persistent<Questionnaire>{
+public class QuestionnaireRepository implements Persistent<Questionnaire> {
 
-  private DataSource dataSource = Database.getDataSource();
+    private DataSource dataSource = Database.getDataSource();
 
-  @Override
-  public void save(Questionnaire questionnaire) {
+    @Override
+    public void save(Questionnaire questionnaire) {
 
-    try (Connection connection = dataSource.getConnection()) {
-      String sql = "UPDATE questionnaire SET qn_description=? WHERE qn_id=  "+ questionnaire.getQn_id();
+        try (Connection connection = dataSource.getConnection()) {
+            String sql = "UPDATE questionnaire SET qn_description=? WHERE qn_id=  " + questionnaire.getQn_id();
 
-      PreparedStatement statement = connection.prepareStatement(sql);
-      statement.setString(1, questionnaire.getQn_description());
+            PreparedStatement statement = connection.prepareStatement(sql);
+            statement.setString(1, questionnaire.getQn_description());
 
-      if (statement.executeUpdate() == 0) {
-        throw new SQLException("Update of QUESTIONNAIRE failed, no rows affected");
-      }
+            if (statement.executeUpdate() == 0) {
+                throw new SQLException("Update of QUESTIONNAIRE failed, no rows affected");
+            }
 
-    } catch (SQLException e) {
-      e.printStackTrace();
-    }
-  }
-
-  @Override
-  public void delete(int id) {
-
-    try (Connection connection = dataSource.getConnection()) {
-      String sql = "DELETE FROM questionnaire WHERE qn_id=" + id;
-
-      PreparedStatement statement = connection.prepareStatement(sql);
-      statement.setInt(1, id);
-
-      if (statement.executeUpdate() == 0) {
-        throw new SQLException("Delete from QUESTIONNAIRE failed, no rows affected");
-      }
-    } catch (SQLException e) {
-      e.printStackTrace();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
-  }
+    @Override
+    public void delete(int id) {
 
-  @Override
-  public List findAll() {
-    return null;
-  }
+        try (Connection connection = dataSource.getConnection()) {
+            String sql = "DELETE FROM questionnaire WHERE qn_id=?";
 
-  @Override
-  public Questionnaire findById(int id) {
-    return null;
-  }
+            PreparedStatement statement = connection.prepareStatement(sql);
+            statement.setInt(1, id);
+
+            if (statement.executeUpdate() == 0) {
+                throw new SQLException("Delete from QUESTIONNAIRE failed, no rows affected");
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+    }
+
+    @Override
+    public void insert(Questionnaire questionnaire) {
+
+        try (Connection connection = dataSource.getConnection()) {
+            String sql = "INSERT INTO questionnaire (qn_description) VALUES (?)";
+
+            PreparedStatement statement = connection.prepareStatement(sql);
+            statement.setString(1, questionnaire.getQn_description());
+
+            try (ResultSet keys = statement.getGeneratedKeys()) {
+                if (keys.next()) {
+                    questionnaire.setQn_id(keys.getInt(1));
+                } else {
+                    throw new SQLException("Insert into QUESTIONNAIRE failed, no ID obtained");
+                }
+            }
+
+            if (statement.executeUpdate() == 0) {
+                throw new SQLException("Update of QUESTIONNAIRE failed, no rows affected");
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Override
+    public List findAll() {
+        return null;
+    }
+
+    @Override
+    public Questionnaire findById(int id) {
+        return null;
+    }
 }

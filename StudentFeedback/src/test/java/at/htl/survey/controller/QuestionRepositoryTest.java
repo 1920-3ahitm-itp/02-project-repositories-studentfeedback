@@ -34,15 +34,13 @@ class QuestionRepositoryTest {
     void delete() {
         QuestionRepository questionRepository = new QuestionRepository();
 
-        Question question = new Question(17, "Wie gefällt die der Unterricht des Lehrers?", "TEXT", 2);
-        questionRepository.save(question);
-
         Table table = new Table(Database.getDataSource(), "Question");
 
-        Assertions.assertThat(table).row(16)
-                .value("q_text").isEqualTo("Wie gefällt die der Unterricht des Lehrers?")
-                .value("q_type").isEqualTo("TEXT")
-                .value("q_qn_id").isEqualTo(2);
+        int rowsBefore = table.getRowsList().size();
+        questionRepository.delete(1);
+        int rowsAfter = table.getRowsList().size();
+
+        org.assertj.core.api.Assertions.assertThat(rowsBefore).isEqualTo(rowsAfter+1);
 
     }
 

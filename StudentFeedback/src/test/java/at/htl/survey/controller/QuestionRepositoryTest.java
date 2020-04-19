@@ -17,6 +17,23 @@ class QuestionRepositoryTest {
     void save() {
         QuestionRepository questionRepository = new QuestionRepository();
 
+        Question question = new Question(1, "Wie gefällt dir der Unterricht des Lehrers?", "TEXT", 2);
+        questionRepository.save(question);
+
+        Table table = new Table(Database.getDataSource(), "Question");
+
+        Assertions.assertThat(table).row(0)
+                .value("q_text").isEqualTo("Wie gefällt dir der Unterricht des Lehrers?")
+                .value("q_type").isEqualTo("TEXT")
+                .value("q_qn_id").isEqualTo(2);
+
+
+    }
+
+    @Test
+    void delete() {
+        QuestionRepository questionRepository = new QuestionRepository();
+
         Question question = new Question(17, "Wie gefällt die der Unterricht des Lehrers?", "TEXT", 2);
         questionRepository.save(question);
 
@@ -27,11 +44,6 @@ class QuestionRepositoryTest {
                 .value("q_type").isEqualTo("TEXT")
                 .value("q_qn_id").isEqualTo(2);
 
-
-    }
-
-    @Test
-    void delete() {
     }
 
     @Test

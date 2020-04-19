@@ -5,26 +5,21 @@
 ----
 @startuml
 
-class Questionnaire
-class Student
-class Question
 class Answer
 class AnswerOptions
-class Options
-class Student
+class Question
+class Questionnaire
+class S_Transaction
 class Survey
 
 
-
-Options "*" -right-> "1" Question
-Question "*" -up-> "1" Questionnaire
-Answer "1" -left-> "*" Question
 Questionnaire "1" -right-> " *" Survey
-AnswerOptions -up- Answer
-Student "*" -left-> "1" Survey
-Student "1" -right-> "*" Answer
-Answer "*" -up-> "1" Survey
-
+Survey "*" -down-> "1" Answer
+Questionnaire "*" -down-> "1" Question
+Question "1" -right-> "*" Answer
+Question "*" --> "1" AnswerOptions
+Survey "1" -right-> "*" S_Transaction
+S_Transaction "1" --> "*" Answer
 
 
 @enduml
@@ -35,11 +30,13 @@ Answer "*" -up-> "1" Survey
 [plantuml,gantt,png]
 ----
 @startgantt
-[Prototype design] lasts 9 days
-[Code prototype] lasts 5 days
-[Code prototype] starts at [Prototype design]'s end
-[JavaFx Project] lasts 3 days
-[JavaFx Project] starts at [Prototype design]'s end
+[Fragebogen ausfüllen] lasts 14 days
+[Befragung auswerten] lasts 10 days
+[Befragung auswerten] starts at [Fragebogen ausfüllen]'s end
+[Befragung erstellen] lasts 7 days
+[Befragung erstellen] starts at [Befragung auswerten]'s end
+[Tans generieren] lasts 10 days
+[Tans generieren] starts at [Befragung erstellen]'s end
 @endgantt
 ----
 

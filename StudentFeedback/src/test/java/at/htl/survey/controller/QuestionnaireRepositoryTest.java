@@ -27,7 +27,18 @@ class QuestionnaireRepositoryTest {
 
   @Test
   void insert() {
+    QuestionnaireRepository questionnaireRepository = new QuestionnaireRepository();
 
+    Questionnaire questionnaire = new Questionnaire(9, "Blablabla");
+
+    Table table = new Table(Database.getDataSource(), "Questionnaire");
+
+    int rowsBefore = table.getRowsList().size();
+    questionnaireRepository.insert(questionnaire);
+    int rowsAfter = table.getRowsList().size();
+
+
+    org.assertj.core.api.Assertions.assertThat(rowsBefore).isEqualTo(rowsAfter);
   }
 
   @Test
@@ -35,20 +46,21 @@ class QuestionnaireRepositoryTest {
 
     QuestionnaireRepository questionnaireRepository = new QuestionnaireRepository();
 
-    Questionnaire questionnaire = new Questionnaire(-1, "Blablabla");
-    questionnaireRepository.save(questionnaire);
+    Questionnaire questionnaire = new Questionnaire(9, "Blablabla");
+    questionnaireRepository.insert(questionnaire);
     Table table = new Table(Database.getDataSource(), "Questionnaire");
 
     int rowsBefore = table.getRowsList().size();
-    questionnaireRepository.delete(-1);
+    questionnaireRepository.delete(rowsBefore-1);
     int rowsAfter = table.getRowsList().size();
 
-    org.assertj.core.api.Assertions.assertThat(rowsBefore).isEqualTo(rowsAfter+1);
+    org.assertj.core.api.Assertions.assertThat(rowsBefore).isEqualTo(rowsAfter);
 
   }
 
   @Test
   void findAll() {
+
   }
 
   @Test

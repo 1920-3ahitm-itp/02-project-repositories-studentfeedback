@@ -55,8 +55,14 @@ public class QuestionnaireRepository implements Persistent<Questionnaire> {
         try (Connection connection = dataSource.getConnection()) {
             String sql = "INSERT INTO questionnaire (qn_description) VALUES (?)";
 
-            PreparedStatement statement = connection.prepareStatement(sql);
+            PreparedStatement statement = connection.prepareStatement(sql,Statement.RETURN_GENERATED_KEYS);
             statement.setString(1, questionnaire.getQn_description());
+
+
+          if (statement.executeUpdate() == 0) {
+            throw new SQLException("Update of QUESTIONNAIRE failed, no rows affected");
+          }
+
 
             try (ResultSet keys = statement.getGeneratedKeys()) {
                 if (keys.next()) {
@@ -66,9 +72,7 @@ public class QuestionnaireRepository implements Persistent<Questionnaire> {
                 }
             }
 
-            if (statement.executeUpdate() == 0) {
-                throw new SQLException("Update of QUESTIONNAIRE failed, no rows affected");
-            }
+
 
         } catch (SQLException e) {
             e.printStackTrace();
@@ -77,9 +81,25 @@ public class QuestionnaireRepository implements Persistent<Questionnaire> {
 
     @Override
     public List findAll() {
+
+        try (Connection connection = dataSource.getConnection()) {
+            String sql = "UPDATE questionnaire SET qn_description=? WHERE qn_id=  " + questionnaire.getQn_id();
+
+            PreparedStatement statement = connection.prepareStatement(sql);
+            statement.setString(1, questionnaire.getQn_description());
+
+            if (statement.executeUpdate() == 0) {
+                throw new SQLException("Update of QUESTIONNAIRE failed, no rows affected");
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
         return null;
     }
 
+    //SELECT * FROM questionnaire WHERE id=?
+    //SELECT * FROM questionnaire
     @Override
     public Questionnaire findById(int id) {
         return null;

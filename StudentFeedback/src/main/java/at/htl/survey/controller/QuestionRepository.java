@@ -41,6 +41,11 @@ public class QuestionRepository implements Persistent<Question>  {
     }
 
     @Override
+    public void insert(Question question) {
+
+    }
+
+    @Override
     public void delete(int id) {
 
     }

@@ -7,7 +7,7 @@ import java.util.List;
 public interface Persistent<T> {
 
     public void save(T entity);
-    public void delete(long id);
+    public void delete(int id);
     public List<T> findAll();
-    public T findById(long id);
+    public T findById(int id);
 }

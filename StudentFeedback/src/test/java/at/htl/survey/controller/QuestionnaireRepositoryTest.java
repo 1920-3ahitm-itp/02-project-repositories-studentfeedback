@@ -16,17 +16,18 @@ class QuestionnaireRepositoryTest {
   void save() {
     QuestionnaireRepository questionnaireRepository = new QuestionnaireRepository();
     
-    Questionnaire questionnaire = new Questionnaire(1, "Questionnaire");
+    Questionnaire questionnaire = new Questionnaire(3, "Questionnaire");
 
     questionnaireRepository.save(questionnaire);
     Table table = new Table(Database.getDataSource(), "Questionnaire");
 
-    Assertions.assertThat(table).row(table.getRowsList().size() - 1)
+    Assertions.assertThat(table).row(2)
             .value("qn_description").isEqualTo("Questionnaire");
   }
 
   @Test
   void delete() {
+
   }
 
   @Test

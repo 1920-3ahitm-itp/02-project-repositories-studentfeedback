@@ -18,25 +18,36 @@ public class QuestionnaireRepository implements Persistent<Questionnaire>{
   @Override
   public void save(Questionnaire questionnaire) {
 
+    try (Connection connection = dataSource.getConnection()) {
+      String sql = "UPDATE questionnaire SET qn_description=? WHERE qn_id=  "+ questionnaire.getQn_id();
 
-    try (Connection conn = DriverManager.getConnection(URL,USERNAME, PASSWORD)) {
+      PreparedStatement statement = connection.prepareStatement(sql);
+      statement.setString(1, questionnaire.getQn_description());
 
-      String sql = "INSERT INTO questionnaire (qn_description) " +
-              "VALUES (?)";
-      try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
-
-        pstmt.setString(1,questionnaire.getQn_description());
-        pstmt.executeUpdate();
-
+      if (statement.executeUpdate() == 0) {
+        throw new SQLException("Update of QUESTIONNAIRE failed, no rows affected");
       }
-    } catch (SQLException e) {
-      System.err.println(e.getMessage());
-    }
 
+    } catch (SQLException e) {
+      e.printStackTrace();
+    }
   }
 
   @Override
-  public void delete(long id) {
+  public void delete(int id) {
+
+    try (Connection connection = dataSource.getConnection()) {
+      String sql = "DELETE FROM questionnaire WHERE qn_id=" + id;
+
+      PreparedStatement statement = connection.prepareStatement(sql);
+      statement.setInt(1, id);
+
+      if (statement.executeUpdate() == 0) {
+        throw new SQLException("Delete from QUESTIONNAIRE failed, no rows affected");
+      }
+    } catch (SQLException e) {
+      e.printStackTrace();
+    }
 
   }
 
@@ -46,7 +57,7 @@ public class QuestionnaireRepository implements Persistent<Questionnaire>{
   }
 
   @Override
-  public Questionnaire findById(long id) {
+  public Questionnaire findById(int id) {
     return null;
   }
 }

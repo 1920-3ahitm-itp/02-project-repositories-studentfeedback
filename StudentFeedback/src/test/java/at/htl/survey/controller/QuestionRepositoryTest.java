@@ -6,6 +6,10 @@ import org.assertj.db.api.Assertions;
 import org.assertj.db.type.Table;
 import org.junit.jupiter.api.Test;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+
 import static org.assertj.core.api.Assertions.*;
 import static org.assertj.db.api.Assertions.assertThat;
 
@@ -49,15 +53,18 @@ class QuestionRepositoryTest {
 
     @Test
     void delete() {
+
         QuestionRepository questionRepository = new QuestionRepository();
 
+        Question question = new Question(9, "Blablabla", "Text", 2);
+        questionRepository.insert(question);
         Table table = new Table(Database.getDataSource(), "Question");
 
         int rowsBefore = table.getRowsList().size();
-        questionRepository.delete(1);
+        questionRepository.delete(rowsBefore-1);
         int rowsAfter = table.getRowsList().size();
 
-        org.assertj.core.api.Assertions.assertThat(rowsBefore).isEqualTo(rowsAfter+1);
+        org.assertj.core.api.Assertions.assertThat(rowsBefore).isEqualTo(rowsAfter);
 
     }
 

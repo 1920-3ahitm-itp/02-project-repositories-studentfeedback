@@ -82,19 +82,6 @@ public class QuestionnaireRepository implements Persistent<Questionnaire> {
     @Override
     public List findAll() {
 
-        try (Connection connection = dataSource.getConnection()) {
-            String sql = "UPDATE questionnaire SET qn_description=? WHERE qn_id=  " + questionnaire.getQn_id();
-
-            PreparedStatement statement = connection.prepareStatement(sql);
-            statement.setString(1, questionnaire.getQn_description());
-
-            if (statement.executeUpdate() == 0) {
-                throw new SQLException("Update of QUESTIONNAIRE failed, no rows affected");
-            }
-
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
         return null;
     }
 

@@ -1,23 +1,83 @@
+= Pflichtenheft Digitalisierte Feedbackbögen
 
-== Datenmodell
+
+ Version: 1.0
+ Version Date: 15.01.2020
+ Autoren:
+ -	Rosalie Mandel:
+ -	Kelly Tran:
+ -	Sandy Tang:
+
+
+
+== 1.	Beschreibung der Ausgangssituation
+
+Augenblicklich benutzen wir in der Schule Feedbackbögen um Professoren unsere Ansicht vom Unterricht näher die zubringen. Dadurch werden die Einblicke der Schüler weitergeleitet, also zum Beispiel welche Aspekte des Unterrichts den Schülern gefallen und welche eventuell verbessert werden können.
+Mit dem Ausfüllen und Auswerten von Feedbackbögen verbindet man oft lange Ausfüllzeiten und viel Arbeit bei der Auswertung vor allem da die meisten Feedbackbögen bisher schriftlich behandelt wurden, durch die Digitalisierung soll dieses jedoch behoben werden.
+Demnach ist die Definition des Ausgangszustand die schriftliche Durchführung der Fragebögen.
+
+
+
+== 2.	Istzustand
+
+Derzeit stehen zwar mehrere mögliche Arten für das Arbeiten mit Feedbackbögen zu Verfügung dennoch sind aufgrund spezifischer Ansichten die Auswahl dieser nicht passend, wenn die Anforderungen beachtete werden.
+Weshalb dies einer der Gründe ist für die Entwicklung einer eigenen Lösung.
+
+
+
+== 3. Datenmodell
 
 [plantuml,erd,png]
 ----
 @startuml
 
-class Answer
-class AnswerOptions
-class Question
-class Questionnaire
-class S_Transaction
-class Survey
+class Answer{
+    int a_id
+    int a_t_id
+    int a_q_id
+    int a_s_id
+    String a_answer_text
+}
 
+class AnswerOptions{
+    int ao_id
+    String ao_text
+    int ao_value
+    int ao_q_id
+}
+
+class Question{
+    int q_id
+    String q_text
+    String q_type
+    int q_qn_id
+}
+
+class Questionnaire{
+     int qn_id
+     String qn_description
+}
+
+class S_Transaction{
+     int t_id
+     String t_transactionscode
+     String t_password
+     boolean t_is_used
+     int t_s_id
+}
+
+class Survey{
+     String s_creator
+     int s_qn_id
+     LocalDate s_date
+     int a_id
+}
 
 Questionnaire "1" -right-> " *" Survey
 Survey "*" -down-> "1" Answer
 Questionnaire "*" -down-> "1" Question
 Question "1" -right-> "*" Answer
-Question "*" --> "1" AnswerOptions
+Question "*" -left-> "1" AnswerOptions
 Survey "1" -right-> "*" S_Transaction
 S_Transaction "1" --> "*" Answer
 
@@ -25,7 +85,65 @@ S_Transaction "1" --> "*" Answer
 @enduml
 ----
 
-== Gantt
+
+
+== 4. Problemstellung
+
+Falls ein Professor mehrere Klassen besitzt in den Feedbackbögen durchgeführt werden sollen kann das Auswerten und Erstellen sehr aufwendig werden, außerdem besteht bei der Auswertung der Umfragen durch den Professor dann keine hundertprozentige Chance auf Anonymität.
+
+
+
+== 5.	Aufgabenstellung
+
+Unsere Aufgabe liegt darin, ein Programm zu entwickeln, indem die Feedbackbögen nicht mehr händisch ausgefüllt werden sollen sondern am Rechner durchgeführt werden.
+
+
+=== 5.1.	Funktionale Anforderungen
+
+Das fertige Programm sollte die von den Schülern eingegebenen Daten auswerten können und dazu noch passende Daigramme erstellen.
+
+
+====  5.1.1. Anwendungsfalldiagramm (Use-Case-Diagram)
+
+Um einen besseren Überblick über die Produktfunktionen zu bekommen wird in unserem Falle ein Use-Case-Diagram benutzt.
+
+
+==== 5.1.2. Use-Case
+
+[plantuml]
+
+----
+left to right direction
+actor Lehrer
+actor :Schüler:
+
+rectangle {
+
+    (Befragung erstellen) as (Use2)
+
+    Schüler -- (Fragebogen ausfüllen)
+    Lehrer -- (Befragung auswerten)
+    Lehrer -- (Use2)
+
+    (Tans generieren ) .> (Use2) : extends
+}
+----
+
+
+
+== 6.	Zielsetzung
+
+Unser Ziel ist es das Auswerten von Feedbackbögen für die Benutzer so einfach wie möglich zu gestalten.
+
+
+
+== 7.	Mengengerüst
+
+Derzeit befinden sich an unsere Schule rund xyz Klassen um das Fragebogensystem in diesen anwenden zu können muss unser Projekt in der Lage die Anzahl an Professoren, Schülern, sowie auch Fragen verwalten zu können.
+
+
+
+== 8. Gantt
 
 [plantuml,gantt,png]
 ----
@@ -39,83 +157,4 @@ S_Transaction "1" --> "*" Answer
 [Tans generieren] starts at [Befragung erstellen]'s end
 @endgantt
 ----
-
-== Pflichtenheft Digitalisierte Feedbackbögen
-
- Version: 1.0
- Version Date: 15.01.2020
- Autoren:
- -	Rosalie Mandel:
- -	Kelly Tran:
- -	Sandy Tang:
-
-
-=== 1.	Beschreibung der Ausgangssituation
-
-Augenblicklich benutzen wir in der Schule Feedbackbögen um Professoren unsere Ansicht vom Unterricht näher die zubringen. Dadurch werden die Einblicke der Schüler weitergeleitet, also zum Beispiel welche Aspekte des Unterrichts den Schülern gefallen und welche eventuell verbessert werden können.
-Mit dem Ausfüllen und Auswerten von Feedbackbögen verbindet man oft lange Ausfüllzeiten und viel Arbeit bei der Auswertung vor allem da die meisten Feedbackbögen bisher schriftlich behandelt wurden, durch die Digitalisierung soll dieses jedoch behoben werden.
-Demnach ist die Definition des Ausgangszustand die schriftliche Durchführung der Fragebögen.
-
-
-=== 2.	Istzustand
-
-Derzeit stehen zwar mehrere mögliche Arten für das Arbeiten mit Feedbackbögen zu Verfügung dennoch sind aufgrund spezifischer Ansichten die Auswahl dieser nicht passend, wenn die Anforderungen beachtete werden.
-Weshalb dies einer der Gründe ist für die Entwicklung einer eigenen Lösung.
-
-
-
-
-=== 3. Problemstellung
-
-Falls ein Professor mehrere Klassen besitzt in den Feedbackbögen durchgeführt werden sollen kann das Auswerten und Erstellen sehr aufwendig werden, außerdem besteht bei der Auswertung der Umfragen durch den Professor dann keine hundertprozentige Chance auf Anonymität.
-
-
-
-=== 4.	Aufgabenstellung
-Unsere Aufgabe liegt darin, ein Programm zu entwickeln, indem die Feedbackbögen nicht mehr händisch ausgefüllt werden sollen sondern am Rechner durchgeführt werden.
-
-
-==== 4.1.	Funktionale Anforderungen
-
-Das fertige Programm sollte die von den Schülern eingegebenen Daten auswerten können und dazu noch passende Daigramme erstellen.
-
-
-
-=====  4.1.1. Anwendungsfalldiagramm (Use-Case-Diagram)
-Um einen besseren Überblick über die Produktfunktionen zu bekommen wird in unserem Falle ein Use-Case-Diagram benutzt.
-
-===== 4.1.2. Use-Case
-
-
-[plantuml]
-
-----
-left to right direction
-actor Lehrer
-actor :Schüler:
-
-rectangle {
-
-
-    (Befragung erstellen) as (Use2)
-
-    Schüler -- (Fragebogen ausfüllen)
-    Lehrer -- (Befragung auswerten)
-    Lehrer -- (Use2)
-
-    (Tans generieren ) .> (Use2) : extends
-}
-
-----
-
-==== 5.	Zielsetzung
-Unser Ziel ist es das Auswerten von Feedbackbögen für die Benutzer so einfach wie möglich zu gestalten.
-
-==== 6.	Mengengerüst
-
-Derzeit befinden sich an unsere Schule rund xyz Klassen um das Fragebogensystem in diesen anwenden zu können muss unser Projekt in der Lage die Anzahl an Professoren, Schülern, sowie auch Fragen verwalten zu können.
-
-
-
-
 

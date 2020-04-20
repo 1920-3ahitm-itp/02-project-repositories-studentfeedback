@@ -8,7 +8,10 @@ import org.junit.jupiter.api.Test;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 import static org.assertj.core.api.Assertions.*;
 import static org.assertj.db.api.Assertions.assertThat;
@@ -71,6 +74,18 @@ class QuestionRepositoryTest {
 
     @Test
     void findAll() {
+
+
+        QuestionRepository questionRepository = new QuestionRepository();
+
+        int findAllRows = questionRepository.findAll().size();
+
+
+        Table table = new Table(Database.getDataSource(), "Question");
+
+        int tableRows = table.getRowsList().size();
+
+        org.assertj.core.api.Assertions.assertThat(findAllRows).isEqualTo(tableRows);
     }
 
     @Test

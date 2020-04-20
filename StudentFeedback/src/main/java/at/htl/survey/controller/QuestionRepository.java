@@ -116,6 +116,25 @@ public class QuestionRepository implements Persistent<Question>  {
 
     @Override
     public Question findById(int id) {
+
+        try (Connection connection = dataSource.getConnection()) {
+            String sql = "SELECT * FROM question WHERE q_id=?";
+            PreparedStatement statement = connection.prepareStatement(sql);
+            statement.setInt(1, id);
+            ResultSet result = statement.executeQuery();
+
+
+
+            while (result.next()) {
+
+                return new Question(result.getInt("Q_ID"), result.getString("Q_TEXT"), result.getString("Q_TYPE"), result.getInt("Q_QN_ID"));
+
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
         return null;
     }
 }

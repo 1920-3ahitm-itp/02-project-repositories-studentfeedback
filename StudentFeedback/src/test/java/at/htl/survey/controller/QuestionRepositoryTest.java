@@ -85,5 +85,19 @@ class QuestionRepositoryTest {
 
     @Test
     void findById() {
+        QuestionRepository questionRepository = new QuestionRepository();
+        Table table = new Table(Database.getDataSource(), "Question");
+
+        Question question = questionRepository.findById(2);
+
+        String [] expected = {String.valueOf(question.getQ_id()), question.getQ_text(),question.getQ_type(),String.valueOf(question.getQ_qn_id())};
+        String [] actual = {
+                table.getRow(1).getValuesList().get(0).getValue().toString(),
+                table.getRow(1).getValuesList().get(1).getValue().toString(),
+                table.getRow(1).getValuesList().get(2).getValue().toString(),
+                table.getRow(1).getValuesList().get(3).getValue().toString()
+        };
+
+        org.assertj.core.api.Assertions.assertThat(expected).isEqualTo(actual);
     }
 }

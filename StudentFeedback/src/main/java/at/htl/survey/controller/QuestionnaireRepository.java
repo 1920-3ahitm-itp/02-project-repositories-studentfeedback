@@ -110,6 +110,28 @@ public class QuestionnaireRepository implements Persistent<Questionnaire> {
     //SELECT * FROM questionnaire
     @Override
     public Questionnaire findById(int id) {
+
+       
+
+
+        try (Connection connection = dataSource.getConnection()) {
+            String sql = "SELECT * FROM questionnaire WHERE qn_id=?";
+            PreparedStatement statement = connection.prepareStatement(sql);
+            statement.setInt(1, id);
+            ResultSet result = statement.executeQuery();
+           
+
+            
+            while (result.next()) {
+                
+                return new Questionnaire(result.getInt("qn_id"), result.getString("QN_DESCRIPTION"));
+                
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        
         return null;
     }
 }

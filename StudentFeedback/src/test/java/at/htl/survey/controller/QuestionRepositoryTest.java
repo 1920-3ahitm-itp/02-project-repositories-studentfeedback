@@ -64,7 +64,7 @@ class QuestionRepositoryTest {
         Table table = new Table(Database.getDataSource(), "Question");
 
         int rowsBefore = table.getRowsList().size();
-        questionRepository.delete(rowsBefore-1);
+        questionRepository.delete(rowsBefore - 1);
         int rowsAfter = table.getRowsList().size();
 
         org.assertj.core.api.Assertions.assertThat(rowsBefore).isEqualTo(rowsAfter);
@@ -74,15 +74,10 @@ class QuestionRepositoryTest {
 
     @Test
     void findAll() {
-
-
         QuestionRepository questionRepository = new QuestionRepository();
-
-        int findAllRows = questionRepository.findAll().size();
-
-
         Table table = new Table(Database.getDataSource(), "Question");
-
+        
+        int findAllRows = questionRepository.findAll().size();
         int tableRows = table.getRowsList().size();
 
         org.assertj.core.api.Assertions.assertThat(findAllRows).isEqualTo(tableRows);

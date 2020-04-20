@@ -5,6 +5,7 @@ import at.htl.survey.model.Questionnaire;
 
 import javax.sql.DataSource;
 import java.sql.*;
+import java.util.ArrayList;
 import java.util.List;
 
 import static at.htl.survey.controller.Database.*;
@@ -89,7 +90,28 @@ public class QuestionRepository implements Persistent<Question>  {
 
     @Override
     public List<Question> findAll() {
-        return null;
+
+        List<Question> questionList = new ArrayList<>();
+
+
+        try (Connection connection = dataSource.getConnection()) {
+            String sql = "SELECT * FROM question";
+            PreparedStatement statement = connection.prepareStatement(sql);
+            ResultSet result = statement.executeQuery();
+
+            while (result.next()) {
+                int id = result.getInt("Q_ID");
+                String text = result.getString("Q_TEXT");
+                String type = result.getString("Q_TYPE");
+                int q_qn_id = result.getInt("Q_QN_ID");
+                questionList.add(new Question(id,text,type,q_qn_id));
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return questionList;
     }
 
     @Override

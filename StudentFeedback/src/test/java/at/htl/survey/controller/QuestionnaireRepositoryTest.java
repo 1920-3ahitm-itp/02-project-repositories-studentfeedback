@@ -5,6 +5,8 @@ import org.assertj.db.api.Assertions;
 import org.assertj.db.type.Table;
 import org.junit.jupiter.api.Test;
 
+import java.util.List;
+
 import static org.assertj.core.api.Assertions.*;
 import static org.assertj.db.api.Assertions.assertThat;
 
@@ -60,7 +62,16 @@ class QuestionnaireRepositoryTest {
 
   @Test
   void findAll() {
+    QuestionnaireRepository questionnaireRepository = new QuestionnaireRepository();
 
+    int findAllRows = questionnaireRepository.findAll().size();
+
+
+    Table table = new Table(Database.getDataSource(), "Questionnaire");
+
+    int tableRows = table.getRowsList().size();
+    
+    org.assertj.core.api.Assertions.assertThat(findAllRows).isEqualTo(tableRows);
   }
 
   @Test

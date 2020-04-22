@@ -25,13 +25,13 @@ Weshalb dies einer der Gründe ist für die Entwicklung einer eigenen Lösung.
 
 
 
-== 3. Datenmodell
+== 3. ERD
 
 [plantuml,erd,png]
 ----
 @startuml
 
-class Answer{
+entity Answer{
     int a_id
     int a_t_id
     int a_q_id
@@ -39,26 +39,26 @@ class Answer{
     String a_answer_text
 }
 
-class AnswerOptions{
+entity AnswerOptions{
     int ao_id
     String ao_text
     int ao_value
     int ao_q_id
 }
 
-class Question{
+entity Question{
     int q_id
     String q_text
     String q_type
     int q_qn_id
 }
 
-class Questionnaire{
+entity Questionnaire{
      int qn_id
      String qn_description
 }
 
-class S_Transaction{
+entity S_Transaction{
      int t_id
      String t_transactionscode
      String t_password
@@ -66,20 +66,20 @@ class S_Transaction{
      int t_s_id
 }
 
-class Survey{
+entity Survey{
      String s_creator
      int s_qn_id
      LocalDate s_date
      int a_id
 }
 
-Questionnaire "1" -right-> " *" Survey
-Survey "*" -down-> "1" Answer
-Questionnaire "*" -down-> "1" Question
-Question "1" -right-> "*" Answer
-Question "*" -left-> "1" AnswerOptions
-Survey "1" -right-> "*" S_Transaction
-S_Transaction "1" --> "*" Answer
+Questionnaire ||.right.|{  Survey
+Survey }|.down.|| Answer
+Questionnaire ||.down.|{ Question
+Question ||.right.|{ Answer
+Question }|.left.|| AnswerOptions
+Survey  ||.right.|{  S_Transaction
+S_Transaction ||..|{ Answer
 
 
 @enduml

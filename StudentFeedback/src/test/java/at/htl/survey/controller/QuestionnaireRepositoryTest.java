@@ -1,9 +1,13 @@
 package at.htl.survey.controller;
 
+import at.htl.survey.database.SqlRunner;
 import at.htl.survey.model.Questionnaire;
 import org.assertj.db.api.Assertions;
 import org.assertj.db.type.Table;
+import org.junit.jupiter.api.MethodOrderer;
+import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.TestMethodOrder;
 
 import java.util.List;
 
@@ -12,22 +16,30 @@ import static org.assertj.db.api.Assertions.assertThat;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+@TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 class QuestionnaireRepositoryTest {
 
   @Test
+  @Order(1)
   void save() {
+    // arrange - given
     QuestionnaireRepository questionnaireRepository = new QuestionnaireRepository();
-    
     Questionnaire questionnaire = new Questionnaire(1, "Questionnaire");
 
+    // act - when
     questionnaireRepository.save(questionnaire);
-    Table table = new Table(Database.getDataSource(), "Questionnaire");
 
+    // assert - then
+    Table table = new Table(Database.getDataSource(), "questionnaire");
     Assertions.assertThat(table).row(0)
             .value("qn_description").isEqualTo("Questionnaire");
+
+    // Datenbank initalisieren
+    //SqlRunner.run();
   }
 
   @Test
+  @Order(2)
   void insert() {
     QuestionnaireRepository questionnaireRepository = new QuestionnaireRepository();
 
@@ -44,6 +56,7 @@ class QuestionnaireRepositoryTest {
   }
 
   @Test
+  @Order(3)
   void delete() {
 
     QuestionnaireRepository questionnaireRepository = new QuestionnaireRepository();
@@ -61,6 +74,7 @@ class QuestionnaireRepositoryTest {
   }
 
   @Test
+  @Order(4)
   void findAll() {
     QuestionnaireRepository questionnaireRepository = new QuestionnaireRepository();
 
@@ -75,6 +89,7 @@ class QuestionnaireRepositoryTest {
   }
 
   @Test
+  @Order(5)
   void findById() {
     QuestionnaireRepository questionnaireRepository = new QuestionnaireRepository();
     Table table = new Table(Database.getDataSource(), "Questionnaire");

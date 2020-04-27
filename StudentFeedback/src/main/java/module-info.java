@@ -5,6 +5,7 @@ module at.htl.survey {
     requires org.apache.derby.client;
     requires org.apache.derby.commons;
     requires org.apache.derby.tools;
+    requires org.mybatis;
 
     opens at.htl.survey.view to javafx.fxml;
     exports at.htl.survey.view;

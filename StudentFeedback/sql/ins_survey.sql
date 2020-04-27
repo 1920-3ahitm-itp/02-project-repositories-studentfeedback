@@ -120,10 +120,10 @@ INSERT INTO answer_option (ao_text, ao_value, ao_q_id)
 
 
 
-/*
-INSERT INTO answer_option (ao_text, ao_value, ao_q_id)
-   VALUES ('',,);
-*/
+
+--INSERT INTO answer_option (ao_text, ao_value, ao_q_id)
+--   VALUES ('',,);
+
 
 
 

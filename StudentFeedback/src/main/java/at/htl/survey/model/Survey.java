@@ -1,20 +1,22 @@
 package at.htl.survey.model;
 
 import java.time.LocalDate;
+import java.util.Date;
 
 public class Survey {
 
 
+    private int s_id;
    private String s_creator;
    private int s_qn_id;
-   private LocalDate s_date;
-   private int a_id;
+   private Date s_date;
 
-    public Survey(String s_creator, int s_qn_id, LocalDate s_date, int a_id) {
+
+    public Survey(int s_id,String s_creator, int s_qn_id, Date s_date) {
         this.s_creator = s_creator;
         this.s_qn_id = s_qn_id;
         this.s_date = s_date;
-        this.a_id = a_id;
+        this.s_id = s_id;
     }
 
     public String getS_creator() {
@@ -33,19 +35,19 @@ public class Survey {
         this.s_qn_id = s_qn_id;
     }
 
-    public LocalDate getS_date() {
+    public Date getS_date() {
         return s_date;
     }
 
-    public void setS_date(LocalDate s_date) {
+    public void setS_date(Date s_date) {
         this.s_date = s_date;
     }
 
-    public int getA_id() {
-        return a_id;
+    public int getS_id() {
+        return s_id;
     }
 
-    public void setA_id(int a_id) {
-        this.a_id = a_id;
+    public void setS_id(int s_id) {
+        this.s_id = s_id;
     }
 }

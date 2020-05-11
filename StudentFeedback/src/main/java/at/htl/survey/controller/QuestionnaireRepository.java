@@ -54,7 +54,7 @@ public class QuestionnaireRepository implements Persistent<Questionnaire> {
     public void insert(Questionnaire questionnaire) {
 
         try (Connection connection = dataSource.getConnection()) {
-            String sql = "INSERT INTO questionnaire (qn_description) VALUES (?)";
+            String sql = "INSERT INTO questionnaire  (qn_description) VALUES (?)";
 
             PreparedStatement statement = connection.prepareStatement(sql,Statement.RETURN_GENERATED_KEYS);
             statement.setString(1, questionnaire.getQn_description());

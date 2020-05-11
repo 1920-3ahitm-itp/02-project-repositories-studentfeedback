@@ -1,6 +1,7 @@
 package at.htl.survey.controller;
 
 import at.htl.survey.database.SqlRunner;
+import at.htl.survey.model.Answer;
 import at.htl.survey.model.Questionnaire;
 import org.assertj.db.api.Assertions;
 import org.assertj.db.type.Table;
@@ -41,14 +42,14 @@ public class AnswerRepositoryTest {
     @Test
     @Order(2)
     void insert() {
-        QuestionnaireRepository questionnaireRepository = new QuestionnaireRepository();
+        AnswerRepository answerRepository = new AnswerRepository();
 
-        Questionnaire questionnaire = new Questionnaire(9, "Blablabla");
+        Answer answer = new Answer(1, 3, 4, 5, "Hallihallo");
 
-        Table table = new Table(Database.getDataSource(), "Questionnaire");
+        Table table = new Table(Database.getDataSource(), "Answer");
 
         int rowsBefore = table.getRowsList().size();
-        questionnaireRepository.insert(questionnaire);
+        answerRepository.insert(answer);
         int rowsAfter = table.getRowsList().size();
 
 
@@ -59,14 +60,14 @@ public class AnswerRepositoryTest {
     @Order(3)
     void delete() {
 
-        QuestionnaireRepository questionnaireRepository = new QuestionnaireRepository();
+        AnswerRepository answerRepositoryy = new AnswerRepository();
 
-        Questionnaire questionnaire = new Questionnaire(9, "Blablabla");
-        questionnaireRepository.insert(questionnaire);
-        Table table = new Table(Database.getDataSource(), "Questionnaire");
+        Answer answer = new Answer(1, 3, 4, 5, "Hallihallo");
+        answerRepositoryy.insert(answer);
+        Table table = new Table(Database.getDataSource(), "Answer");
 
         int rowsBefore = table.getRowsList().size();
-        questionnaireRepository.delete(rowsBefore-1);
+        answerRepositoryy.delete(rowsBefore-1);
         int rowsAfter = table.getRowsList().size();
 
         org.assertj.core.api.Assertions.assertThat(rowsBefore).isEqualTo(rowsAfter);

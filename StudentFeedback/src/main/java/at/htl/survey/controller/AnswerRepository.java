@@ -36,11 +36,24 @@ public class AnswerRepository implements Persistent<Answer>{
     @Override
     public void insert(Answer entity) {
 
+
     }
 
     @Override
     public void delete(int id) {
 
+        try (Connection connection = dataSource.getConnection()) {
+            String sql = "DELETE FROM answer  WHERE a_id=?";
+
+            PreparedStatement statement = connection.prepareStatement(sql);
+            statement.setInt(1, id);
+
+            if (statement.executeUpdate() == 0) {
+                throw new SQLException("Delete from ANSWER failed, no rows affected");
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
 
     }
 

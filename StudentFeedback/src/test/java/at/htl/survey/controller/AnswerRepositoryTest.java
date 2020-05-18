@@ -44,7 +44,7 @@ public class AnswerRepositoryTest {
     void insert() {
         AnswerRepository answerRepository = new AnswerRepository();
 
-        Answer answer = new Answer(1, 3, 4, 5, "Hallihallo");
+        Answer answer = new Answer(10, 3, 4, 2, "Hallihallo");
 
         Table table = new Table(Database.getDataSource(), "Answer");
 
@@ -62,12 +62,12 @@ public class AnswerRepositoryTest {
 
         AnswerRepository answerRepositoryy = new AnswerRepository();
 
-        Answer answer = new Answer(1, 3, 4, 5, "Hallihallo");
+        Answer answer = new Answer(1, 3, 4, 1, "Hallihallo");
         answerRepositoryy.insert(answer);
         Table table = new Table(Database.getDataSource(), "Answer");
 
         int rowsBefore = table.getRowsList().size();
-        answerRepositoryy.delete(rowsBefore-1);
+        answerRepositoryy.delete(answer.getA_id());
         int rowsAfter = table.getRowsList().size();
 
         org.assertj.core.api.Assertions.assertThat(rowsBefore).isEqualTo(rowsAfter);

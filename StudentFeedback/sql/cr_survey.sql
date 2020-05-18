@@ -26,7 +26,7 @@ CREATE TABLE answer_option (
                           CONSTRAINT ANSWER_OPTION_PK PRIMARY KEY
                           GENERATED ALWAYS AS IDENTITY,
                       ao_text VARCHAR(200),   -- zB "trifft zu", "trifft eher zu", ...
-                      ao_value INTEGER,       -- zB 4 Punkte, 3 Punkte, 2 Punkte oder 1 Punkt
+                      ao_value INT,       -- zB 4 Punkte, 3 Punkte, 2 Punkte oder 1 Punkt
                       ao_q_id INT CONSTRAINT AO_Q_FK REFERENCES question(q_id)
 );
 

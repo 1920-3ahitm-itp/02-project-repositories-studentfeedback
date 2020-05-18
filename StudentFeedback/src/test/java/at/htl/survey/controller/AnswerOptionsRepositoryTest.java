@@ -27,7 +27,7 @@ public class AnswerOptionsRepositoryTest {
     void save() {
         AnswerOptionsRepository answerOptionsRepository = new AnswerOptionsRepository();
 
-        AnswerOptions answerOptions = new AnswerOptions(200, "völlig zu", 4, 1);
+        AnswerOptions answerOptions = new AnswerOptions(20, "völlig zu", 4, 1);
         answerOptionsRepository.save(answerOptions);
 
         Table table = new Table(Database.getDataSource(), "answer_option");
@@ -43,7 +43,7 @@ public class AnswerOptionsRepositoryTest {
     void insert() {
         AnswerOptionsRepository answerOptionsRepository = new AnswerOptionsRepository();
 
-        AnswerOptions answerOptions = new AnswerOptions(200, "völlig zu", 4, 1);
+        AnswerOptions answerOptions = new AnswerOptions(20, "völlig zu", 4, 1);
         answerOptionsRepository.save(answerOptions);
 
         Table table = new Table(Database.getDataSource(), "answer_option");
@@ -62,12 +62,12 @@ public class AnswerOptionsRepositoryTest {
 
         AnswerOptionsRepository answerOptionsRepository = new AnswerOptionsRepository();
 
-        AnswerOptions answerOptions = new AnswerOptions(200, "völlig zu", 4, 1);
+        AnswerOptions answerOptions = new AnswerOptions(20, "völlig zu", 4, 1);
         answerOptionsRepository.insert(answerOptions);
         Table table = new Table(Database.getDataSource(), "answer_option");
 
         int rowsBefore = table.getRowsList().size();
-        answerOptionsRepository.delete(rowsBefore-1);
+        answerOptionsRepository.delete(answerOptions.getAo_id());
         int rowsAfter = table.getRowsList().size();
 
         org.assertj.core.api.Assertions.assertThat(rowsBefore).isEqualTo(rowsAfter);

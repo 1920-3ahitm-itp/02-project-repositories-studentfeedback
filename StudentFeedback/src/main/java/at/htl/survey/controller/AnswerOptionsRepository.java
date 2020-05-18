@@ -22,6 +22,7 @@ public class AnswerOptionsRepository implements Persistent<AnswerOptions> {
             statement.setString(1, answerOptions.getAo_text());
             statement.setInt(2, answerOptions.getAo_value());
             statement.setInt(3, answerOptions.getAo_q_id());
+            statement.setInt(4, answerOptions.getAo_id());
 
 
 

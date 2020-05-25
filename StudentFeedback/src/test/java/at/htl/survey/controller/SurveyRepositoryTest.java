@@ -1,6 +1,7 @@
 package at.htl.survey.controller;
 
 import at.htl.survey.database.SqlRunner;
+import at.htl.survey.model.Question;
 import at.htl.survey.model.Questionnaire;
 import at.htl.survey.model.Survey;
 import org.assertj.db.api.Assertions;
@@ -10,6 +11,8 @@ import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestMethodOrder;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
@@ -24,9 +27,10 @@ class SurveyRepositoryTest {
     @Test
     @Order(1)
     void save() {
+/*
         // arrange - given
         SurveyRepository surveyRepository = new SurveyRepository();
-        Survey survey = new Survey(1, "Thomas Stütz",1, new Date(2020-04-18));
+        Survey survey = new Survey(1, "Thomas Stütz",1, date);
 
         // act - when
         surveyRepository.save(survey);
@@ -38,8 +42,32 @@ class SurveyRepositoryTest {
                 .value("s_id_id").isEqualTo(1)
                 .value("s_date").isEqualTo(2020-04-18);
 
-        // Datenbank initalisieren
+        //Datenbank initalisieren
         //SqlRunner.run();
+*/
+
+
+        SurveyRepository surveyRepository = new SurveyRepository();
+
+        //java.sql.Date date = java.sql.Date.valueOf("2010-02-29");
+
+       // Date date = new Date(2020,1,1);
+        Date date = null;
+        try {
+            date = new SimpleDateFormat("yyyy-MM-dd").parse("2020-02-15");
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        Survey survey = new Survey(1, "Thomas Stütz",1, date);
+        surveyRepository.save(survey);
+
+        Table table = new Table(Database.getDataSource(), "Survey");
+
+        Assertions.assertThat(table).row(0)
+                .value("s_creator").isEqualTo("Thomas Stütz")
+                .value("s_qn_id").isEqualTo(1)
+                .value("s_date").isEqualTo(date);
+
     }
 
     @Test
@@ -47,7 +75,7 @@ class SurveyRepositoryTest {
     void insert() {
         QuestionnaireRepository questionnaireRepository = new QuestionnaireRepository();
 
-        Questionnaire questionnaire = new Questionnaire(9, "Blablabla");
+        Questionnaire questionnaire = new Questionnaire(9, "De");
 
         Table table = new Table(Database.getDataSource(), "Questionnaire");
 

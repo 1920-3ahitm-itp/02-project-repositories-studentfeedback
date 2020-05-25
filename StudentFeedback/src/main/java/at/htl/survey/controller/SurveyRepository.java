@@ -17,10 +17,12 @@ public class SurveyRepository implements Persistent<Survey>{
         try (Connection connection = dataSource.getConnection()) {
             String sql = "UPDATE survey  SET s_creator=?, s_qn_id=?, s_date=? WHERE s_id=  " + survey.getS_id();
 
+            java.sql.Date date = new java.sql.Date(survey.getS_date().getTime());
+
             PreparedStatement statement = connection.prepareStatement(sql);
             statement.setString(1, survey.getS_creator());
             statement.setInt(2, survey.getS_qn_id());
-            statement.setDate(3, (Date) survey.getS_date());
+            statement.setDate(3, date);
 
             if (statement.executeUpdate() == 0) {
                 throw new SQLException("Update of SURVEY failed, no rows affected");

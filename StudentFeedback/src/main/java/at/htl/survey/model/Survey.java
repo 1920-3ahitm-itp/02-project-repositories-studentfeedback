@@ -5,7 +5,6 @@ import java.util.Date;
 
 public class Survey {
 
-
     private int s_id;
    private String s_creator;
    private int s_qn_id;

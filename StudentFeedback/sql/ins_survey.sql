@@ -159,6 +159,9 @@ INSERT INTO survey (s_creator,s_qn_id,s_date)    -- id = 2
 INSERT INTO survey (s_creator,s_qn_id,s_date)     -- id = 3
     VALUES ('Robert Reder',3,'2020-04-18');
 
+INSERT INTO survey (s_creator,s_qn_id,s_date)     -- id = 3
+    VALUES ('ab',3,'2010-04-18');
+
 
 
 --=============

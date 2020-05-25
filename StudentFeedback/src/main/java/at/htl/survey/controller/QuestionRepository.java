@@ -74,7 +74,7 @@ public class QuestionRepository implements Persistent<Question>  {
     public void delete(int id) {
 
         try (Connection connection = dataSource.getConnection()) {
-            String sql = "DELETE FROM question WHERE qn_id=?";
+            String sql = "DELETE FROM question WHERE q_id=?";
 
             PreparedStatement statement = connection.prepareStatement(sql);
             statement.setInt(1, id);

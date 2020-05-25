@@ -1,9 +1,12 @@
+
 package at.htl.survey.controller;
 
 import at.htl.survey.model.Question;
+import at.htl.survey.model.Questionnaire;
 import at.htl.survey.model.S_Transaction;
 import org.assertj.db.api.Assertions;
 import org.assertj.db.type.Table;
+import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
 
 public class S_TransactionRepositoryTest {
@@ -50,11 +53,47 @@ public class S_TransactionRepositoryTest {
         Table table = new Table(Database.getDataSource(), "s_transaction");
 
         int rowsBefore = table.getRowsList().size();
-        s_transactionRepository.delete(rowsBefore - 1);
+        s_transactionRepository.delete(s_transaction.getT_id());
         int rowsAfter = table.getRowsList().size();
 
         org.assertj.core.api.Assertions.assertThat(rowsBefore).isEqualTo(rowsAfter);
 
-
     }
+
+    @Test
+    @Order(4)
+    void findAll() {
+        S_TransactionRepository s_transactionRepository = new S_TransactionRepository();
+
+        int findAllRows = s_transactionRepository.findAll().size();
+
+
+        Table table = new Table(Database.getDataSource(), "S_Transaction");
+
+        int tableRows = table.getRowsList().size();
+
+        org.assertj.core.api.Assertions.assertThat(findAllRows).isEqualTo(tableRows);
+    }
+
+    @Test
+    @Order(5)
+    void findById() {
+        S_TransactionRepository s_transactionRepository = new S_TransactionRepository();
+        Table table = new Table(Database.getDataSource(), "S_Transaction");
+
+        S_Transaction s_Transaction = s_transactionRepository.findById(2);
+
+        String [] expected = {String.valueOf(s_Transaction.getT_id()), s_Transaction.getT_transactionscode(),s_Transaction.getT_password(), String.valueOf(s_Transaction.isT_is_used()), String.valueOf(s_Transaction.getT_s_id())};
+        String [] actual = {
+                table.getRow(1).getValuesList().get(0).getValue().toString(),
+                table.getRow(1).getValuesList().get(1).getValue().toString(),
+                table.getRow(1).getValuesList().get(2).getValue().toString(),
+                table.getRow(1).getValuesList().get(3).getValue().toString(),
+                table.getRow(1).getValuesList().get(4).getValue().toString(),
+
+        };
+
+        org.assertj.core.api.Assertions.assertThat(expected).isEqualTo(actual);
+    }
+
 }

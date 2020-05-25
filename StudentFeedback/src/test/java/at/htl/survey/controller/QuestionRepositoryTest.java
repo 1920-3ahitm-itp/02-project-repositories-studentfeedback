@@ -64,7 +64,7 @@ class QuestionRepositoryTest {
         Table table = new Table(Database.getDataSource(), "Question");
 
         int rowsBefore = table.getRowsList().size();
-        questionRepository.delete(rowsBefore - 1);
+        questionRepository.delete(question.getQ_id());
         int rowsAfter = table.getRowsList().size();
 
         org.assertj.core.api.Assertions.assertThat(rowsBefore).isEqualTo(rowsAfter);

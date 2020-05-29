@@ -4,6 +4,7 @@ package at.htl.survey.controller;
 
 import at.htl.survey.model.Questionnaire;
 import at.htl.survey.model.S_Transaction;
+import at.htl.survey.model.Survey;
 
 import javax.sql.DataSource;
 import java.sql.*;
@@ -21,11 +22,11 @@ public class S_TransactionRepository implements Persistent<S_Transaction>{
             String sql = "UPDATE s_transaction SET t_transactionscode=?,t_password=?,t_is_used=?,t_s_id=? WHERE t_id=?";
 
             PreparedStatement statement = connection.prepareStatement(sql);
-            statement.setString(1, s_transaction.getT_transactionscode());
-            statement.setString(2, s_transaction.getT_password());
-            statement.setBoolean(3, s_transaction.isT_is_used());
-            statement.setInt(4, s_transaction.getT_s_id());
-            statement.setInt(5,s_transaction.getT_id());
+            statement.setString(1, s_transaction.gettTransactionscode());
+            statement.setString(2, s_transaction.gettPassword());
+            statement.setBoolean(3, s_transaction.getIsUsed());
+            statement.setLong(4, s_transaction.getSurvey().getsId());
+            statement.setLong(5,s_transaction.gettId());
 
             if (statement.executeUpdate() == 0) {
                 throw new SQLException("Update of S_TRANSACTION failed, no rows affected");
@@ -44,10 +45,10 @@ public class S_TransactionRepository implements Persistent<S_Transaction>{
             String sql = "INSERT INTO s_transaction (t_transactionscode,t_password,t_is_used,t_s_id) VALUES (?,?,?,?)";
 
             PreparedStatement statement = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
-            statement.setString(1, s_transaction.getT_transactionscode());
-            statement.setString(2, s_transaction.getT_password());
-            statement.setBoolean(3, s_transaction.isT_is_used());
-            statement.setInt(4,s_transaction.getT_s_id());
+            statement.setString(1, s_transaction.gettTransactionscode());
+            statement.setString(2, s_transaction.gettPassword());
+            statement.setBoolean(3, s_transaction.getIsUsed());
+            statement.setLong(4, s_transaction.getSurvey().getsId());
 
 
             if (statement.executeUpdate() == 0) {
@@ -57,7 +58,7 @@ public class S_TransactionRepository implements Persistent<S_Transaction>{
 
             try (ResultSet keys = statement.getGeneratedKeys()) {
                 if (keys.next()) {
-                    s_transaction.setT_id(keys.getInt(1));
+                    s_transaction.settId(keys.getLong(1));
                 } else {
                     throw new SQLException("Insert into S_TRANSACTION failed, no ID obtained");
                 }
@@ -100,13 +101,18 @@ public class S_TransactionRepository implements Persistent<S_Transaction>{
             ResultSet result = statement.executeQuery();
 
             while (result.next()) {
-                int id = result.getInt("t_id");
+                Long id = Long.valueOf(result.getInt("t_id"));
                 String transactionscode = result.getString("t_transactionscode");
                 String password = result.getString("t_password");
                 Boolean is_used = result.getBoolean("t_is_used");
                 int t_s_id = result.getInt("t_s_id");
 
-                s_transactionList.add(new S_Transaction(id,transactionscode,password,is_used,t_s_id));
+                SurveyRepository surveyRepository = new SurveyRepository();
+
+                Survey survey = surveyRepository.findById(t_s_id);
+
+
+                s_transactionList.add(new S_Transaction(id,transactionscode,password,is_used,survey));
 
 
             }
@@ -131,11 +137,15 @@ public class S_TransactionRepository implements Persistent<S_Transaction>{
 
             while (result.next()) {
 
-                return new S_Transaction(result.getInt("t_id"),
+                int t_s_id = result.getInt("t_s_id");
+                SurveyRepository surveyRepository = new SurveyRepository();
+                Survey survey = surveyRepository.findById(t_s_id);
+
+                return new S_Transaction(result.getLong("t_id"),
                         result.getString("t_transactionscode"),
                         result.getString("t_password"),
                         result.getBoolean("t_is_used"),
-                        result.getInt("t_s_id")
+                        survey
                 );
 
             }

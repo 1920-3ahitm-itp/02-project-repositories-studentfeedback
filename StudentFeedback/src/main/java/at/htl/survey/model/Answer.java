@@ -25,10 +25,13 @@ public class Answer {
 
     public Answer(){}
 
-    public Long getA_id() {
+    public Long getaId() {
         return aId;
     }
 
+    public void setaId(Long aId) {
+        this.aId = aId;
+    }
 
     public S_Transaction getS_transaction() {
         return s_transaction;

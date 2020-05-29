@@ -25,13 +25,13 @@ public class S_Transaction {
 
     public S_Transaction(){}
 
-
     public Long gettId() {
         return tId;
     }
 
-
-
+    public void settId(Long tId) {
+        this.tId = tId;
+    }
 
     public String gettTransactionscode() {
         return tTransactionscode;
@@ -49,7 +49,7 @@ public class S_Transaction {
         this.tPassword = tPassword;
     }
 
-    public boolean istIsUsed() {
+    public boolean getIsUsed() {
         return tIsUsed;
     }
 

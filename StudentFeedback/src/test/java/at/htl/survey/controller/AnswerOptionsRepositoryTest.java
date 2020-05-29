@@ -97,7 +97,7 @@ public class AnswerOptionsRepositoryTest {
 
         AnswerOptions answerOptions = answerOptionsRepository.findById(2);
 
-        String [] expected = {String.valueOf(answerOptions.getAo_id()), answerOptions.getAo_text(), String.valueOf(answerOptions.getAo_value()), String.valueOf(answerOptions.getAo_q_id())};
+        String [] expected = {String.valueOf(answerOptions.getAo_id()), answerOptions.getAoText(), String.valueOf(answerOptions.getAoValue()), String.valueOf(answerOptions.getQuestion().getqId())};
         String [] actual = {
                 table.getRow(1).getValuesList().get(0).getValue().toString(),
                 table.getRow(1).getValuesList().get(1).getValue().toString(),

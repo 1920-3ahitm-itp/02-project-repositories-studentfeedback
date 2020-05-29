@@ -19,12 +19,15 @@ public class AnswerOptions {
         this.question = question;
     }
 
-    public AnswerOptions(){}
+
 
     public Long getAo_id() {
-        return aoId;
+       return aoId;
     }
 
+    public Long getAoId() {
+        return aoId;
+    }
 
     public String getAoText() {
         return aoText;

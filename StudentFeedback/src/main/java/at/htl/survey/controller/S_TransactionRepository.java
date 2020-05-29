@@ -137,9 +137,9 @@ public class S_TransactionRepository implements Persistent<S_Transaction>{
 
             while (result.next()) {
 
-                int t_s_id = result.getInt("t_s_id");
+
                 SurveyRepository surveyRepository = new SurveyRepository();
-                Survey survey = surveyRepository.findById(t_s_id);
+                Survey survey = surveyRepository.findById(id);
 
                 return new S_Transaction(result.getLong("t_id"),
                         result.getString("t_transactionscode"),

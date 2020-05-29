@@ -27,9 +27,12 @@ public class Survey {
 
     }
 
-
     public Long getsId() {
         return sId;
+    }
+
+    public void setsId(Long sId) {
+        this.sId = sId;
     }
 
     public String getsCreator() {

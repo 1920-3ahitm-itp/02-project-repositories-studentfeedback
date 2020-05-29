@@ -2,57 +2,66 @@ package at.htl.survey.model;
 
 public class S_Transaction {
 
-    private int t_id;
+/*    private int t_id;
     private String t_transactionscode;
     private String t_password;
     private boolean t_is_used;
-    private int t_s_id;
+    private int t_s_id;*/
 
-    public S_Transaction(int t_id, String t_transactionscode, String t_password, boolean t_is_used, int t_s_id) {
-        this.t_id = t_id;
-        this.t_transactionscode = t_transactionscode;
-        this.t_password = t_password;
-        this.t_is_used = t_is_used;
-        this.t_s_id = t_s_id;
+    private Long tId;
+    private String tTransactionscode;
+    private String tPassword;
+    private boolean tIsUsed;
+    private Survey survey;
+
+
+    public S_Transaction(Long tId, String tTransactionscode, String tPassword, boolean tIsUsed, Survey survey) {
+        this.tId = tId;
+        this.tTransactionscode = tTransactionscode;
+        this.tPassword = tPassword;
+        this.tIsUsed = tIsUsed;
+        this.survey = survey;
     }
 
-    public int getT_id() {
-        return t_id;
+    public S_Transaction(){}
+
+
+    public Long gettId() {
+        return tId;
     }
 
-    public void setT_id(int t_id) {
-        this.t_id = t_id;
+
+
+
+    public String gettTransactionscode() {
+        return tTransactionscode;
     }
 
-    public String getT_transactionscode() {
-        return t_transactionscode;
+    public void settTransactionscode(String tTransactionscode) {
+        this.tTransactionscode = tTransactionscode;
     }
 
-    public void setT_transactionscode(String t_transactionscode) {
-        this.t_transactionscode = t_transactionscode;
+    public String gettPassword() {
+        return tPassword;
     }
 
-    public String getT_password() {
-        return t_password;
+    public void settPassword(String tPassword) {
+        this.tPassword = tPassword;
     }
 
-    public void setT_password(String t_password) {
-        this.t_password = t_password;
+    public boolean istIsUsed() {
+        return tIsUsed;
     }
 
-    public boolean isT_is_used() {
-        return t_is_used;
+    public void settIsUsed(boolean tIsUsed) {
+        this.tIsUsed = tIsUsed;
     }
 
-    public void setT_is_used(boolean t_is_used) {
-        this.t_is_used = t_is_used;
+    public Survey getSurvey() {
+        return survey;
     }
 
-    public int getT_s_id() {
-        return t_s_id;
-    }
-
-    public void setT_s_id(int t_s_id) {
-        this.t_s_id = t_s_id;
+    public void setSurvey(Survey survey) {
+        this.survey = survey;
     }
 }

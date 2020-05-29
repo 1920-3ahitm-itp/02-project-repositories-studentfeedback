@@ -5,48 +5,54 @@ import java.util.Date;
 
 public class Survey {
 
-    private int s_id;
+/*    private int s_id;
    private String s_creator;
    private int s_qn_id;
-   private Date s_date;
+   private Date s_date;*/
+
+    private Long sId;
+    private String sCreator;
+    private Questionnaire questionnaire;
+    private Date sDate;
 
 
-    public Survey(int s_id,String s_creator, int s_qn_id, Date s_date) {
-        this.s_creator = s_creator;
-        this.s_qn_id = s_qn_id;
-        this.s_date = s_date;
-        this.s_id = s_id;
+    public Survey(Long sId, String sCreator, Questionnaire questionnaire, Date sDate) {
+
+        this.sId = sId;
+        this.sCreator = sCreator;
+        this.questionnaire = questionnaire;
+        this.sDate = sDate;
+    }
+    public Survey(){
+
     }
 
-    public String getS_creator() {
-        return s_creator;
+
+    public Long getsId() {
+        return sId;
     }
 
-    public void setS_creator(String s_creator) {
-        this.s_creator = s_creator;
+    public String getsCreator() {
+        return sCreator;
     }
 
-    public int getS_qn_id() {
-        return s_qn_id;
+    public void setsCreator(String sCreator) {
+        this.sCreator = sCreator;
     }
 
-    public void setS_qn_id(int s_qn_id) {
-        this.s_qn_id = s_qn_id;
+    public Questionnaire getQuestionnaire() {
+        return questionnaire;
     }
 
-    public Date getS_date() {
-        return s_date;
+    public void setQuestionnaire(Questionnaire questionnaire) {
+        this.questionnaire = questionnaire;
     }
 
-    public void setS_date(Date s_date) {
-        this.s_date = s_date;
+    public Date getsDate() {
+        return sDate;
     }
 
-    public int getS_id() {
-        return s_id;
-    }
-
-    public void setS_id(int s_id) {
-        this.s_id = s_id;
+    public void setsDate(Date sDate) {
+        this.sDate = sDate;
     }
 }

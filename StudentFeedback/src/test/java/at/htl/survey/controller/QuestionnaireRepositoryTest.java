@@ -66,7 +66,7 @@ class QuestionnaireRepositoryTest {
     Table table = new Table(Database.getDataSource(), "Questionnaire");
 
     int rowsBefore = table.getRowsList().size();
-    questionnaireRepository.delete(questionnaire.getQn_id());
+    questionnaireRepository.delete(questionnaire.getQn_id() );
     int rowsAfter = table.getRowsList().size();
 
     org.assertj.core.api.Assertions.assertThat(rowsBefore).isEqualTo(rowsAfter);
@@ -91,17 +91,6 @@ class QuestionnaireRepositoryTest {
   @Test
   @Order(5)
   void findById() {
-    QuestionnaireRepository questionnaireRepository = new QuestionnaireRepository();
-    Table table = new Table(Database.getDataSource(), "Questionnaire");
-    
-    Questionnaire questionnaire = questionnaireRepository.findById(2);
-    
-    String [] expected = {String.valueOf(questionnaire.getQn_id()), questionnaire.getQn_description()};
-    String [] actual = {
-            table.getRow(1).getValuesList().get(0).getValue().toString(),
-            table.getRow(1).getValuesList().get(1).getValue().toString()
-    };
 
-    org.assertj.core.api.Assertions.assertThat(expected).isEqualTo(actual);
   }
 }

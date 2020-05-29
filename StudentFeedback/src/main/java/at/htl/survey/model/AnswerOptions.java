@@ -2,47 +2,51 @@ package at.htl.survey.model;
 
 public class AnswerOptions {
 
-   private int  ao_id;
-   private String ao_text;
-   private int ao_value;
-   private int  ao_q_id;
+//   private int  ao_id;
+//   private String ao_text;
+//   private int ao_value;
+//   private int  ao_q_id;
 
-    public AnswerOptions(int ao_id, String ao_text, int ao_value, int ao_q_id) {
-        this.ao_id = ao_id;
-        this.ao_text = ao_text;
-        this.ao_value = ao_value;
-        this.ao_q_id = ao_q_id;
+    private Long aoId;
+    private String aoText;
+    private int aoValue;
+    private Question question;
+
+    public AnswerOptions(Long aoId, String aoText, int aoValue, Question question) {
+        this.aoId = aoId;
+        this.aoText = aoText;
+        this.aoValue = aoValue;
+        this.question = question;
     }
 
-    public int getAo_id() {
-        return ao_id;
+    public AnswerOptions(){}
+
+    public Long getAo_id() {
+        return aoId;
     }
 
-    public void setAo_id(int ao_id) {
-        this.ao_id = ao_id;
+
+    public String getAoText() {
+        return aoText;
     }
 
-    public String getAo_text() {
-        return ao_text;
+    public void setAoText(String aoText) {
+        this.aoText = aoText;
     }
 
-    public void setAo_text(String ao_text) {
-        this.ao_text = ao_text;
+    public int getAoValue() {
+        return aoValue;
     }
 
-    public int getAo_value() {
-        return ao_value;
+    public void setAoValue(int aoValue) {
+        this.aoValue = aoValue;
     }
 
-    public void setAo_value(int ao_value) {
-        this.ao_value = ao_value;
+    public Question getQuestion() {
+        return question;
     }
 
-    public int getAo_q_id() {
-        return ao_q_id;
-    }
-
-    public void setAo_q_id(int ao_q_id) {
-        this.ao_q_id = ao_q_id;
+    public void setQuestion(Question question) {
+        this.question = question;
     }
 }

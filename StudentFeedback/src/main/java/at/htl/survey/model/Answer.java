@@ -2,57 +2,63 @@ package at.htl.survey.model;
 
 public class Answer {
 
-    private int a_id;
+   /* private int a_id;
     private int a_t_id;
     private int a_q_id;
     private int  a_s_id;
     private String a_answer_text;
+*/
+    private Long aId;
+    private S_Transaction s_transaction;
+    private Question question;
+    private Survey survey;
+    private String answerText;
 
-    public Answer(int a_id, int a_t_id, int a_q_id, int a_s_id, String a_answer_text) {
-        this.a_id = a_id;
-        this.a_t_id = a_t_id;
-        this.a_q_id = a_q_id;
-        this.a_s_id = a_s_id;
-        this.a_answer_text = a_answer_text;
+    public Answer(Long aId, S_Transaction s_transaction, Question question, Survey survey, String answerText) {
+        this.aId = aId;
+        this.s_transaction = s_transaction;
+        this.question = question;
+        this.survey = survey;
+        this.answerText = answerText;
     }
 
-    public int getA_id() {
-        return a_id;
+
+    public Answer(){}
+
+    public Long getA_id() {
+        return aId;
     }
 
-    public void setA_id(int a_id) {
-        this.a_id = a_id;
+
+    public S_Transaction getS_transaction() {
+        return s_transaction;
     }
 
-    public int getA_t_id() {
-        return a_t_id;
+    public void setS_transaction(S_Transaction s_transaction) {
+        this.s_transaction = s_transaction;
     }
 
-    public void setA_t_id(int a_t_id) {
-        this.a_t_id = a_t_id;
+    public Question getQuestion() {
+        return question;
     }
 
-    public int getA_q_id() {
-        return a_q_id;
+    public void setQuestion(Question question) {
+        this.question = question;
     }
 
-    public void setA_q_id(int a_q_id) {
-        this.a_q_id = a_q_id;
+    public Survey getSurvey() {
+        return survey;
     }
 
-    public int getA_s_id() {
-        return a_s_id;
+    public void setSurvey(Survey survey) {
+        this.survey = survey;
     }
 
-    public void setA_s_id(int a_s_id) {
-        this.a_s_id = a_s_id;
+    public String getAnswerText() {
+        return answerText;
     }
 
-    public String getA_answer_text() {
-        return a_answer_text;
-    }
-
-    public void setA_answer_text(String a_answer_text) {
-        this.a_answer_text = a_answer_text;
+    public void setAnswerText(String answerText) {
+        this.answerText = answerText;
     }
 }

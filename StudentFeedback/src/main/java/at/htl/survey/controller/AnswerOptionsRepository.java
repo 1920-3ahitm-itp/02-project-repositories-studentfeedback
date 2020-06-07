@@ -69,13 +69,13 @@ public class AnswerOptionsRepository implements Persistent<AnswerOptions> {
     }
 
     @Override
-    public void delete(int id) {
+    public void delete(long id) {
 
         try (Connection connection = dataSource.getConnection()) {
             String sql = "DELETE FROM answer_option WHERE ao_id=?";
 
             PreparedStatement statement = connection.prepareStatement(sql);
-            statement.setInt(1, id);
+            statement.setLong(1, id);
 
             if (statement.executeUpdate() == 0) {
                 throw new SQLException("Delete from answer_option failed, no rows affected");
@@ -114,12 +114,12 @@ public class AnswerOptionsRepository implements Persistent<AnswerOptions> {
     }
 
     @Override
-    public AnswerOptions findById(int id) {
+    public AnswerOptions findById(long id) {
 
         try (Connection connection = dataSource.getConnection()) {
             String sql = "SELECT * FROM answer_option WHERE ao_id=?";
             PreparedStatement statement = connection.prepareStatement(sql);
-            statement.setInt(1, id);
+            statement.setLong(1, id);
             ResultSet result = statement.executeQuery();
 
 

@@ -37,10 +37,10 @@ public class AnswerRepository implements Persistent<Answer>{
             String sql = "INSERT INTO answer  (a_t_id, a_q_id, a_s_id, a_answer_text) VALUES (?,?,?,?)";
 
             PreparedStatement statement = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
-            statement.setInt(1, answer.getA_t_id());
-            statement.setInt(2, answer.getA_q_id());
-            statement.setInt(3, answer.getA_s_id());
-            statement.setString(4, answer.getA_answer_text());
+            statement.setLong(1, answer.getS_transaction().gettId());
+            statement.setLong(2, answer.getQuestion().getqId());
+            statement.setLong(3, answer.getSurvey().getsId());
+            statement.setString(4, answer.getAnswerText());
 
 
             if (statement.executeUpdate() == 0) {
@@ -50,7 +50,7 @@ public class AnswerRepository implements Persistent<Answer>{
 
             try (ResultSet keys = statement.getGeneratedKeys()) {
                 if (keys.next()) {
-                    answer.setA_id(keys.getInt(1));
+                    answer.setaId(keys.getLong(1));
                 } else {
                     throw new SQLException("Insert into ANSWER failed, no ID obtained");
                 }

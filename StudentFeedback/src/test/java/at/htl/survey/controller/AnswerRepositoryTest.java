@@ -38,6 +38,7 @@ public class AnswerRepositoryTest {
         // Datenbank initalisieren
         //SqlRunner.run();
     }
+}
 
     @Test
     @Order(2)
@@ -106,3 +107,5 @@ public class AnswerRepositoryTest {
         org.assertj.core.api.Assertions.assertThat(expected).isEqualTo(actual);
     }
 }
+
+

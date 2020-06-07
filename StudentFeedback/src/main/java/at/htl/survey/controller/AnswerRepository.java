@@ -14,13 +14,13 @@ public class AnswerRepository implements Persistent<Answer>{
     public void save(Answer answer) {
 
         try (Connection connection = dataSource.getConnection()) {
-            String sql = "UPDATE answer SET  a_t_id=?, a_q_id=?, a_s_id=?, a_answer_text=? WHERE a_id=?  " + answer.getA_id();
+            String sql = "UPDATE answer SET  a_t_id=?, a_q_id=?, a_s_id=?, a_answer_text=? WHERE a_id=?  " + answer.getaId();
 
             PreparedStatement statement = connection.prepareStatement(sql);
-            statement.setInt(1, answer.getA_t_id());
-            statement.setInt(2,answer.getA_q_id());
-            statement.setInt(3, answer.getA_s_id());
-            statement.setString(4, answer.getA_answer_text());
+            statement.setLong(1, answer.getS_transaction().gettId());
+            statement.setLong(2,answer.getQuestion().getqId());
+            statement.setLong(3, answer.getSurvey().getsId());
+            statement.setString(4, answer.getAnswerText());
 
             if (statement.executeUpdate() == 0) {
                 throw new SQLException("Update of ANSWER failed, no rows affected");

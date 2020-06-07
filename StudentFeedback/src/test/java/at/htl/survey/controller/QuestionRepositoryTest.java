@@ -64,7 +64,7 @@ class QuestionRepositoryTest {
         Table table = new Table(Database.getDataSource(), "Question");
 
         int rowsBefore = table.getRowsList().size();
-        questionRepository.delete(question.getQ_id());
+        questionRepository.delete(question.getqId());
         int rowsAfter = table.getRowsList().size();
 
         org.assertj.core.api.Assertions.assertThat(rowsBefore).isEqualTo(rowsAfter);
@@ -90,7 +90,7 @@ class QuestionRepositoryTest {
 
         Question question = questionRepository.findById(2);
 
-        String [] expected = {String.valueOf(question.getQ_id()), question.getQ_text(),question.getQ_type(),String.valueOf(question.getQ_qn_id())};
+        String [] expected = {String.valueOf(question.getqId()), question.getqText(),question.getqType(),String.valueOf(question.getqId())};
         String [] actual = {
                 table.getRow(1).getValuesList().get(0).getValue().toString(),
                 table.getRow(1).getValuesList().get(1).getValue().toString(),

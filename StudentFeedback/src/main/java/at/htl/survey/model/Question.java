@@ -29,6 +29,9 @@ public class Question {
     }
 
 
+    public void setqId(Long qId) {
+        this.qId = qId;
+    }
 
     public String getqText() {
         return qText;

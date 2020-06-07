@@ -73,7 +73,7 @@ public class S_TransactionRepository implements Persistent<S_Transaction>{
     }
 
     @Override
-    public void delete(int id) {
+    public void delete(long id) {
 
         try (Connection connection = dataSource.getConnection()) {
             String sql = "DELETE FROM s_transaction WHERE t_id=?";
@@ -125,7 +125,7 @@ public class S_TransactionRepository implements Persistent<S_Transaction>{
     }
 
     @Override
-    public S_Transaction findById(int id) {
+    public S_Transaction findById(long id) {
 
         try (Connection connection = dataSource.getConnection()) {
             String sql = "SELECT * FROM s_transaction WHERE t_id=?";

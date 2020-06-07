@@ -12,6 +12,8 @@ public class AnswerOptionsRepository implements Persistent<AnswerOptions> {
 
     private DataSource dataSource = Database.getDataSource();
 
+    QuestionRepository questionRepository = new QuestionRepository();
+
     @Override
     public void save(AnswerOptions answerOptions) {
 
@@ -19,10 +21,10 @@ public class AnswerOptionsRepository implements Persistent<AnswerOptions> {
             String sql = "UPDATE answer_option SET ao_text=?, ao_value=?, ao_q_id=?  WHERE ao_id=?";
 
             PreparedStatement statement = connection.prepareStatement(sql);
-            statement.setString(1, answerOptions.getAo_text());
-            statement.setInt(2, answerOptions.getAo_value());
-            statement.setInt(3, answerOptions.getAo_q_id());
-            statement.setInt(4, answerOptions.getAo_id());
+            statement.setString(1, answerOptions.getAoText());
+            statement.setInt(2, answerOptions.getAoValue());
+            statement.setLong(3, answerOptions.getQuestion().getqId());
+            statement.setLong(4, answerOptions.getAoId());
 
 
 
@@ -41,9 +43,9 @@ public class AnswerOptionsRepository implements Persistent<AnswerOptions> {
             String sql = "INSERT INTO answer_option (ao_text,ao_value,ao_q_id) VALUES (?,?,?)";
 
             PreparedStatement statement = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
-            statement.setString(1, answerOptions.getAo_text());
-            statement.setInt(2, answerOptions.getAo_value());
-            statement.setInt(3, answerOptions.getAo_q_id());
+            statement.setString(1, answerOptions.getAoText());
+            statement.setInt(2, answerOptions.getAoValue());
+            statement.setLong(3, answerOptions.getQuestion().getqId());
 
 
             if (statement.executeUpdate() == 0) {
@@ -53,7 +55,7 @@ public class AnswerOptionsRepository implements Persistent<AnswerOptions> {
 
             try (ResultSet keys = statement.getGeneratedKeys()) {
                 if (keys.next()) {
-                    answerOptions.setAo_id(keys.getInt(1));
+                    answerOptions.setAoId(keys.getLong(1));
                 } else {
                     throw new SQLException("Insert into ANSWER_OPTIONS failed, no ID obtained");
                 }
@@ -96,11 +98,12 @@ public class AnswerOptionsRepository implements Persistent<AnswerOptions> {
             ResultSet result = statement.executeQuery();
 
             while (result.next()) {
-                int id = result.getInt("AO_ID");
+                long id = result.getLong("AO_ID");
                 String text = result.getString("AO_TEXT");
                 int value = result.getInt("AO_VALUE");
                 int ao_q_id = result.getInt("AO_Q_ID");
-                anwerOptionList.add(new AnswerOptions(id,text,value,ao_q_id));
+                Question question = questionRepository.findById(ao_q_id);
+                anwerOptionList.add(new AnswerOptions(id,text,value,question));
             }
 
         } catch (SQLException e) {
@@ -123,7 +126,8 @@ public class AnswerOptionsRepository implements Persistent<AnswerOptions> {
 
             while (result.next()) {
 
-                return new AnswerOptions(result.getInt("AO_ID"), result.getString("AO_TEXT"), result.getInt("AO_VALUE"), result.getInt("AO_Q_ID"));
+                Question question = questionRepository.findById(id);
+                return new AnswerOptions(result.getLong("AO_ID"), result.getString("AO_TEXT"), result.getInt("AO_VALUE"), question);
               
             }
 

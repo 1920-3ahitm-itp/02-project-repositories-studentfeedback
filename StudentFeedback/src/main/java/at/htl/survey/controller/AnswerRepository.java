@@ -66,7 +66,6 @@ public class AnswerRepository implements Persistent<Answer>{
 
     @Override
     public void delete(long id) {
-
         try (Connection connection = dataSource.getConnection()) {
             String sql = "DELETE FROM answer  WHERE a_id=?";
 

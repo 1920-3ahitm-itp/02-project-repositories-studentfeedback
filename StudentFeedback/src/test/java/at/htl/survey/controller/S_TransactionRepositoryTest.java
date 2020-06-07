@@ -53,7 +53,7 @@ public class S_TransactionRepositoryTest {
         Table table = new Table(Database.getDataSource(), "s_transaction");
 
         int rowsBefore = table.getRowsList().size();
-        s_transactionRepository.delete(s_transaction.getT_id());
+        s_transactionRepository.delete(s_transaction.gettId());
         int rowsAfter = table.getRowsList().size();
 
         org.assertj.core.api.Assertions.assertThat(rowsBefore).isEqualTo(rowsAfter);
@@ -83,7 +83,7 @@ public class S_TransactionRepositoryTest {
 
         S_Transaction s_Transaction = s_transactionRepository.findById(2);
 
-        String [] expected = {String.valueOf(s_Transaction.getT_id()), s_Transaction.getT_transactionscode(),s_Transaction.getT_password(), String.valueOf(s_Transaction.isT_is_used()), String.valueOf(s_Transaction.getT_s_id())};
+        String [] expected = {String.valueOf(s_Transaction.gettId()), s_Transaction.gettTransactionscode(),s_Transaction.gettPassword(), String.valueOf(s_Transaction.getIsUsed()), String.valueOf(s_Transaction.gettId())};
         String [] actual = {
                 table.getRow(1).getValuesList().get(0).getValue().toString(),
                 table.getRow(1).getValuesList().get(1).getValue().toString(),

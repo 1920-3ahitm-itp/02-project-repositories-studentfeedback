@@ -58,7 +58,7 @@ class SurveyRepositoryTest {
         } catch (ParseException e) {
             e.printStackTrace();
         }
-        Survey survey = new Survey(1, "Thomas Stütz",1, date);
+        Survey survey = new Survey(1, "Thomas Stütz", 1, date);
         surveyRepository.save(survey);
 
         Table table = new Table(Database.getDataSource(), "Survey");
@@ -128,7 +128,7 @@ class SurveyRepositoryTest {
 
         Questionnaire questionnaire = questionnaireRepository.findById(2);
 
-        String [] expected = {String.valueOf(questionnaire.getQn_id()), questionnaire.getQn_description()};
+        String [] expected = {String.valueOf(questionnaire.getQnId()), questionnaire.getQnDescription()};
         String [] actual = {
                 table.getRow(1).getValuesList().get(0).getValue().toString(),
                 table.getRow(1).getValuesList().get(1).getValue().toString()

@@ -66,13 +66,13 @@ public class SurveyRepository implements Persistent<Survey>{
     }
 
     @Override
-    public void delete(int id) {
+    public void delete(long id) {
 
         try (Connection connection = dataSource.getConnection()) {
             String sql = "DELETE FROM survey WHERE s_id=?";
 
             PreparedStatement statement = connection.prepareStatement(sql);
-            statement.setInt(1, id);
+            statement.setLong(1, id);
 
             if (statement.executeUpdate() == 0) {
                 throw new SQLException("Delete from SURVEY failed, no rows affected");
@@ -116,11 +116,11 @@ public class SurveyRepository implements Persistent<Survey>{
     }
 
     @Override
-    public Survey findById(int id) {
+    public Survey findById(long id) {
         try (Connection connection = dataSource.getConnection()) {
             String sql = "SELECT * FROM survey WHERE s_id=?";
             PreparedStatement statement = connection.prepareStatement(sql);
-            statement.setInt(1, id);
+            statement.setLong(1, id);
             ResultSet result = statement.executeQuery();
 
 

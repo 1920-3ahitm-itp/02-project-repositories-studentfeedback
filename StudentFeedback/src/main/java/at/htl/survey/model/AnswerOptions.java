@@ -41,6 +41,10 @@ public class AnswerOptions {
         return aoValue;
     }
 
+    public void setAoId(Long aoId) {
+        this.aoId = aoId;
+    }
+
     public void setAoValue(int aoValue) {
         this.aoValue = aoValue;
     }

@@ -18,10 +18,10 @@ public class QuestionnaireRepository implements Persistent<Questionnaire> {
     public void save(Questionnaire questionnaire) {
 
         try (Connection connection = dataSource.getConnection()) {
-            String sql = "UPDATE questionnaire SET qn_description=? WHERE qn_id=  " + questionnaire.getQn_id();
+            String sql = "UPDATE questionnaire SET qn_description=? WHERE qn_id=  " + questionnaire.getQnId();
 
             PreparedStatement statement = connection.prepareStatement(sql);
-            statement.setString(1, questionnaire.getQn_description());
+            statement.setString(1, questionnaire.getQnDescription());
 
             if (statement.executeUpdate() == 0) {
                 throw new SQLException("Update of QUESTIONNAIRE failed, no rows affected");
@@ -33,13 +33,13 @@ public class QuestionnaireRepository implements Persistent<Questionnaire> {
     }
 
     @Override
-    public void delete(int id) {
+    public void delete(long id) {
 
         try (Connection connection = dataSource.getConnection()) {
             String sql = "DELETE FROM questionnaire WHERE qn_id=?";
 
             PreparedStatement statement = connection.prepareStatement(sql);
-            statement.setInt(1, id);
+            statement.setLong(1, id);
 
             if (statement.executeUpdate() == 0) {
                 throw new SQLException("Delete from QUESTIONNAIRE failed, no rows affected");
@@ -57,7 +57,7 @@ public class QuestionnaireRepository implements Persistent<Questionnaire> {
             String sql = "INSERT INTO questionnaire  (qn_description) VALUES (?)";
 
             PreparedStatement statement = connection.prepareStatement(sql,Statement.RETURN_GENERATED_KEYS);
-            statement.setString(1, questionnaire.getQn_description());
+            statement.setString(1, questionnaire.getQnDescription());
 
 
           if (statement.executeUpdate() == 0) {
@@ -67,7 +67,7 @@ public class QuestionnaireRepository implements Persistent<Questionnaire> {
 
             try (ResultSet keys = statement.getGeneratedKeys()) {
                 if (keys.next()) {
-                    questionnaire.setQn_id(keys.getInt(1));
+                    questionnaire.setQnId(keys.getLong(1));
                 } else {
                     throw new SQLException("Insert into QUESTIONNAIRE failed, no ID obtained");
                 }
@@ -94,7 +94,7 @@ public class QuestionnaireRepository implements Persistent<Questionnaire> {
             ResultSet result = statement.executeQuery();
 
             while (result.next()) {
-                int id = result.getInt("QN_ID");
+                Long id = result.getLong("QN_ID");
                 String description = result.getString("QN_DESCRIPTION");
                 questionnaireList.add(new Questionnaire(id,description));
             }
@@ -109,7 +109,7 @@ public class QuestionnaireRepository implements Persistent<Questionnaire> {
     //SELECT * FROM questionnaire WHERE id=?
     //SELECT * FROM questionnaire
     @Override
-    public Questionnaire findById(int id) {
+    public Questionnaire findById(long id) {
 
        
 
@@ -117,14 +117,14 @@ public class QuestionnaireRepository implements Persistent<Questionnaire> {
         try (Connection connection = dataSource.getConnection()) {
             String sql = "SELECT * FROM questionnaire WHERE qn_id=?";
             PreparedStatement statement = connection.prepareStatement(sql);
-            statement.setInt(1, id);
+            statement.setLong(1, id);
             ResultSet result = statement.executeQuery();
            
 
             
             while (result.next()) {
                 
-                return new Questionnaire(result.getInt("qn_id"), result.getString("QN_DESCRIPTION"));
+                return new Questionnaire(result.getLong("qn_id"), result.getString("QN_DESCRIPTION"));
                 
             }
 

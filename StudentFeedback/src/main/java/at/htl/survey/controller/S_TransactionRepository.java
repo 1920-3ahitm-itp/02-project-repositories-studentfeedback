@@ -1,5 +1,3 @@
-
-
 package at.htl.survey.controller;
 
 import at.htl.survey.model.Questionnaire;
@@ -73,13 +71,13 @@ public class S_TransactionRepository implements Persistent<S_Transaction>{
     }
 
     @Override
-    public void delete(int id) {
+    public void delete(long id) {
 
         try (Connection connection = dataSource.getConnection()) {
             String sql = "DELETE FROM s_transaction WHERE t_id=?";
 
             PreparedStatement statement = connection.prepareStatement(sql);
-            statement.setInt(1, id);
+            statement.setLong(1, id);
 
             if (statement.executeUpdate() == 0) {
                 throw new SQLException("Delete from S_TRANSACTION failed, no rows affected");
@@ -125,12 +123,12 @@ public class S_TransactionRepository implements Persistent<S_Transaction>{
     }
 
     @Override
-    public S_Transaction findById(int id) {
+    public S_Transaction findById(long id) {
 
         try (Connection connection = dataSource.getConnection()) {
             String sql = "SELECT * FROM s_transaction WHERE t_id=?";
             PreparedStatement statement = connection.prepareStatement(sql);
-            statement.setInt(1, id);
+            statement.setLong(1, id);
             ResultSet result = statement.executeQuery();
 
 

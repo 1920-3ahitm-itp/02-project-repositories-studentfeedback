@@ -1,9 +1,10 @@
-/*
+
 package at.htl.survey.controller;
 
 import at.htl.survey.database.SqlRunner;
 import at.htl.survey.model.Answer;
 import at.htl.survey.model.Questionnaire;
+import at.htl.survey.model.Survey;
 import org.assertj.db.api.Assertions;
 import org.assertj.db.type.Table;
 import org.junit.jupiter.api.MethodOrderer;
@@ -18,16 +19,23 @@ import static org.assertj.db.api.Assertions.assertThat;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 
+
 public class AnswerRepositoryTest {
+
+    QuestionnaireRepository questionnaireRepository = new QuestionnaireRepository();
+    AnswerRepository answerRepository = new AnswerRepository();
+    QuestionRepository questionRepository = new QuestionRepository();
+    S_TransactionRepository s_transactionRepository = new S_TransactionRepository();
+    SurveyRepository surveyRepository = new SurveyRepository();
+
     @Test
     @Order(1)
     void save() {
         // arrange - given
-        QuestionnaireRepository questionnaireRepository = new QuestionnaireRepository();
-        Questionnaire questionnaire = new Questionnaire(1, "Questionnaire");
-
+        Questionnaire questionnaire = new Questionnaire(1L, "Questionnaire");
         // act - when
         questionnaireRepository.save(questionnaire);
 
@@ -39,14 +47,14 @@ public class AnswerRepositoryTest {
         // Datenbank initalisieren
         //SqlRunner.run();
     }
-}
+
 
     @Test
     @Order(2)
     void insert() {
-        AnswerRepository answerRepository = new AnswerRepository();
 
-        Answer answer = new Answer(10, 3, 4, 2, "Hallihallo");
+
+        Answer answer = new Answer(10L, s_transactionRepository.findById(3), questionRepository.findById(4),surveyRepository.findById(2) , "Hallihallo");
 
         Table table = new Table(Database.getDataSource(), "Answer");
 
@@ -62,19 +70,20 @@ public class AnswerRepositoryTest {
     @Order(3)
     void delete() {
 
-        AnswerRepository answerRepositoryy = new AnswerRepository();
 
-        Answer answer = new Answer(1, 3, 4, 1, "Hallihallo");
-        answerRepositoryy.insert(answer);
+
+        Answer answer = new Answer(1L, s_transactionRepository.findById(3), questionRepository.findById(4), surveyRepository.findById(1) , "Hallihallo");
+        answerRepository.insert(answer);
         Table table = new Table(Database.getDataSource(), "Answer");
 
         int rowsBefore = table.getRowsList().size();
-        answerRepositoryy.delete(answer.getaId());
+        answerRepository.delete(answer.getaId());
         int rowsAfter = table.getRowsList().size();
 
         org.assertj.core.api.Assertions.assertThat(rowsBefore).isEqualTo(rowsAfter);
 
     }
+
 
     @Test
     @Order(4)
@@ -107,7 +116,7 @@ public class AnswerRepositoryTest {
 
         org.assertj.core.api.Assertions.assertThat(expected).isEqualTo(actual);
     }
+
+
 }
 
-
-*/

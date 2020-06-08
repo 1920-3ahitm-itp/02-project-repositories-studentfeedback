@@ -27,7 +27,9 @@ public class AnswerOptionsRepositoryTest {
     void save() {
         AnswerOptionsRepository answerOptionsRepository = new AnswerOptionsRepository();
 
-        AnswerOptions answerOptions = new AnswerOptions(20, "völlig zu", 4, 1);
+        QuestionRepository questionRepository = new QuestionRepository();
+
+        AnswerOptions answerOptions = new AnswerOptions(2L, "völlig zu", 4, questionRepository.findById(2) );
         answerOptionsRepository.save(answerOptions);
 
         Table table = new Table(Database.getDataSource(), "answer_option");
@@ -62,7 +64,7 @@ public class AnswerOptionsRepositoryTest {
 
         AnswerOptionsRepository answerOptionsRepository = new AnswerOptionsRepository();
 
-        AnswerOptions answerOptions = new AnswerOptions(20, "völlig zu", 4, 1);
+        AnswerOptions answerOptions = new AnswerOptions(2, "völlig zu", 4, 1);
         answerOptionsRepository.insert(answerOptions);
         Table table = new Table(Database.getDataSource(), "answer_option");
 

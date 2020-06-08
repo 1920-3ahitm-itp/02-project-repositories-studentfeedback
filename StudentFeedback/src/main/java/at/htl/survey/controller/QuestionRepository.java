@@ -18,6 +18,7 @@ public class QuestionRepository implements Persistent<Question>  {
 
     QuestionnaireRepository questionnaireRepository = new QuestionnaireRepository();
 
+
     @Override
     public void save(Question question) {
 
@@ -105,8 +106,9 @@ public class QuestionRepository implements Persistent<Question>  {
                 Long id = result.getLong("Q_ID");
                 String text = result.getString("Q_TEXT");
                 String type = result.getString("Q_TYPE");
-                int q_qn_id = result.getInt("Q_QN_ID");
-                questionList.add(new Question(id,text,type,q_qn_id));
+                long q_qn_id = result.getInt("Q_QN_ID");
+                Questionnaire questionnaire = questionnaireRepository.findById(q_qn_id);
+                questionList.add(new Question(id,text,type,questionnaire));
             }
 
         } catch (SQLException e) {

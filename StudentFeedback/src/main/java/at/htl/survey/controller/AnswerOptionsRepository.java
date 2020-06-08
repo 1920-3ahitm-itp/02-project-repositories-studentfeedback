@@ -125,8 +125,8 @@ public class AnswerOptionsRepository implements Persistent<AnswerOptions> {
 
 
             while (result.next()) {
-
-                Question question = questionRepository.findById(id);
+                long ao_q_id = result.getLong("ao_q_id");
+                Question question = questionRepository.findById(ao_q_id);
                 return new AnswerOptions(result.getLong("AO_ID"), result.getString("AO_TEXT"), result.getInt("AO_VALUE"), question);
               
             }

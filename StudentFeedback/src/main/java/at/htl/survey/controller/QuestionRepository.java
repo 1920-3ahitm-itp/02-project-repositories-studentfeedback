@@ -130,10 +130,9 @@ public class QuestionRepository implements Persistent<Question>  {
 
 
             while (result.next()) {
-
-                Questionnaire questionnaire = questionnaireRepository.findById(id);
+                long q_qn_id = result.getLong("q_qn_id");
+                Questionnaire questionnaire = questionnaireRepository.findById(q_qn_id);
                 return new Question(result.getLong("Q_ID"), result.getString("Q_TEXT"), result.getString("Q_TYPE"), questionnaire);
-
             }
 
         } catch (SQLException e) {

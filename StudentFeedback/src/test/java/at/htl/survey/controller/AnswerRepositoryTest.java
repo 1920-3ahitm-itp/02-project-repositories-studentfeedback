@@ -35,14 +35,16 @@ public class AnswerRepositoryTest {
     @Order(1)
     void save() {
         // arrange - given
-        Questionnaire questionnaire = new Questionnaire(1L, "Questionnaire");
+
+        Answer answer = new Answer(1L, s_transactionRepository.findById(3), questionRepository.findById(4),surveyRepository.findById(2) , "Hallihallo");
+
         // act - when
-        questionnaireRepository.save(questionnaire);
+        answerRepository.save(answer);
 
         // assert - then
-        Table table = new Table(Database.getDataSource(), "questionnaire");
+        Table table = new Table(Database.getDataSource(), "answer");
         Assertions.assertThat(table).row(0)
-                .value("qn_description").isEqualTo("Questionnaire");
+                .value("a_answer_text").isEqualTo("Hallihallo");
 
         // Datenbank initalisieren
         //SqlRunner.run();
@@ -88,12 +90,11 @@ public class AnswerRepositoryTest {
     @Test
     @Order(4)
     void findAll() {
-        QuestionnaireRepository questionnaireRepository = new QuestionnaireRepository();
 
-        int findAllRows = questionnaireRepository.findAll().size();
+        int findAllRows = answerRepository.findAll().size();
 
 
-        Table table = new Table(Database.getDataSource(), "Questionnaire");
+        Table table = new Table(Database.getDataSource(), "Answer");
 
         int tableRows = table.getRowsList().size();
 
@@ -103,15 +104,17 @@ public class AnswerRepositoryTest {
     @Test
     @Order(5)
     void findById() {
-        QuestionnaireRepository questionnaireRepository = new QuestionnaireRepository();
-        Table table = new Table(Database.getDataSource(), "Questionnaire");
+        Table table = new Table(Database.getDataSource(), "Answer");
 
-        Questionnaire questionnaire = questionnaireRepository.findById(2);
+        Answer answer = answerRepository.findById(2);
 
-        String [] expected = {String.valueOf(questionnaire.getQnId()), questionnaire.getQnDescription()};
-        String [] actual = {
+        String [] actual = {String.valueOf(answer.getaId()), String.valueOf(answer.getS_transaction().gettId()), String.valueOf(answer.getQuestion().getqId()), String.valueOf(answer.getSurvey().getsId()), answer.getAnswerText()};
+        String [] expected = {
                 table.getRow(1).getValuesList().get(0).getValue().toString(),
-                table.getRow(1).getValuesList().get(1).getValue().toString()
+                table.getRow(1).getValuesList().get(1).getValue().toString(),
+                table.getRow(1).getValuesList().get(2).getValue().toString(),
+                table.getRow(1).getValuesList().get(3).getValue().toString(),
+                table.getRow(1).getValuesList().get(4).getValue().toString(),
         };
 
         org.assertj.core.api.Assertions.assertThat(expected).isEqualTo(actual);

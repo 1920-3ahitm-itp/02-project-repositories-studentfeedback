@@ -21,10 +21,10 @@ public class AnswerRepository implements Persistent<Answer>{
     public void save(Answer answer) {
 
         try (Connection connection = dataSource.getConnection()) {
-            String sql = "UPDATE answer SET  a_t_id=?, a_q_id=?, a_s_id=?, a_answer_text=? WHERE a_id=?  " + answer.getaId();
+            String sql = "UPDATE answer SET  a_t_id=?, a_q_id=?, a_s_id=?, a_answer_text=? WHERE a_id= " + answer.getaId();
 
             PreparedStatement statement = connection.prepareStatement(sql);
-            statement.setLong(1, answer.getS_transaction().gettId());
+            statement.setLong(1,answer.getS_transaction().gettId());
             statement.setLong(2,answer.getQuestion().getqId());
             statement.setLong(3, answer.getSurvey().getsId());
             statement.setString(4, answer.getAnswerText());

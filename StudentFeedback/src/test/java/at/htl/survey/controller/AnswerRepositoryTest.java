@@ -1,3 +1,4 @@
+/*
 package at.htl.survey.controller;
 
 import at.htl.survey.database.SqlRunner;
@@ -109,3 +110,4 @@ public class AnswerRepositoryTest {
 }
 
 
+*/

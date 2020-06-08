@@ -1,3 +1,4 @@
+/*
 package at.htl.survey.controller;
 
 import at.htl.survey.database.SqlRunner;
@@ -27,6 +28,7 @@ class SurveyRepositoryTest {
     @Test
     @Order(1)
     void save() {
+*/
 /*
         // arrange - given
         SurveyRepository surveyRepository = new SurveyRepository();
@@ -44,7 +46,8 @@ class SurveyRepositoryTest {
 
         //Datenbank initalisieren
         //SqlRunner.run();
-*/
+*//*
+
 
 
         SurveyRepository surveyRepository = new SurveyRepository();
@@ -136,4 +139,4 @@ class SurveyRepositoryTest {
 
         org.assertj.core.api.Assertions.assertThat(expected).isEqualTo(actual);
     }
-}
+}*/

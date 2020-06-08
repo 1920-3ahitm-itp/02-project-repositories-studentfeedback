@@ -29,7 +29,7 @@ public class AnswerOptionsRepositoryTest {
 
         QuestionRepository questionRepository = new QuestionRepository();
 
-        AnswerOptions answerOptions = new AnswerOptions(2L, "völlig zu", 4, questionRepository.findById(2) );
+        AnswerOptions answerOptions = new AnswerOptions(2L, "völlig zu", 4, questionRepository.findById(1) );
         answerOptionsRepository.save(answerOptions);
 
         Table table = new Table(Database.getDataSource(), "answer_option");
@@ -40,73 +40,73 @@ public class AnswerOptionsRepositoryTest {
                 .value("ao_q_id").isEqualTo(1);
     }
 
-    @Test
-    @Order(2)
-    void insert() {
-        AnswerOptionsRepository answerOptionsRepository = new AnswerOptionsRepository();
-
-        AnswerOptions answerOptions = new AnswerOptions(20, "völlig zu", 4, 1);
-        answerOptionsRepository.save(answerOptions);
-
-        Table table = new Table(Database.getDataSource(), "answer_option");
-
-        int rowsBefore = table.getRowsList().size();
-        answerOptionsRepository.insert(answerOptions);
-        int rowsAfter = table.getRowsList().size();
-
-
-        org.assertj.core.api.Assertions.assertThat(rowsBefore).isEqualTo(rowsAfter);
-    }
-
-    @Test
-    @Order(3)
-    void delete() {
-
-        AnswerOptionsRepository answerOptionsRepository = new AnswerOptionsRepository();
-
-        AnswerOptions answerOptions = new AnswerOptions(2, "völlig zu", 4, 1);
-        answerOptionsRepository.insert(answerOptions);
-        Table table = new Table(Database.getDataSource(), "answer_option");
-
-        int rowsBefore = table.getRowsList().size();
-        answerOptionsRepository.delete(answerOptions.getAo_id());
-        int rowsAfter = table.getRowsList().size();
-
-        org.assertj.core.api.Assertions.assertThat(rowsBefore).isEqualTo(rowsAfter);
-
-    }
-
-    @Test
-    @Order(4)
-    void findAll() {
-        AnswerOptionsRepository answerOptionsRepository = new AnswerOptionsRepository();
-
-        int findAllRows = answerOptionsRepository.findAll().size();
-
-
-        Table table = new Table(Database.getDataSource(), "answer_option");
-
-        int tableRows = table.getRowsList().size();
-
-        org.assertj.core.api.Assertions.assertThat(findAllRows).isEqualTo(tableRows);
-    }
-
-    @Test
-    @Order(5)
-    void findById() {
-        AnswerOptionsRepository answerOptionsRepository = new AnswerOptionsRepository();
-        Table table = new Table(Database.getDataSource(), "answer_option");
-
-        AnswerOptions answerOptions = answerOptionsRepository.findById(2);
-
-        String [] expected = {String.valueOf(answerOptions.getAo_id()), answerOptions.getAoText(), String.valueOf(answerOptions.getAoValue()), String.valueOf(answerOptions.getQuestion().getqId())};
-        String [] actual = {
-                table.getRow(1).getValuesList().get(0).getValue().toString(),
-                table.getRow(1).getValuesList().get(1).getValue().toString(),
-                table.getRow(1).getValuesList().get(2).getValue().toString(),
-                table.getRow(1).getValuesList().get(3).getValue().toString()
-        };
-
-        org.assertj.core.api.Assertions.assertThat(expected).isEqualTo(actual);
-    }
+//    @Test
+//    @Order(2)
+//    void insert() {
+//        AnswerOptionsRepository answerOptionsRepository = new AnswerOptionsRepository();
+//
+//        AnswerOptions answerOptions = new AnswerOptions(20, "völlig zu", 4, 1);
+//        answerOptionsRepository.save(answerOptions);
+//
+//        Table table = new Table(Database.getDataSource(), "answer_option");
+//
+//        int rowsBefore = table.getRowsList().size();
+//        answerOptionsRepository.insert(answerOptions);
+//        int rowsAfter = table.getRowsList().size();
+//
+//
+//        org.assertj.core.api.Assertions.assertThat(rowsBefore).isEqualTo(rowsAfter);
+//    }
+//
+//    @Test
+//    @Order(3)
+//    void delete() {
+//
+//        AnswerOptionsRepository answerOptionsRepository = new AnswerOptionsRepository();
+//
+//        AnswerOptions answerOptions = new AnswerOptions(2, "völlig zu", 4, 1);
+//        answerOptionsRepository.insert(answerOptions);
+//        Table table = new Table(Database.getDataSource(), "answer_option");
+//
+//        int rowsBefore = table.getRowsList().size();
+//        answerOptionsRepository.delete(answerOptions.getAo_id());
+//        int rowsAfter = table.getRowsList().size();
+//
+//        org.assertj.core.api.Assertions.assertThat(rowsBefore).isEqualTo(rowsAfter);
+//
+//    }
+//
+//    @Test
+//    @Order(4)
+//    void findAll() {
+//        AnswerOptionsRepository answerOptionsRepository = new AnswerOptionsRepository();
+//
+//        int findAllRows = answerOptionsRepository.findAll().size();
+//
+//
+//        Table table = new Table(Database.getDataSource(), "answer_option");
+//
+//        int tableRows = table.getRowsList().size();
+//
+//        org.assertj.core.api.Assertions.assertThat(findAllRows).isEqualTo(tableRows);
+//    }
+//
+//    @Test
+//    @Order(5)
+//    void findById() {
+//        AnswerOptionsRepository answerOptionsRepository = new AnswerOptionsRepository();
+//        Table table = new Table(Database.getDataSource(), "answer_option");
+//
+//        AnswerOptions answerOptions = answerOptionsRepository.findById(2);
+//
+//        String [] expected = {String.valueOf(answerOptions.getAo_id()), answerOptions.getAoText(), String.valueOf(answerOptions.getAoValue()), String.valueOf(answerOptions.getQuestion().getqId())};
+//        String [] actual = {
+//                table.getRow(1).getValuesList().get(0).getValue().toString(),
+//                table.getRow(1).getValuesList().get(1).getValue().toString(),
+//                table.getRow(1).getValuesList().get(2).getValue().toString(),
+//                table.getRow(1).getValuesList().get(3).getValue().toString()
+//        };
+//
+//        org.assertj.core.api.Assertions.assertThat(expected).isEqualTo(actual);
+//    }
 }

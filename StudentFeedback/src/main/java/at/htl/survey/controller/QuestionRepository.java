@@ -48,7 +48,7 @@ public class QuestionRepository implements Persistent<Question>  {
             PreparedStatement statement = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
             statement.setString(1, question.getqText());
             statement.setString(2, question.getqType());
-            statement.setInt(3, question.getQuestionnaire().getQnId());
+            statement.setLong(3, question.getQuestionnaire().getQnId());
 
 
             if (statement.executeUpdate() == 0) {
@@ -129,8 +129,8 @@ public class QuestionRepository implements Persistent<Question>  {
 
             while (result.next()) {
 
-
-                return new Question(result.getLong("Q_ID"), result.getString("Q_TEXT"), result.getString("Q_TYPE"), result.getInt("Q_QN_ID"));
+                Questionnaire questionnaire = questionnaireRepository.findById(id);
+                return new Question(result.getLong("Q_ID"), result.getString("Q_TEXT"), result.getString("Q_TYPE"), questionnaire);
 
             }
 

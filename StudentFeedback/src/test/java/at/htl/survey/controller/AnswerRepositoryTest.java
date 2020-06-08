@@ -70,21 +70,21 @@ public class AnswerRepositoryTest {
     @Order(3)
     void delete() {
 
-        AnswerRepository answerRepositoryy = new AnswerRepository();
 
-        Answer answer = new Answer(1, 3, 4, 1, "Hallihallo");
-        answerRepositoryy.insert(answer);
+
+        Answer answer = new Answer(1L, s_transactionRepository.findById(3), questionRepository.findById(4), surveyRepository.findById(1) , "Hallihallo");
+        answerRepository.insert(answer);
         Table table = new Table(Database.getDataSource(), "Answer");
 
         int rowsBefore = table.getRowsList().size();
-        answerRepositoryy.delete(answer.getaId());
+        answerRepository.delete(answer.getaId());
         int rowsAfter = table.getRowsList().size();
 
         org.assertj.core.api.Assertions.assertThat(rowsBefore).isEqualTo(rowsAfter);
 
     }
 
-    /*
+
     @Test
     @Order(4)
     void findAll() {
@@ -115,7 +115,7 @@ public class AnswerRepositoryTest {
         };
 
         org.assertj.core.api.Assertions.assertThat(expected).isEqualTo(actual);
-    }*/
+    }
 
 
 }

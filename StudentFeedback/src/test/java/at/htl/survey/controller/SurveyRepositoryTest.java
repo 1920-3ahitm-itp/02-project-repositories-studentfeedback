@@ -1,4 +1,3 @@
-/*
 package at.htl.survey.controller;
 
 import at.htl.survey.database.SqlRunner;
@@ -25,43 +24,26 @@ import static org.junit.jupiter.api.Assertions.*;
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 class SurveyRepositoryTest {
 
+    SurveyRepository surveyRepository = new SurveyRepository();
+    QuestionnaireRepository questionnaireRepository = new QuestionnaireRepository();
+
     @Test
     @Order(1)
     void save() {
-*/
-/*
-        // arrange - given
-        SurveyRepository surveyRepository = new SurveyRepository();
-        Survey survey = new Survey(1, "Thomas Stütz",1, date);
-
-        // act - when
-        surveyRepository.save(survey);
-
-        // assert - then
-        Table table = new Table(Database.getDataSource(), "survey");
-        Assertions.assertThat(table).row(0)
-                .value("q_creator").isEqualTo("Thomas Stütz")
-                .value("s_id_id").isEqualTo(1)
-                .value("s_date").isEqualTo(2020-04-18);
-
-        //Datenbank initalisieren
-        //SqlRunner.run();
-*//*
 
 
 
-        SurveyRepository surveyRepository = new SurveyRepository();
 
         //java.sql.Date date = java.sql.Date.valueOf("2010-02-29");
 
        // Date date = new Date(2020,1,1);
-        Date date = null;
-        try {
-            date = new SimpleDateFormat("yyyy-MM-dd").parse("2020-02-15");
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
-        Survey survey = new Survey(1, "Thomas Stütz", 1, date);
+//        Date date = null;
+//        try {
+//            date = new SimpleDateFormat("yyyy-MM-dd").parse("2020-06-08");
+//        } catch (ParseException e) {
+//            e.printStackTrace();
+//        }
+        Survey survey = new Survey(1L, "Thomas Stütz", questionnaireRepository.findById(1), new Date());
         surveyRepository.save(survey);
 
         Table table = new Table(Database.getDataSource(), "Survey");
@@ -69,7 +51,7 @@ class SurveyRepositoryTest {
         Assertions.assertThat(table).row(0)
                 .value("s_creator").isEqualTo("Thomas Stütz")
                 .value("s_qn_id").isEqualTo(1)
-                .value("s_date").isEqualTo(date);
+                .value("s_date").isEqualTo(new Date());
 
     }
 
@@ -78,7 +60,7 @@ class SurveyRepositoryTest {
     void insert() {
         QuestionnaireRepository questionnaireRepository = new QuestionnaireRepository();
 
-        Questionnaire questionnaire = new Questionnaire(9, "De");
+        Questionnaire questionnaire = new Questionnaire(9L, "De");
 
         Table table = new Table(Database.getDataSource(), "Questionnaire");
 
@@ -96,7 +78,7 @@ class SurveyRepositoryTest {
 
         QuestionnaireRepository questionnaireRepository = new QuestionnaireRepository();
 
-        Questionnaire questionnaire = new Questionnaire(9, "Blablabla");
+        Questionnaire questionnaire = new Questionnaire(9L, "Blablabla");
         questionnaireRepository.insert(questionnaire);
         Table table = new Table(Database.getDataSource(), "Questionnaire");
 
@@ -139,4 +121,4 @@ class SurveyRepositoryTest {
 
         org.assertj.core.api.Assertions.assertThat(expected).isEqualTo(actual);
     }
-}*/
+}

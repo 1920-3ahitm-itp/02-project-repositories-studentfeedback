@@ -125,7 +125,7 @@ public class SurveyRepository implements Persistent<Survey>{
 
 
 
-            while (result.next()) {
+            if (result.next()) {
 
                 QuestionnaireRepository questionnaireRepository = new QuestionnaireRepository();
                 Questionnaire questionnaire = questionnaireRepository.findById(id);

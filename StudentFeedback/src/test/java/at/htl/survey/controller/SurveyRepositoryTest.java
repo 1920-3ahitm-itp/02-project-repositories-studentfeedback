@@ -1,24 +1,24 @@
 package at.htl.survey.controller;
 
 import at.htl.survey.database.SqlRunner;
+import at.htl.survey.model.AnswerOptions;
 import at.htl.survey.model.Question;
 import at.htl.survey.model.Questionnaire;
 import at.htl.survey.model.Survey;
 import org.assertj.db.api.Assertions;
 import org.assertj.db.type.Table;
-import org.junit.jupiter.api.MethodOrderer;
-import org.junit.jupiter.api.Order;
-import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.TestMethodOrder;
+import org.junit.jupiter.api.*;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.*;
 import static org.assertj.db.api.Assertions.assertThat;
 
+import static org.assertj.db.output.Outputs.output;
 import static org.junit.jupiter.api.Assertions.*;
 
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
@@ -27,29 +27,38 @@ class SurveyRepositoryTest {
     SurveyRepository surveyRepository = new SurveyRepository();
     QuestionnaireRepository questionnaireRepository = new QuestionnaireRepository();
 
+    @BeforeAll
+    private static void init(){
+        SqlRunner.run();
+    }
+
     @Test
     @Order(1)
     void save() {
-
-        Survey survey = new Survey(1L, "Thomas Stütz", questionnaireRepository.findById(1), new Date());
-        surveyRepository.save(survey);
+        LocalDate date = LocalDate.now(); //survey.getsDate().getTime());
 
         Table table = new Table(Database.getDataSource(), "Survey");
+        output(table).toConsole();
 
-        java.sql.Date date = new java.sql.Date(survey.getsDate().getTime());
+        Survey survey = new Survey(null, "Thomas Stütz", questionnaireRepository.findById(1), date);
+        surveyRepository.save(survey);
 
+        table = new Table(Database.getDataSource(), "Survey");
+        output(table).toConsole();
+
+        Assertions.assertThat(table).hasNumberOfRows(5);
         Assertions.assertThat(table).row(0)
                 .value("s_creator").isEqualTo("Thomas Stütz")
                 .value("s_qn_id").isEqualTo(1)
-                .value("s_date").isEqualTo(date);
-
+                .value("s_date").isEqualTo(java.sql.Date.valueOf(date));
     }
 
     @Test
     @Order(2)
     void insert() {
+        LocalDate date = LocalDate.now();
 
-        Survey survey = new Survey(1L, "Thomas Stütz", questionnaireRepository.findById(1), new Date());
+        Survey survey = new Survey(1L, "Thomas Stütz", questionnaireRepository.findById(1), date);
 
         Table table = new Table(Database.getDataSource(), "Survey");
 
@@ -64,14 +73,14 @@ class SurveyRepositoryTest {
     @Test
     @Order(3)
     void delete() {
+        LocalDate date = LocalDate.now();
 
-
-        Survey survey = new Survey(1L, "Thomas Stütz", questionnaireRepository.findById(1), new Date());
+        Survey survey = new Survey(1L, "Thomas Stütz", questionnaireRepository.findById(1), date);
         surveyRepository.insert(survey);
-        Table table = new Table(Database.getDataSource(), "survey");
+        Table table = new Table(Database.getDataSource(), "Survey");
 
         int rowsBefore = table.getRowsList().size();
-        surveyRepository.delete(rowsBefore-1);
+        surveyRepository.delete(survey.getsId());
         int rowsAfter = table.getRowsList().size();
 
         org.assertj.core.api.Assertions.assertThat(rowsBefore).isEqualTo(rowsAfter);
@@ -81,12 +90,10 @@ class SurveyRepositoryTest {
     @Test
     @Order(4)
     void findAll() {
-        QuestionnaireRepository questionnaireRepository = new QuestionnaireRepository();
 
-        int findAllRows = questionnaireRepository.findAll().size();
+        int findAllRows = surveyRepository.findAll().size();
 
-
-        Table table = new Table(Database.getDataSource(), "Questionnaire");
+        Table table = new Table(Database.getDataSource(), "Survey");
 
         int tableRows = table.getRowsList().size();
 
@@ -96,15 +103,22 @@ class SurveyRepositoryTest {
     @Test
     @Order(5)
     void findById() {
-        QuestionnaireRepository questionnaireRepository = new QuestionnaireRepository();
-        Table table = new Table(Database.getDataSource(), "Questionnaire");
+        Table table = new Table(Database.getDataSource(), "Survey");
 
-        Questionnaire questionnaire = questionnaireRepository.findById(2);
+        Survey survey = surveyRepository.findById(2);
 
-        String [] expected = {String.valueOf(questionnaire.getQnId()), questionnaire.getQnDescription()};
+        String [] expected = {
+                String.valueOf(survey.getsId()),
+                survey.getsCreator(),
+                String.valueOf(survey.getQuestionnaire().getQnId()),
+                String.valueOf(survey.getsDate())
+
+        };
         String [] actual = {
                 table.getRow(1).getValuesList().get(0).getValue().toString(),
-                table.getRow(1).getValuesList().get(1).getValue().toString()
+                table.getRow(1).getValuesList().get(1).getValue().toString(),
+                table.getRow(1).getValuesList().get(2).getValue().toString(),
+                table.getRow(1).getValuesList().get(3).getValue().toString()
         };
 
         org.assertj.core.api.Assertions.assertThat(expected).isEqualTo(actual);

@@ -13,10 +13,10 @@ public class Survey {
     private Long sId;
     private String sCreator;
     private Questionnaire questionnaire;
-    private Date sDate;
+    private LocalDate sDate;
 
 
-    public Survey(Long sId, String sCreator, Questionnaire questionnaire, Date sDate) {
+    public Survey(Long sId, String sCreator, Questionnaire questionnaire, LocalDate sDate) {
 
         this.sId = sId;
         this.sCreator = sCreator;
@@ -51,11 +51,11 @@ public class Survey {
         this.questionnaire = questionnaire;
     }
 
-    public Date getsDate() {
+    public LocalDate getsDate() {
         return sDate;
     }
 
-    public void setsDate(Date sDate) {
+    public void setsDate(LocalDate sDate) {
         this.sDate = sDate;
     }
 }

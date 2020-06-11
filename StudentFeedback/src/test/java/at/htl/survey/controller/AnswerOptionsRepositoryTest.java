@@ -59,8 +59,6 @@ public class AnswerOptionsRepositoryTest {
     @Order(3)
     void delete() {
 
-
-
         AnswerOptions answerOptions = new AnswerOptions(2L, "völlig zu", 4, questionRepository.findById(1));
         answerOptionsRepository.insert(answerOptions);
         Table table = new Table(Database.getDataSource(), "answer_option");

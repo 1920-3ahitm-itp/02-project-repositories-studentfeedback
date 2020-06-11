@@ -112,7 +112,7 @@ public class AnswerRepositoryTest {
                 table.getRow(1).getValuesList().get(1).getValue().toString(),
                 table.getRow(1).getValuesList().get(2).getValue().toString(),
                 table.getRow(1).getValuesList().get(3).getValue().toString(),
-                table.getRow(1).getValuesList().get(4).getValue().toString(),
+                table.getRow(1).getValuesList().get(4).getValue().toString()
         };
 
         org.assertj.core.api.Assertions.assertThat(expected).isEqualTo(actual);

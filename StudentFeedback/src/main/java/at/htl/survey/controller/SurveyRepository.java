@@ -10,20 +10,27 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
-public class SurveyRepository implements Persistent<Survey>{
+public class SurveyRepository implements Persistent<Survey> {
 
     private DataSource dataSource = Database.getDataSource();
+
     @Override
     public void save(Survey survey) {
+        if (survey.getsId() == null) {
+            insert(survey);
+        } else {
+            update(survey);
+        }
+    }
+
+    public void update(Survey survey) {
         try (Connection connection = dataSource.getConnection()) {
             String sql = "UPDATE survey  SET s_creator=?, s_qn_id=?, s_date=? WHERE s_id=  " + survey.getsId();
-
-            java.sql.Date date = new java.sql.Date(survey.getsDate().getTime());
 
             PreparedStatement statement = connection.prepareStatement(sql);
             statement.setString(1, survey.getsCreator());
             statement.setLong(2, survey.getQuestionnaire().getQnId());
-            statement.setDate(3, date);
+            statement.setDate(3, java.sql.Date.valueOf(survey.getsDate()));
 
             if (statement.executeUpdate() == 0) {
                 throw new SQLException("Update of SURVEY failed, no rows affected");
@@ -42,7 +49,7 @@ public class SurveyRepository implements Persistent<Survey>{
             PreparedStatement statement = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
             statement.setString(1, survey.getsCreator());
             statement.setLong(2, survey.getQuestionnaire().getQnId());
-            statement.setDate(3, (Date) survey.getsDate());///!!!
+            statement.setDate(3, java.sql.Date.valueOf(survey.getsDate()));
 
 
             if (statement.executeUpdate() == 0) {
@@ -57,7 +64,6 @@ public class SurveyRepository implements Persistent<Survey>{
                     throw new SQLException("Insert into SURVEY failed, no ID obtained");
                 }
             }
-
 
 
         } catch (SQLException e) {
@@ -105,7 +111,7 @@ public class SurveyRepository implements Persistent<Survey>{
 
                 Questionnaire questionnaire = questionnaireRepository.findById(s_qn_id);
 
-                surveyList.add(new Survey(s_id,s_creator,questionnaire,s_date));
+                surveyList.add(new Survey(s_id, s_creator, questionnaire, s_date.toLocalDate()));
             }
 
         } catch (SQLException e) {
@@ -124,14 +130,13 @@ public class SurveyRepository implements Persistent<Survey>{
             ResultSet result = statement.executeQuery();
 
 
-
             if (result.next()) {
 
                 QuestionnaireRepository questionnaireRepository = new QuestionnaireRepository();
                 Questionnaire questionnaire = questionnaireRepository.findById(id);
 
 
-                return new Survey(result.getLong("s_id"), result.getString("s_creator"),questionnaire , result.getDate("s_date"));
+                return new Survey(result.getLong("s_id"), result.getString("s_creator"), questionnaire, result.getDate("s_date").toLocalDate());
 
             }
 

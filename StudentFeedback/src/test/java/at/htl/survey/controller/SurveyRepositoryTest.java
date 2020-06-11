@@ -31,26 +31,13 @@ class SurveyRepositoryTest {
     @Order(1)
     void save() {
 
-
-
-
-        //java.sql.Date date = java.sql.Date.valueOf("2010-02-29");
-
-        // Date date = new Date(2020,1,1);
-//        Date date = null;
-//        try {
-//            date = new SimpleDateFormat("yyyy-MM-dd").parse("2020-06-08");
-//        } catch (ParseException e) {
-//            e.printStackTrace();
-//        }
         Survey survey = new Survey(1L, "Thomas Stütz", questionnaireRepository.findById(1), new Date());
         surveyRepository.save(survey);
 
         Table table = new Table(Database.getDataSource(), "Survey");
 
-
         java.sql.Date date = new java.sql.Date(survey.getsDate().getTime());
-        Date d2 = (Date) table.getRow(0).getValuesList().get(3).getValue();
+
         Assertions.assertThat(table).row(0)
                 .value("s_creator").isEqualTo("Thomas Stütz")
                 .value("s_qn_id").isEqualTo(1)
@@ -61,14 +48,13 @@ class SurveyRepositoryTest {
     @Test
     @Order(2)
     void insert() {
-        QuestionnaireRepository questionnaireRepository = new QuestionnaireRepository();
 
-        Questionnaire questionnaire = new Questionnaire(9L, "De");
+        Survey survey = new Survey(1L, "Thomas Stütz", questionnaireRepository.findById(1), new Date());
 
-        Table table = new Table(Database.getDataSource(), "Questionnaire");
+        Table table = new Table(Database.getDataSource(), "Survey");
 
         int rowsBefore = table.getRowsList().size();
-        questionnaireRepository.insert(questionnaire);
+        surveyRepository.insert(survey);
         int rowsAfter = table.getRowsList().size();
 
 
@@ -79,11 +65,10 @@ class SurveyRepositoryTest {
     @Order(3)
     void delete() {
 
-        SurveyRepository surveyRepository = new SurveyRepository();
 
         Survey survey = new Survey(1L, "Thomas Stütz", questionnaireRepository.findById(1), new Date());
         surveyRepository.insert(survey);
-        Table table = new Table(Database.getDataSource(), "Survey");
+        Table table = new Table(Database.getDataSource(), "survey");
 
         int rowsBefore = table.getRowsList().size();
         surveyRepository.delete(rowsBefore-1);

@@ -43,7 +43,7 @@ public class AnswerOptionsRepositoryTest {
     void insert() {
 
         AnswerOptions answerOptions = new AnswerOptions(20L, "völlig zu", 4,questionRepository.findById(1) );
-        answerOptionsRepository.save(answerOptions);
+        answerOptionsRepository.insert(answerOptions);
 
         Table table = new Table(Database.getDataSource(), "answer_option");
 

@@ -12,9 +12,10 @@ import org.junit.jupiter.api.Test;
 public class S_TransactionRepositoryTest {
 
     SurveyRepository surveyRepository = new SurveyRepository();
+    S_TransactionRepository s_transactionRepository = new S_TransactionRepository();
+
     @Test
     void save() {
-        S_TransactionRepository s_transactionRepository = new S_TransactionRepository();
 
         S_Transaction s_transaction = new S_Transaction(1L,"1234567ABC","iAn57Hde",false,surveyRepository.findById(1));
         s_transactionRepository.save(s_transaction);
@@ -31,7 +32,6 @@ public class S_TransactionRepositoryTest {
 
     @Test
     void insert() {
-        S_TransactionRepository s_transactionRepository = new S_TransactionRepository();
 
         S_Transaction s_transaction = new S_Transaction(1L,"1234567ABC","iAn57Hde",false,surveyRepository.findById(1));
 
@@ -48,7 +48,6 @@ public class S_TransactionRepositoryTest {
     @Test
     void delete() {
 
-        S_TransactionRepository s_transactionRepository = new S_TransactionRepository();
 
         S_Transaction s_transaction = new S_Transaction(1L,"1234567ABC","iAn57Hde",false,surveyRepository.findById(1));
         s_transactionRepository.insert(s_transaction);
@@ -65,7 +64,6 @@ public class S_TransactionRepositoryTest {
     @Test
     @Order(4)
     void findAll() {
-        S_TransactionRepository s_transactionRepository = new S_TransactionRepository();
 
         int findAllRows = s_transactionRepository.findAll().size();
 
@@ -80,7 +78,6 @@ public class S_TransactionRepositoryTest {
     @Test
     @Order(5)
     void findById() {
-        S_TransactionRepository s_transactionRepository = new S_TransactionRepository();
         Table table = new Table(Database.getDataSource(), "S_Transaction");
 
         S_Transaction s_Transaction = s_transactionRepository.findById(2);

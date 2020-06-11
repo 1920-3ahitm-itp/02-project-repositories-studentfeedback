@@ -25,7 +25,6 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class AnswerRepositoryTest {
 
-    QuestionnaireRepository questionnaireRepository = new QuestionnaireRepository();
     AnswerRepository answerRepository = new AnswerRepository();
     QuestionRepository questionRepository = new QuestionRepository();
     S_TransactionRepository s_transactionRepository = new S_TransactionRepository();
@@ -71,7 +70,6 @@ public class AnswerRepositoryTest {
     @Test
     @Order(3)
     void delete() {
-
 
 
         Answer answer = new Answer(1L, s_transactionRepository.findById(3), questionRepository.findById(4), surveyRepository.findById(1) , "Hallihallo");

@@ -19,10 +19,11 @@ import static org.assertj.db.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.*;
 
 class QuestionRepositoryTest {
+    QuestionRepository questionRepository = new QuestionRepository();
+
 
     @Test
     void save() {
-        QuestionRepository questionRepository = new QuestionRepository();
 
         Questionnaire questionnaire = new Questionnaire(1L, "Questionnaire");
         Question question = new Question(1L, "Wie gefällt dir der Unterricht des Lehrers?", "TEXT", questionnaire);
@@ -40,7 +41,6 @@ class QuestionRepositoryTest {
 
     @Test
     void insert() {
-        QuestionRepository questionRepository = new QuestionRepository();
 
         Questionnaire questionnaire = new Questionnaire(1L, "Questionnaire");
         Question question = new Question(9L, "Blablabla", "Type", questionnaire);
@@ -59,7 +59,6 @@ class QuestionRepositoryTest {
     @Test
     void delete() {
 
-        QuestionRepository questionRepository = new QuestionRepository();
 
         Questionnaire questionnaire = new Questionnaire(1L, "Questionnaire");
         Question question = new Question(9L, "Blablabla", "Text", questionnaire);
@@ -77,7 +76,6 @@ class QuestionRepositoryTest {
 
     @Test
     void findAll() {
-        QuestionRepository questionRepository = new QuestionRepository();
         Table table = new Table(Database.getDataSource(), "Question");
 
         int findAllRows = questionRepository.findAll().size();
@@ -88,7 +86,6 @@ class QuestionRepositoryTest {
 
     @Test
     void findById() {
-        QuestionRepository questionRepository = new QuestionRepository();
         Table table = new Table(Database.getDataSource(), "Question");
 
         Question question = questionRepository.findById(2);

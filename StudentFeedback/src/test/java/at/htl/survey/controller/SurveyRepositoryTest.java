@@ -30,7 +30,6 @@ class SurveyRepositoryTest {
     @BeforeAll
     private static void init(){
         SqlRunner.dropTablesAndCreateEmptyTables();
-        //
     }
 
     @Test

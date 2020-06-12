@@ -44,12 +44,21 @@ public class SurveyRepository implements Persistent<Survey> {
     @Override
     public void insert(Survey survey) {
         try (Connection connection = dataSource.getConnection()) {
-            String sql = "INSERT INTO survey (s_creator,s_qn_id,s_date) VALUES (?,?,?)";
+            String sql = null;
+            PreparedStatement statement = null;
+            if(survey.getQuestionnaire() != null){
+                sql = "INSERT INTO survey (s_creator,s_qn_id,s_date) VALUES (?,?,?)";
+                statement = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+                statement.setString(1, survey.getsCreator());
+                statement.setLong(2, survey.getQuestionnaire().getQnId());
+                statement.setDate(3, java.sql.Date.valueOf(survey.getsDate()));
+            }else{
+                sql = "INSERT INTO survey (s_creator,s_date) VALUES (?,?)";
+                statement = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+                statement.setString(1, survey.getsCreator());
+                statement.setDate(2, java.sql.Date.valueOf(survey.getsDate()));
+            }
 
-            PreparedStatement statement = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
-            statement.setString(1, survey.getsCreator());
-            statement.setLong(2, survey.getQuestionnaire().getQnId());
-            statement.setDate(3, java.sql.Date.valueOf(survey.getsDate()));
 
 
             if (statement.executeUpdate() == 0) {

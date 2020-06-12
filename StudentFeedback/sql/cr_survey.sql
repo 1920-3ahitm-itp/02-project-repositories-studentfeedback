@@ -1,5 +1,4 @@
 
-
 CREATE TABLE questionnaire (
                     qn_id INT NOT NULL
                         CONSTRAINT QUESTIONNAIRE_PK PRIMARY KEY

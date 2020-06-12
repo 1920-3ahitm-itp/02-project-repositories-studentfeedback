@@ -119,6 +119,7 @@ class SurveyRepositoryTest {
 
         table = new Table(Database.getDataSource(), "Survey");
         output(table).toConsole();
+
         String [] expected = {
                 String.valueOf(survey.getsId()),
                 survey.getsCreator(),

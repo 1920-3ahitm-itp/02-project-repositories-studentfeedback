@@ -9,10 +9,15 @@ import org.assertj.db.type.Table;
 import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
 
+import java.time.LocalDate;
+
+import static org.assertj.db.output.Outputs.output;
+
 public class S_TransactionRepositoryTest {
 
     SurveyRepository surveyRepository = new SurveyRepository();
     S_TransactionRepository s_transactionRepository = new S_TransactionRepository();
+    QuestionnaireRepository questionnaireRepository = new QuestionnaireRepository();
 
     @Test
     void save() {
@@ -78,16 +83,32 @@ public class S_TransactionRepositoryTest {
     @Test
     @Order(5)
     void findById() {
-        Table table = new Table(Database.getDataSource(), "S_Transaction");
 
-        S_Transaction s_Transaction = s_transactionRepository.findById(2);
+        LocalDate date = LocalDate.now(); //survey.getsDate().getTime());
+
+        Questionnaire questionnaire = new Questionnaire(null,"blabla");
+        questionnaireRepository.insert(questionnaire);
+
+        Survey survey = new Survey(null, "Thomas Stütz", questionnaireRepository.findById(1), date);
+        surveyRepository.insert(survey);
+
+        Table table = new Table(Database.getDataSource(), "S_Transaction");
+        output(table).toConsole();
+
+        S_Transaction s_transaction = new S_Transaction(1L,"1234567ABC","iAn57Hde",false,surveyRepository.findById(1));
+        s_transactionRepository.insert(s_transaction);
+
+        s_transaction = s_transactionRepository.findById(3);
+
+        table = new Table(Database.getDataSource(), "s_transaction");
+        output(table).toConsole();
 
         String [] expected = {
-                String.valueOf(s_Transaction.gettId()),
-                s_Transaction.gettTransactionscode(),
-                s_Transaction.gettPassword(),
-                String.valueOf(s_Transaction.getIsUsed()),
-                String.valueOf(s_Transaction.getSurvey().getsId())
+                String.valueOf(s_transaction.gettId()),
+                s_transaction.gettTransactionscode(),
+                s_transaction.gettPassword(),
+                String.valueOf(s_transaction.getIsUsed()),
+                String.valueOf(s_transaction.getSurvey().getsId())
         };
 
         String [] actual = {

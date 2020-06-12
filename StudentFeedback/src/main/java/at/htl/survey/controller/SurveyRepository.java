@@ -140,9 +140,10 @@ public class SurveyRepository implements Persistent<Survey> {
 
 
             if (result.next()) {
+                long s_qn_id = result.getInt("s_qn_id");
 
                 QuestionnaireRepository questionnaireRepository = new QuestionnaireRepository();
-                Questionnaire questionnaire = questionnaireRepository.findById(id);
+                Questionnaire questionnaire = questionnaireRepository.findById(s_qn_id);
 
 
                 return new Survey(result.getLong("s_id"), result.getString("s_creator"), questionnaire, result.getDate("s_date").toLocalDate());

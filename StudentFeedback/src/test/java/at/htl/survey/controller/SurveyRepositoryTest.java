@@ -103,10 +103,22 @@ class SurveyRepositoryTest {
     @Test
     @Order(5)
     void findById() {
+        LocalDate date = LocalDate.now(); //survey.getsDate().getTime());
+
+        Questionnaire questionnaire = new Questionnaire(null,"blabla");
+        questionnaireRepository.insert(questionnaire);
+
+
         Table table = new Table(Database.getDataSource(), "Survey");
+        output(table).toConsole();
 
-        Survey survey = surveyRepository.findById(2);
+        Survey survey = new Survey(null, "Thomas Stütz", questionnaireRepository.findById(1), date);
+        surveyRepository.insert(survey);
 
+        survey = surveyRepository.findById(4);
+
+        table = new Table(Database.getDataSource(), "Survey");
+        output(table).toConsole();
         String [] expected = {
                 String.valueOf(survey.getsId()),
                 survey.getsCreator(),
@@ -115,10 +127,10 @@ class SurveyRepositoryTest {
 
         };
         String [] actual = {
-                table.getRow(1).getValuesList().get(0).getValue().toString(),
-                table.getRow(1).getValuesList().get(1).getValue().toString(),
-                table.getRow(1).getValuesList().get(2).getValue().toString(),
-                table.getRow(1).getValuesList().get(3).getValue().toString()
+                table.getRow(2).getValuesList().get(0).getValue().toString(),
+                table.getRow(2).getValuesList().get(1).getValue().toString(),
+                table.getRow(2).getValuesList().get(2).getValue().toString(),
+                table.getRow(2).getValuesList().get(3).getValue().toString()
         };
 
         org.assertj.core.api.Assertions.assertThat(expected).isEqualTo(actual);

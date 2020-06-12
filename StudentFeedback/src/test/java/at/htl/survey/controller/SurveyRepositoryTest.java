@@ -27,10 +27,10 @@ class SurveyRepositoryTest {
     SurveyRepository surveyRepository = new SurveyRepository();
     QuestionnaireRepository questionnaireRepository = new QuestionnaireRepository();
 
-    @BeforeAll
+    /*@BeforeAll
     private static void init(){
         SqlRunner.run();
-    }
+    }*/
 
     @Test
     @Order(1)

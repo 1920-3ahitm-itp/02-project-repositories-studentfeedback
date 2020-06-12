@@ -1,5 +1,6 @@
 package at.htl.survey.controller;
 
+import at.htl.survey.model.AnswerOptions;
 import at.htl.survey.model.Question;
 import at.htl.survey.model.Questionnaire;
 
@@ -14,8 +15,18 @@ public class QuestionnaireRepository implements Persistent<Questionnaire> {
 
     private DataSource dataSource = Database.getDataSource();
 
+
     @Override
     public void save(Questionnaire questionnaire) {
+        if (questionnaire.getQnId() == null) {
+            insert(questionnaire);
+        } else {
+            update(questionnaire);
+        }
+    }
+
+
+    public void update(Questionnaire questionnaire) {
 
         try (Connection connection = dataSource.getConnection()) {
             String sql = "UPDATE questionnaire SET qn_description=? WHERE qn_id=  " + questionnaire.getQnId();

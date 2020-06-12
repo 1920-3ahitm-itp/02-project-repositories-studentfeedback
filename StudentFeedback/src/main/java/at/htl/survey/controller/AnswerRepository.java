@@ -1,9 +1,6 @@
 package at.htl.survey.controller;
 
-import at.htl.survey.model.Answer;
-import at.htl.survey.model.Question;
-import at.htl.survey.model.S_Transaction;
-import at.htl.survey.model.Survey;
+import at.htl.survey.model.*;
 
 import javax.sql.DataSource;
 import java.sql.*;
@@ -19,6 +16,15 @@ public class AnswerRepository implements Persistent<Answer>{
 
     @Override
     public void save(Answer answer) {
+        if (answer.getaId() == null) {
+            insert(answer);
+        } else {
+            update(answer);
+        }
+    }
+
+
+    public void update(Answer answer) {
 
         try (Connection connection = dataSource.getConnection()) {
             String sql = "UPDATE answer SET  a_t_id=?, a_q_id=?, a_s_id=?, a_answer_text=? WHERE a_id= " + answer.getaId();

@@ -2,6 +2,7 @@ package at.htl.survey.controller;
 
 import at.htl.survey.model.AnswerOptions;
 import at.htl.survey.model.Question;
+import at.htl.survey.model.Survey;
 
 import javax.sql.DataSource;
 import java.sql.*;
@@ -16,6 +17,14 @@ public class AnswerOptionsRepository implements Persistent<AnswerOptions> {
 
     @Override
     public void save(AnswerOptions answerOptions) {
+        if (answerOptions.getAoId() == null) {
+            insert(answerOptions);
+        } else {
+            update(answerOptions);
+        }
+    }
+
+    public void update(AnswerOptions answerOptions) {
 
         try (Connection connection = dataSource.getConnection()) {
             String sql = "UPDATE answer_option SET ao_text=?, ao_value=?, ao_q_id=?  WHERE ao_id=?";

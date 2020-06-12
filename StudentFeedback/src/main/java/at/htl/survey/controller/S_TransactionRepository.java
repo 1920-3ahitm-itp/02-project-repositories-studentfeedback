@@ -13,8 +13,18 @@ import java.util.List;
 public class S_TransactionRepository implements Persistent<S_Transaction>{
     private DataSource dataSource = Database.getDataSource();
 
+
     @Override
     public void save(S_Transaction s_transaction) {
+        if (s_transaction.gettId() == null) {
+            insert(s_transaction);
+        } else {
+            update(s_transaction);
+        }
+    }
+
+
+    public void update(S_Transaction s_transaction) {
 
         try (Connection connection = dataSource.getConnection()) {
             String sql = "UPDATE s_transaction SET t_transactionscode=?,t_password=?,t_is_used=?,t_s_id=? WHERE t_id=?";

@@ -1,11 +1,13 @@
 package at.htl.survey.controller;
 
+import at.htl.survey.database.SqlRunner;
 import at.htl.survey.model.Question;
 import at.htl.survey.model.Questionnaire;
 import at.htl.survey.model.S_Transaction;
 import at.htl.survey.model.Survey;
 import org.assertj.db.api.Assertions;
 import org.assertj.db.type.Table;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
 
@@ -19,14 +21,32 @@ public class S_TransactionRepositoryTest {
     S_TransactionRepository s_transactionRepository = new S_TransactionRepository();
     QuestionnaireRepository questionnaireRepository = new QuestionnaireRepository();
 
+
+    @BeforeAll
+    private static void init(){
+        SqlRunner.dropTablesAndCreateEmptyTables();
+    }
+
     @Test
     void save() {
+        LocalDate date = LocalDate.now(); //survey.getsDate().getTime());
 
-        S_Transaction s_transaction = new S_Transaction(1L,"1234567ABC","iAn57Hde",false,surveyRepository.findById(1));
+        Table table = new Table(Database.getDataSource(), "S_Transaction");
+        output(table).toConsole();
+
+        Questionnaire questionnaire = new Questionnaire(null, "Questionnaire");
+        questionnaireRepository.insert(questionnaire);
+
+        Survey survey = new Survey(null, "Thomas Stütz", questionnaireRepository.findById(1), date);
+        surveyRepository.insert(survey);
+
+        S_Transaction s_transaction = new S_Transaction(null,"1234567ABC","iAn57Hde",false,surveyRepository.findById(1));
         s_transactionRepository.save(s_transaction);
 
+        table = new Table(Database.getDataSource(), "S_Transaction");
+        output(table).toConsole();
 
-        Table table = new Table(Database.getDataSource(), "s_transaction");
+       // Table table = new Table(Database.getDataSource(), "s_transaction");
 
         Assertions.assertThat(table).row(0)
                 .value("t_transactionscode").isEqualTo("1234567ABC")
@@ -37,10 +57,23 @@ public class S_TransactionRepositoryTest {
 
     @Test
     void insert() {
+        LocalDate date = LocalDate.now(); //survey.getsDate().getTime());
+
+        Table table = new Table(Database.getDataSource(), "S_Transaction");
+        output(table).toConsole();
+
+        Questionnaire questionnaire = new Questionnaire(null, "Questionnaire");
+        questionnaireRepository.insert(questionnaire);
+
+        Survey survey = new Survey(null, "Thomas Stütz", questionnaireRepository.findById(1), date);
+        surveyRepository.insert(survey);
 
         S_Transaction s_transaction = new S_Transaction(1L,"1234567ABC","iAn57Hde",false,surveyRepository.findById(1));
 
-        Table table = new Table(Database.getDataSource(), "s_transaction");
+       // Table table = new Table(Database.getDataSource(), "s_transaction");
+
+        table = new Table(Database.getDataSource(), "S_Transaction");
+        output(table).toConsole();
 
         int rowsBefore = table.getRowsList().size();
         s_transactionRepository.insert(s_transaction);
@@ -52,11 +85,24 @@ public class S_TransactionRepositoryTest {
 
     @Test
     void delete() {
+        LocalDate date = LocalDate.now(); //survey.getsDate().getTime());
 
+        Table table = new Table(Database.getDataSource(), "S_Transaction");
+        output(table).toConsole();
+
+        Questionnaire questionnaire = new Questionnaire(null, "Questionnaire");
+        questionnaireRepository.insert(questionnaire);
+
+        Survey survey = new Survey(null, "Thomas Stütz", questionnaireRepository.findById(1), date);
+        surveyRepository.insert(survey);
 
         S_Transaction s_transaction = new S_Transaction(1L,"1234567ABC","iAn57Hde",false,surveyRepository.findById(1));
         s_transactionRepository.insert(s_transaction);
-        Table table = new Table(Database.getDataSource(), "s_transaction");
+
+       // Table table = new Table(Database.getDataSource(), "s_transaction");
+
+        table = new Table(Database.getDataSource(), "S_Transaction");
+        output(table).toConsole();
 
         int rowsBefore = table.getRowsList().size();
         s_transactionRepository.delete(s_transaction.gettId());
@@ -98,7 +144,7 @@ public class S_TransactionRepositoryTest {
         S_Transaction s_transaction = new S_Transaction(null,"1234567ABC","iAn57Hde",false,surveyRepository.findById(1));
         s_transactionRepository.insert(s_transaction);
 
-        s_transaction = s_transactionRepository.findById(2);
+        s_transaction = s_transactionRepository.findById(3);
 
         table = new Table(Database.getDataSource(), "s_transaction");
         output(table).toConsole();

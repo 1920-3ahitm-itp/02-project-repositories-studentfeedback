@@ -61,13 +61,13 @@ class SurveyRepositoryTest {
     void insert() {
         LocalDate date = LocalDate.now();
 
-        Table table = new Table(Database.getDataSource(), "S_Transaction");
+        Table table = new Table(Database.getDataSource(), "Survey");
         output(table).toConsole();
 
         Questionnaire questionnaire = new Questionnaire(null, "Questionnaire");
         questionnaireRepository.insert(questionnaire);
 
-        Survey survey = new Survey(1L, "Thomas Stütz", questionnaireRepository.findById(1), date);
+        Survey survey = new Survey(1L, "Thomas Karl", questionnaireRepository.findById(1), date);
 
         //Table table = new Table(Database.getDataSource(), "Survey");
         table = new Table(Database.getDataSource(), "Survey");
@@ -96,7 +96,7 @@ class SurveyRepositoryTest {
         surveyRepository.insert(survey);
 
         // Table table = new Table(Database.getDataSource(), "Survey");
-        table = new Table(Database.getDataSource(), "S_Transaction");
+        table = new Table(Database.getDataSource(), "Survey");
         output(table).toConsole();
 
         int rowsBefore = table.getRowsList().size();

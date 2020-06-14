@@ -33,7 +33,6 @@ public class AnswerOptionsRepositoryTest {
     @Test
     @Order(1)
     void save() {
-
         Table table = new Table(Database.getDataSource(), "answer_option");
         output(table).toConsole();
 

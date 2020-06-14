@@ -40,6 +40,9 @@ class SurveyRepositoryTest {
         Table table = new Table(Database.getDataSource(), "Survey");
         output(table).toConsole();
 
+        Questionnaire questionnaire = new Questionnaire(null, "Questionnaire");
+        questionnaireRepository.insert(questionnaire);
+
         Survey survey = new Survey(null, "Thomas Stütz", questionnaireRepository.findById(1), date);
         surveyRepository.save(survey);
 
@@ -58,9 +61,17 @@ class SurveyRepositoryTest {
     void insert() {
         LocalDate date = LocalDate.now();
 
+        Table table = new Table(Database.getDataSource(), "S_Transaction");
+        output(table).toConsole();
+
+        Questionnaire questionnaire = new Questionnaire(null, "Questionnaire");
+        questionnaireRepository.insert(questionnaire);
+
         Survey survey = new Survey(1L, "Thomas Stütz", questionnaireRepository.findById(1), date);
 
-        Table table = new Table(Database.getDataSource(), "Survey");
+        //Table table = new Table(Database.getDataSource(), "Survey");
+        table = new Table(Database.getDataSource(), "Survey");
+        output(table).toConsole();
 
         int rowsBefore = table.getRowsList().size();
         surveyRepository.insert(survey);
@@ -75,9 +86,18 @@ class SurveyRepositoryTest {
     void delete() {
         LocalDate date = LocalDate.now();
 
+        Table table = new Table(Database.getDataSource(), "Survey");
+        output(table).toConsole();
+
+        Questionnaire questionnaire = new Questionnaire(null, "Questionnaire");
+        questionnaireRepository.insert(questionnaire);
+
         Survey survey = new Survey(1L, "Thomas Stütz", questionnaireRepository.findById(1), date);
         surveyRepository.insert(survey);
-        Table table = new Table(Database.getDataSource(), "Survey");
+
+        // Table table = new Table(Database.getDataSource(), "Survey");
+        table = new Table(Database.getDataSource(), "S_Transaction");
+        output(table).toConsole();
 
         int rowsBefore = table.getRowsList().size();
         surveyRepository.delete(survey.getsId());

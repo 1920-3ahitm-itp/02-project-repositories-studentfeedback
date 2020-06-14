@@ -70,7 +70,6 @@ public class AnswerOptionsRepositoryTest {
        questionRepository.insert(question);
 
        AnswerOptions answerOptions = new AnswerOptions(null, "völlig zu", 4,questionRepository.findById(1) );
-        answerOptionsRepository.insert(answerOptions);
 
        table = new Table(Database.getDataSource(), "answer_option");
        output(table).toConsole();

@@ -95,10 +95,10 @@ public class S_TransactionRepositoryTest {
         Table table = new Table(Database.getDataSource(), "S_Transaction");
         output(table).toConsole();
 
-        S_Transaction s_transaction = new S_Transaction(1L,"1234567ABC","iAn57Hde",false,surveyRepository.findById(1));
+        S_Transaction s_transaction = new S_Transaction(null,"1234567ABC","iAn57Hde",false,surveyRepository.findById(1));
         s_transactionRepository.insert(s_transaction);
 
-        s_transaction = s_transactionRepository.findById(3);
+        s_transaction = s_transactionRepository.findById(2);
 
         table = new Table(Database.getDataSource(), "s_transaction");
         output(table).toConsole();

@@ -108,7 +108,6 @@ class SurveyRepositoryTest {
         Questionnaire questionnaire = new Questionnaire(null,"blabla");
         questionnaireRepository.insert(questionnaire);
 
-
         Table table = new Table(Database.getDataSource(), "Survey");
         output(table).toConsole();
 

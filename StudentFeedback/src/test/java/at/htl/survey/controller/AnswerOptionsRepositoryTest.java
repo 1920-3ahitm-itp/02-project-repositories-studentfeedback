@@ -14,6 +14,7 @@ import java.util.List;
 import static org.assertj.core.api.Assertions.*;
 import static org.assertj.db.api.Assertions.assertThat;
 
+import static org.assertj.db.output.Outputs.output;
 import static org.junit.jupiter.api.Assertions.*;
 
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
@@ -22,15 +23,33 @@ public class AnswerOptionsRepositoryTest {
 
     QuestionRepository questionRepository = new QuestionRepository();
     AnswerOptionsRepository answerOptionsRepository = new AnswerOptionsRepository();
-    
+    QuestionnaireRepository questionnaireRepository = new QuestionnaireRepository();
+
+    @BeforeAll
+    private static void init(){
+        SqlRunner.dropTablesAndCreateEmptyTables();
+    }
+
     @Test
     @Order(1)
     void save() {
 
-        AnswerOptions answerOptions = new AnswerOptions(2L, "völlig zu", 4, questionRepository.findById(1) );
+        Table table = new Table(Database.getDataSource(), "answer_option");
+        output(table).toConsole();
+
+        Questionnaire questionnaire = new Questionnaire(null, "Questionnaire");
+        questionnaireRepository.insert(questionnaire);
+
+        Question question = new Question(null, "Wie gefällt dir der Unterricht des Lehrers?", "TEXT",questionnaireRepository.findById(1));
+        questionRepository.insert(question);
+
+        AnswerOptions answerOptions = new AnswerOptions(null, "völlig zu", 4, questionRepository.findById(1) );
         answerOptionsRepository.save(answerOptions);
 
-        Table table = new Table(Database.getDataSource(), "answer_option");
+        table = new Table(Database.getDataSource(), "answer_option");
+        output(table).toConsole();
+
+       // Table table = new Table(Database.getDataSource(), "answer_option");
 
         Assertions.assertThat(table).row(0)
                 .value("ao_text").isEqualTo("völlig zu")
@@ -41,11 +60,22 @@ public class AnswerOptionsRepositoryTest {
    @Test
     @Order(2)
     void insert() {
+       Table table = new Table(Database.getDataSource(), "answer_option");
+       output(table).toConsole();
 
-        AnswerOptions answerOptions = new AnswerOptions(20L, "völlig zu", 4,questionRepository.findById(1) );
+       Questionnaire questionnaire = new Questionnaire(null, "Questionnaire");
+       questionnaireRepository.insert(questionnaire);
+
+       Question question = new Question(null, "Wie gefällt dir der Unterricht des Lehrers?", "TEXT",questionnaireRepository.findById(1));
+       questionRepository.insert(question);
+
+       AnswerOptions answerOptions = new AnswerOptions(null, "völlig zu", 4,questionRepository.findById(1) );
         answerOptionsRepository.insert(answerOptions);
 
-        Table table = new Table(Database.getDataSource(), "answer_option");
+       table = new Table(Database.getDataSource(), "answer_option");
+       output(table).toConsole();
+
+       // Table table = new Table(Database.getDataSource(), "answer_option");
 
         int rowsBefore = table.getRowsList().size();
         answerOptionsRepository.insert(answerOptions);
@@ -58,14 +88,26 @@ public class AnswerOptionsRepositoryTest {
     @Test
     @Order(3)
     void delete() {
+        Table table = new Table(Database.getDataSource(), "answer_option");
+        output(table).toConsole();
+
+        Questionnaire questionnaire = new Questionnaire(null, "Questionnaire");
+        questionnaireRepository.insert(questionnaire);
+
+        Question question = new Question(null, "Wie gefällt dir der Unterricht des Lehrers?", "TEXT",questionnaireRepository.findById(1));
+        questionRepository.insert(question);
 
         AnswerOptions answerOptions = new AnswerOptions(2L, "völlig zu", 4, questionRepository.findById(1));
         answerOptionsRepository.insert(answerOptions);
-        Table table = new Table(Database.getDataSource(), "answer_option");
+
+        //Table table = new Table(Database.getDataSource(), "answer_option");
 
         int rowsBefore = table.getRowsList().size();
         answerOptionsRepository.delete(answerOptions.getAo_id());
         int rowsAfter = table.getRowsList().size();
+
+        table = new Table(Database.getDataSource(), "answer_option");
+        output(table).toConsole();
 
         org.assertj.core.api.Assertions.assertThat(rowsBefore).isEqualTo(rowsAfter);
 
@@ -75,11 +117,16 @@ public class AnswerOptionsRepositoryTest {
     @Order(4)
     void findAll() {
 
+        Table table = new Table(Database.getDataSource(), "answer_option");
+        output(table).toConsole();
 
         int findAllRows = answerOptionsRepository.findAll().size();
 
 
-        Table table = new Table(Database.getDataSource(), "answer_option");
+        //Table table = new Table(Database.getDataSource(), "answer_option");
+
+        table = new Table(Database.getDataSource(), "answer_option");
+        output(table).toConsole();
 
         int tableRows = table.getRowsList().size();
 
@@ -89,12 +136,32 @@ public class AnswerOptionsRepositoryTest {
     @Test
     @Order(5)
     void findById() {
+        Questionnaire questionnaire = new Questionnaire(null, "Questionnaire");
+        questionnaireRepository.insert(questionnaire);
+
+        Question question = new Question(null, "Wie gefällt dir der Unterricht des Lehrers?", "TEXT",questionnaireRepository.findById(1));
+        questionRepository.insert(question);
 
         Table table = new Table(Database.getDataSource(), "answer_option");
+        output(table).toConsole();
 
-        AnswerOptions answerOptions = answerOptionsRepository.findById(2);
+        AnswerOptions answerOptions = new AnswerOptions(null, "völlig zu", 4,questionRepository.findById(1));
+        answerOptionsRepository.insert(answerOptions);
 
-        String [] expected = {String.valueOf(answerOptions.getAo_id()), answerOptions.getAoText(), String.valueOf(answerOptions.getAoValue()), String.valueOf(answerOptions.getQuestion().getqId())};
+        answerOptions = answerOptionsRepository.findById(2);
+
+        table = new Table(Database.getDataSource(), "answer_option");
+        output(table).toConsole();
+
+        //Table table = new Table(Database.getDataSource(), "answer_option");
+
+        String [] expected = {
+                String.valueOf(answerOptions.getAo_id()),
+                answerOptions.getAoText(),
+                String.valueOf(answerOptions.getAoValue()),
+                String.valueOf(answerOptions.getQuestion().getqId())
+        };
+
         String [] actual = {
                 table.getRow(1).getValuesList().get(0).getValue().toString(),
                 table.getRow(1).getValuesList().get(1).getValue().toString(),

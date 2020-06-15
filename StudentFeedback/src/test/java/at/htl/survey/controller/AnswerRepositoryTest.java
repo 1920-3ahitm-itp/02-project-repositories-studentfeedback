@@ -1,4 +1,3 @@
-
 package at.htl.survey.controller;
 
 import at.htl.survey.database.SqlRunner;
@@ -7,10 +6,7 @@ import at.htl.survey.model.Questionnaire;
 import at.htl.survey.model.Survey;
 import org.assertj.db.api.Assertions;
 import org.assertj.db.type.Table;
-import org.junit.jupiter.api.MethodOrderer;
-import org.junit.jupiter.api.Order;
-import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.TestMethodOrder;
+import org.junit.jupiter.api.*;
 
 import java.util.List;
 
@@ -29,6 +25,12 @@ public class AnswerRepositoryTest {
     QuestionRepository questionRepository = new QuestionRepository();
     S_TransactionRepository s_transactionRepository = new S_TransactionRepository();
     SurveyRepository surveyRepository = new SurveyRepository();
+
+
+    @BeforeAll
+    private static void init(){
+        SqlRunner.dropAndCreateTablesWithExampleData();
+    }
 
     @Test
     @Order(1)
@@ -120,4 +122,3 @@ public class AnswerRepositoryTest {
 
 
 }
-

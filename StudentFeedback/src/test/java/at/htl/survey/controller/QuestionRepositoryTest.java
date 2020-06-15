@@ -73,50 +73,50 @@ class QuestionRepositoryTest {
         org.assertj.core.api.Assertions.assertThat(rowsBefore).isEqualTo(rowsAfter);
     }
 
-//
-//    @Test
-//    @Order(3)
-//    void delete() {
-//
-//
-//        Questionnaire questionnaire = new Questionnaire(1L, "Questionnaire");
-//        Question question = new Question(9L, "Blablabla", "Text", questionnaire);
-//        questionRepository.insert(question);
-//        Table table = new Table(Database.getDataSource(), "Question");
-//
-//        int rowsBefore = table.getRowsList().size();
-//        questionRepository.delete(question.getqId());
-//        int rowsAfter = table.getRowsList().size();
-//
-//        org.assertj.core.api.Assertions.assertThat(rowsBefore).isEqualTo(rowsAfter);
-//
-//
-//    }
-//
-//    @Test
-//    void findAll() {
-//        Table table = new Table(Database.getDataSource(), "Question");
-//
-//        int findAllRows = questionRepository.findAll().size();
-//        int tableRows = table.getRowsList().size();
-//
-//        org.assertj.core.api.Assertions.assertThat(findAllRows).isEqualTo(tableRows);
-//    }
-//
-//    @Test
-//    void findById() {
-//        Table table = new Table(Database.getDataSource(), "Question");
-//
-//        Question question = questionRepository.findById(2);
-//
-//        String [] actual = {String.valueOf(question.getqId()), question.getqText(),question.getqType(),String.valueOf(question.getQuestionnaire().getQnId())};
-//        String [] expected = {
-//                table.getRow(1).getValuesList().get(0).getValue().toString(),
-//                table.getRow(1).getValuesList().get(1).getValue().toString(),
-//                table.getRow(1).getValuesList().get(2).getValue().toString(),
-//                table.getRow(1).getValuesList().get(3).getValue().toString()
-//        };
-//
-//        org.assertj.core.api.Assertions.assertThat(expected).isEqualTo(actual);
-//    }
+
+    @Test
+    @Order(3)
+    void delete() {
+
+
+        Questionnaire questionnaire = new Questionnaire(1L, "Questionnaire");
+        Question question = new Question(9L, "Blablabla", "Text", questionnaire);
+        questionRepository.insert(question);
+        Table table = new Table(Database.getDataSource(), "Question");
+
+        int rowsBefore = table.getRowsList().size();
+        questionRepository.delete(question.getqId());
+        int rowsAfter = table.getRowsList().size();
+
+        org.assertj.core.api.Assertions.assertThat(rowsBefore).isEqualTo(rowsAfter);
+
+
+    }
+
+    @Test
+    void findAll() {
+        Table table = new Table(Database.getDataSource(), "Question");
+
+        int findAllRows = questionRepository.findAll().size();
+        int tableRows = table.getRowsList().size();
+
+        org.assertj.core.api.Assertions.assertThat(findAllRows).isEqualTo(tableRows);
+    }
+
+    @Test
+    void findById() {
+        Table table = new Table(Database.getDataSource(), "Question");
+
+        Question question = questionRepository.findById(2);
+
+        String [] actual = {String.valueOf(question.getqId()), question.getqText(),question.getqType(),String.valueOf(question.getQuestionnaire().getQnId())};
+        String [] expected = {
+                table.getRow(1).getValuesList().get(0).getValue().toString(),
+                table.getRow(1).getValuesList().get(1).getValue().toString(),
+                table.getRow(1).getValuesList().get(2).getValue().toString(),
+                table.getRow(1).getValuesList().get(3).getValue().toString()
+        };
+
+        org.assertj.core.api.Assertions.assertThat(expected).isEqualTo(actual);
+    }
 }
